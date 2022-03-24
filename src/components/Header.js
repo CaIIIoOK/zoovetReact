@@ -1,14 +1,16 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { cartOpen } from '../redux/actions/cart';
 
-function Header(props) {
+function Header() {
   return (
     <header className="header">
       <HeaderLogo />
       <HeaderTelephone />
       <HeaderMenu />
       <HeaderSearch />
-      <HeaderCart open={props.onOpenCart} />
+      <HeaderCart />
       <HeaderProfile />
     </header>
   );
@@ -81,9 +83,15 @@ function HeaderSearch() {
   );
 }
 
-function HeaderCart(props) {
+function HeaderCart() {
+  const dispatch = useDispatch();
+
+  function toggle() {
+    dispatch(cartOpen(true));
+  }
+
   return (
-    <div className="cartImg" onClick={props.open}>
+    <div className="cartImg" onClick={toggle}>
       <button className="buttnCat">
         <img
           src="https://img.icons8.com/material-two-tone/48/000000/shopping-cart--v1.png"
