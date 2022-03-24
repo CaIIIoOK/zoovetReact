@@ -1,7 +1,34 @@
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
+import categoryShow from '../redux/actions/categorys';
+
 function Categorys() {
+  const dispatch = useDispatch();
+  const categorys = useSelector(({ categorys }) => {
+    return {
+      categoryArr: categorys.categorysName,
+    };
+  });
+
+  React.useEffect(() => {
+    axios.get('http://localhost:3001/prod').then(({ data }) => {
+      return dispatch(categoryShow(data));
+    });
+  }, [dispatch]);
+
   return (
     <div className="main-page">
-      <h1>Category</h1>
+      <div className="categorys__items">
+        {categorys.categoryArr.map((cat, index) => {
+          return (
+            <div key={index} className="category__item">
+              <p>{cat.Category}</p>
+              <img src={cat.Img_category} alt="" />
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

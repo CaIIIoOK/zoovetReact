@@ -1,0 +1,33 @@
+.categorys__items {
+  display: flex;
+  position: relative;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.category__item {
+  text-align: center;
+  width: 30%;
+  min-height: 250px;
+  margin: 10px;
+  padding: 5px;
+  border: 1px solid brown;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.category__item p {
+  font-size: 80%;
+  margin-bottom: 10px;
+}
+.category__item img {
+  margin: 0 auto;
+  height: 70%;
+  width: 70%;
+  max-width: max-content;
+  max-height: max-content;
+  border-radius: 10px;
+}
