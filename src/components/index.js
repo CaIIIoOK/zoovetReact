@@ -1,0 +1,10 @@
+export { default as Header } from '../components/Header';
+export { default as Main } from '../components/Main';
+export { default as Footer } from '../components/Footer';
+export { default as Categorys } from '../components/Categorys';
+export { default as DeliveryInfo } from '../components/DeliveryInfo';
+export { default as Contacts } from '../components/Contacts';
+export { default as Error } from '../components/Error';
+export { default as SidebarMenu } from '../components/SidebarMenu';
+export { default as Cart } from '../components/Cart';
+export { default as Container } from '../components/Container';

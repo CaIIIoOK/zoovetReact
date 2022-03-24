@@ -1,0 +1,13 @@
+.footer {
+  height: 80px;
+  flex: 1 1 auto;
+  background-color: #030005;
+  margin-top: 10px;
+}
+
+.footer__text {
+  font-size: 12px;
+  line-height: 12px;
+  color: cornflowerblue;
+  margin: 5px;
+}
