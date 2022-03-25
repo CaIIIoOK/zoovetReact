@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
-import categoryShow from '../redux/actions/categorys';
+import { fetchCategory } from '../redux/actions/categorys';
 
 function Categorys() {
   const dispatch = useDispatch();
@@ -12,9 +11,7 @@ function Categorys() {
   });
 
   React.useEffect(() => {
-    axios.get('http://localhost:3001/prod').then(({ data }) => {
-      return dispatch(categoryShow(data));
-    });
+    dispatch(fetchCategory());
   }, [dispatch]);
 
   return (

@@ -10,7 +10,7 @@
 .category__item {
   text-align: center;
   width: 30%;
-  min-height: 250px;
+  height: 200px;
   margin: 10px;
   padding: 5px;
   border: 1px solid brown;
@@ -25,8 +25,8 @@
 }
 .category__item img {
   margin: 0 auto;
-  height: 70%;
-  width: 70%;
+  height: 75%;
+  width: 75%;
   max-width: max-content;
   max-height: max-content;
   border-radius: 10px;
