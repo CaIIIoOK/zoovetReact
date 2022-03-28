@@ -1,8 +1,9 @@
 import axios from 'axios';
 
-const godsDisplay = (goods) => ({
+const godsDisplay = (goods, totalCount) => ({
   type: 'DISPLAY_GOODS',
   goods,
+  totalCount,
 });
 const setCurrentPage = (currentPage) => ({
   type: 'SET_GOODS',
@@ -14,7 +15,7 @@ const fetchGoods = (currentPage, perPage) => (dispatch) => {
     method: 'GET',
     url: `http://localhost:3001/goods?&perpage=${perPage}&current=${currentPage}`,
   }).then(({ data }) => {
-    return dispatch(godsDisplay(data));
+    return dispatch(godsDisplay(data.goods, data.count[0].count));
   });
 };
 export function createPages(pages, pagesCount, currentPage) {

@@ -21,13 +21,14 @@ function Goods() {
   });
   const totalCount = useSelector(({ getGoods }) => {
     return {
-      totalCount: getGoods.goods.length,
+      getGoods: getGoods.totalCount,
     };
   });
-  const pagesCount = Math.ceil(totalCount / goodsPerPage);
+  let pages = [];
+  const pagesCount = Math.ceil(totalCount.getGoods / goodsPerPage.goodsPerPage);
   const dispatch = useDispatch();
-  const pages = [1, 2, 3, 4];
-  //   createPages(pages, pagesCount, currentPage);
+
+  createPages(pages, pagesCount, currentPage.currentPage);
   React.useEffect(() => {
     dispatch(fetchGoods(currentPage.currentPage, goodsPerPage.goodsPerPage));
   }, [currentPage.currentPage]);
