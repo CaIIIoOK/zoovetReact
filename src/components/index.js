@@ -8,3 +8,4 @@ export { default as Error } from '../components/Error';
 export { default as SidebarMenu } from '../components/SidebarMenu';
 export { default as Cart } from '../components/Cart';
 export { default as Container } from '../components/Container';
+export { default as Goods } from '../components/Goods';

@@ -58,6 +58,11 @@ function HeaderMenu() {
           </NavLink>
         </li>
         <li>
+          <NavLink to="/goods" className="nav-link">
+            Усі товари
+          </NavLink>
+        </li>
+        <li>
           <NavLink to="/delivery_info" className="nav-link">
             Способи доставки
           </NavLink>

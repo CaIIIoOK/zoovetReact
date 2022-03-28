@@ -3,7 +3,7 @@ const initialState = {
 };
 
 const categorys = (state = initialState, action) => {
-  if (action.type === 'SHOW_CAT') {
+  if (action.type === 'DISPLAY_CAT') {
     return {
       ...state,
       categorysName: action.name,

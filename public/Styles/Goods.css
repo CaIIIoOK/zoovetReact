@@ -1,0 +1,9 @@
+.pagination {
+  display: flex;
+  margin-top: 10px;
+}
+
+.page-item {
+  cursor: pointer;
+  margin: 5px;
+}

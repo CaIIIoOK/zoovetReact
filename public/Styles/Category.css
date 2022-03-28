@@ -1,6 +1,5 @@
 .categorys__items {
   display: flex;
-  position: relative;
   flex-wrap: wrap;
   margin: 0 auto;
   justify-content: center;
@@ -15,16 +14,22 @@
   padding: 5px;
   border: 1px solid brown;
   display: flex;
+  flex-wrap: nowrap;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
+}
+.category__item a {
+  color: brown;
+  text-decoration: none;
+  height: 100%;
 }
 .category__item p {
   font-size: 80%;
   margin-bottom: 10px;
 }
 .category__item img {
-  margin: 0 auto;
   height: 75%;
   width: 75%;
   max-width: max-content;

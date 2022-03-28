@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCategory } from '../redux/actions/categorys';
+import { NavLink } from 'react-router-dom';
 
 function Categorys() {
   const dispatch = useDispatch();
@@ -20,8 +21,10 @@ function Categorys() {
         {categorys.categoryArr.map((cat, index) => {
           return (
             <div key={index} className="category__item">
-              <p>{cat.Category}</p>
-              <img src={cat.Img_category} alt="" />
+              <NavLink to={'/cat?id=' + cat.ID_category}>
+                <p>{cat.Category}</p>
+                <img src={cat.Img_category} alt="category" />
+              </NavLink>
             </div>
           );
         })}
