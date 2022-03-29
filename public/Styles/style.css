@@ -20,6 +20,14 @@ body {
 ul {
   list-style: none;
 }
+button {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
+}
 /* ================ */
 
 .main {
@@ -54,19 +62,4 @@ ul {
 
 .contactsPage {
   line-height: 20px;
-}
-
-.cart-node-enter {
-  opacity: 0;
-}
-.cart-node-enter-active {
-  opacity: 1;
-  transition: opacity 200ms;
-}
-.cart-node-exit {
-  opacity: 1;
-}
-.cart-node-exit-active {
-  opacity: 0;
-  transition: opacity 200ms;
 }

@@ -12,6 +12,7 @@
   width: 75%;
   height: max-content;
   min-height: 30%;
+  z-index: 3;
 }
 
 .shadow {
@@ -22,6 +23,7 @@
   left: 0;
   background-color: rgba(0, 0, 0, 0.5);
   transition: 0.5s;
+  z-index: 1;
 }
 
 .cart-items {
@@ -60,4 +62,19 @@
 }
 .cart-items p {
   margin: 10px 0px 10px 5px;
+}
+
+.cart-node-enter {
+  opacity: 0;
+}
+.cart-node-enter-active {
+  opacity: 1;
+  transition: opacity 200ms;
+}
+.cart-node-exit {
+  opacity: 1;
+}
+.cart-node-exit-active {
+  opacity: 0;
+  transition: opacity 200ms;
 }

@@ -4,7 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { cartClose } from '../redux/actions/cart';
 
 function Cart() {
-  const nodeRef = React.useRef();
+  const cartRef = React.useRef();
+  const shadowRef = React.useRef();
   const { state } = useSelector(({ cartOpened }) => {
     return {
       state: cartOpened.cartStatus,
@@ -16,16 +17,16 @@ function Cart() {
   }
 
   return (
-    <CSSTransition
-      nodeRef={nodeRef}
-      in={state}
-      timeout={200}
-      classNames="cart-node"
-      mountOnEnter
-      unmountOnExit>
-      <div ref={nodeRef} className="shadow" onClick={toggle}>
-        <div className="cart" onClick={toggle}>
-          <i className="fas fa-times"></i>
+    <>
+      <CSSTransition
+        nodeRef={cartRef}
+        in={state}
+        timeout={200}
+        classNames="cart-node"
+        mountOnEnter
+        unmountOnExit>
+        <div ref={cartRef} className="cart">
+          <i className="fas fa-times" onClick={toggle}></i>
           <h3>Корзина замовлень</h3>
           <div className="cart-items">
             <img src="./img/logo.png" alt="" />
@@ -37,8 +38,17 @@ function Cart() {
             <p>Ціна:</p>
           </div>
         </div>
-      </div>
-    </CSSTransition>
+      </CSSTransition>
+      <CSSTransition
+        nodeRef={shadowRef}
+        in={state}
+        timeout={200}
+        classNames="cart-node"
+        mountOnEnter
+        unmountOnExit>
+        <div ref={shadowRef} className="shadow" onClick={toggle}></div>
+      </CSSTransition>
+    </>
   );
 }
 

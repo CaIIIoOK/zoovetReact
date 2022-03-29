@@ -1,9 +1,26 @@
 .pagination {
-  display: flex;
-  margin-top: 10px;
+  margin-top: 20px;
+  display: inline-block;
 }
 
-.page-item {
+.pagination-item,
+.active-btn {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  border: 1px solid #ddd;
   cursor: pointer;
-  margin: 5px;
+}
+
+.active-btn {
+  background-color: #4caf50;
+  color: white;
+  border-radius: 5px;
+}
+
+.pagination-item:hover:not(.active-btn) {
+  background-color: #ddd;
 }
