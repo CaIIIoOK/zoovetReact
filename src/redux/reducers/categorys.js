@@ -3,13 +3,16 @@ const initialState = {
 };
 
 const categorys = (state = initialState, action) => {
-  if (action.type === 'DISPLAY_CAT') {
-    return {
-      ...state,
-      categorysName: action.name,
-    };
+  switch (action.type) {
+    case 'DISPLAY_CATEGORY':
+      return {
+        ...state,
+        categorysName: action.name,
+      };
+
+    default:
+      return state;
   }
-  return state;
 };
 
 export default categorys;

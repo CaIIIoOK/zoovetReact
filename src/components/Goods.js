@@ -1,13 +1,20 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Pagination from './Pagination';
+import { actionAddToCart } from '../redux/actions/cart';
 
 function Goods() {
-  const { getGoods } = useSelector(({ getGoods }) => {
-    return {
-      getGoods: getGoods.goods,
+  const dispatch = useDispatch();
+  const getGoods = useSelector(({ getGoods }) => getGoods.goods);
+  function addToCart(id, price, name, img) {
+    const objProd = {
+      id,
+      price,
+      name,
+      img,
     };
-  });
+    dispatch(actionAddToCart(objProd));
+  }
   return (
     <div className="main-page">
       <Pagination />
@@ -21,14 +28,19 @@ function Goods() {
                 {item.Name_prod_ua}
                 <div className="btn-availability">
                   <span>{item.availability === 1 ? 'Є в наявності' : 'Немає в наявності'}</span>
-                  <button className="btn-to-cart">В корзину</button>
+                  <button
+                    className="btn-to-cart"
+                    onClick={() =>
+                      addToCart(item.id, item.Price_prod, item.Name_prod_ua, item.Img_prod)
+                    }>
+                    В корзину
+                  </button>
                 </div>
               </div>
             </div>
           );
         })}
       </div>
-
       <Pagination />
     </div>
   );

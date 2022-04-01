@@ -32,7 +32,7 @@
 .products__items {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 14px;
 }
@@ -40,8 +40,8 @@
 .products__item {
   border: 1px solid rgb(134, 134, 134);
   padding: 8px;
-  margin-top: 10px;
-  width: 250px;
+  margin: 10px 20px 5px 0px;
+  width: 230px;
   height: max-content;
   min-height: 420px;
   cursor: pointer;
@@ -50,6 +50,7 @@
 }
 .products__item:hover {
   transform: translateY(-5px);
+  border: 1px solid rgb(104, 248, 229);
   transition: transform 0.5s;
 }
 
@@ -77,11 +78,15 @@
   color: #fff;
   text-transform: uppercase;
   letter-spacing: 2px;
-  font-size: 14px;
+  font-size: 13px;
   text-decoration: none;
   border-radius: 10px;
   cursor: pointer;
 }
+.btn-new {
+  background-color: #e41515;
+}
+
 .btn-availability {
   width: 100%;
   display: flex;

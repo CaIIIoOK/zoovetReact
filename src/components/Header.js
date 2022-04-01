@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { cartOpen } from '../redux/actions/cart';
 
 function Header() {
@@ -90,19 +90,20 @@ function HeaderSearch() {
 
 function HeaderCart() {
   const dispatch = useDispatch();
+  const totalCount = useSelector(({ cartReduce }) => cartReduce.totalCount);
 
-  function toggle() {
+  function toggleCartOpen() {
     dispatch(cartOpen(true));
   }
 
   return (
-    <div className="cartImg" onClick={toggle}>
+    <div className="cartImg" onClick={toggleCartOpen}>
       <button className="buttnCat">
         <img
           src="https://img.icons8.com/material-two-tone/48/000000/shopping-cart--v1.png"
           alt="cart"
         />
-        <i className="cart-count">1</i>
+        {totalCount === 0 ? null : <i className="cart-count">{totalCount}</i>}
       </button>
     </div>
   );

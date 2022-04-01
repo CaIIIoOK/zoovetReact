@@ -8,4 +8,9 @@ const cartClose = (close) => ({
   close,
 });
 
-export { cartOpen, cartClose };
+const actionAddToCart = (goods) => ({
+  type: 'ADD_GOODS_CART',
+  goods,
+});
+
+export { cartOpen, cartClose, actionAddToCart };

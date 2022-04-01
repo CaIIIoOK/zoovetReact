@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const categoryDisplay = (name) => ({
-  type: 'DISPLAY_CAT',
+  type: 'DISPLAY_CATEGORY',
   name,
 });
 

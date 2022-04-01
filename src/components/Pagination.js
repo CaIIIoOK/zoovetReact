@@ -24,23 +24,10 @@ function Pagination() {
       }
     }
   }
-  const { currentPage } = useSelector(({ getGoods }) => {
-    return {
-      currentPage: getGoods.currentPage,
-    };
-  });
-  const { goodsPerPage } = useSelector(({ getGoods }) => {
-    return {
-      goodsPerPage: getGoods.goodsPerPage,
-    };
-  });
-  const totalCount = useSelector(({ getGoods }) => {
-    return {
-      getGoods: getGoods.totalCount,
-    };
-  });
-  const pagesCount = Math.ceil(totalCount.getGoods / goodsPerPage);
+  const { currentPage, goodsPerPage, totalCount } = useSelector(({ getGoods }) => getGoods);
+  const pagesCount = Math.ceil(totalCount / goodsPerPage);
   let pages = [];
+
   createPages(pages, pagesCount, currentPage);
 
   React.useEffect(() => {

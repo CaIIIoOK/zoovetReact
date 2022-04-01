@@ -5,11 +5,7 @@ import { NavLink } from 'react-router-dom';
 
 function Categorys() {
   const dispatch = useDispatch();
-  const categorys = useSelector(({ categorys }) => {
-    return {
-      categoryArr: categorys.categorysName,
-    };
-  });
+  const categorys = useSelector(({ categorys }) => categorys.categorysName);
 
   React.useEffect(() => {
     dispatch(fetchCategory());
@@ -18,7 +14,7 @@ function Categorys() {
   return (
     <div className="main-page">
       <div className="categorys__items">
-        {categorys.categoryArr.map((cat, index) => {
+        {categorys.map((cat, index) => {
           return (
             <div key={index} className="category__item">
               <NavLink to={'/cat?id=' + cat.ID_category}>

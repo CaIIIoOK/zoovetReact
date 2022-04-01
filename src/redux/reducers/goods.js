@@ -6,20 +6,21 @@ const initialState = {
 };
 
 const getGoods = (state = initialState, action) => {
-  if (action.type === 'DISPLAY_GOODS') {
-    return {
-      ...state,
-      goods: action.goods,
-      totalCount: action.totalCount,
-    };
+  switch (action.type) {
+    case 'DISPLAY_GOODS':
+      return {
+        ...state,
+        goods: action.goods,
+        totalCount: action.totalCount,
+      };
+    case 'SET_GOODS':
+      return {
+        ...state,
+        currentPage: action.currentPage,
+      };
+    default:
+      return state;
   }
-  if (action.type === 'SET_GOODS') {
-    return {
-      ...state,
-      currentPage: action.currentPage,
-    };
-  }
-  return state;
 };
 
 export default getGoods;
