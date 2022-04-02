@@ -13,10 +13,6 @@ function Cart() {
     dispatch(cartClose(false));
   }
 
-  const goods = Object.keys(cartGoods).map((key) => {
-    return cartGoods[key].cartGoods[0];
-  });
-
   return (
     <>
       <CSSTransition
@@ -28,15 +24,15 @@ function Cart() {
         unmountOnExit>
         <div ref={cartRef} className="cart">
           <i className="fas fa-times" onClick={toggleCart}></i>
-          <h3>{goods.length === 0 ? 'Корзина пуста' : 'Корзина замовлень:'}</h3>
-          {!(goods.length === 0) &&
-            goods.map((item) => (
+          <h3>{cartGoods.length === 0 ? 'Корзина пуста' : 'Корзина замовлень:'}</h3>
+          {!(cartGoods.length === 0) &&
+            cartGoods.map((item) => (
               <div key={item.id} className="cart-item">
                 <img src={item.img} alt="" />
                 <h4>{item.name}</h4>
                 <i className="fas fa-trash-alt trash"></i>
                 <hr />
-                <p>Кількість: {cartGoods[item.id].cartGoods.length}</p>
+                <p>Кількість: {item.quantity}</p>
                 <hr />
                 <p>Ціна шт. : {item.price} грн</p>
               </div>

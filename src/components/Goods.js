@@ -6,13 +6,15 @@ import { actionAddToCart } from '../redux/actions/cart';
 function Goods() {
   const dispatch = useDispatch();
   const getGoods = useSelector(({ getGoods }) => getGoods.goods);
-  function addToCart(id, price, name, img) {
+  function addToCart(id, price, name, img, quantity) {
     const objProd = {
       id,
       price,
       name,
       img,
+      quantity,
     };
+
     dispatch(actionAddToCart(objProd));
   }
   return (
@@ -31,7 +33,7 @@ function Goods() {
                   <button
                     className="btn-to-cart"
                     onClick={() =>
-                      addToCart(item.id, item.Price_prod, item.Name_prod_ua, item.Img_prod)
+                      addToCart(item.id, item.Price_prod, item.Name_prod_ua, item.Img_prod, 1)
                     }>
                     В корзину
                   </button>

@@ -1,10 +1,28 @@
 const initialState = {
   cartStatus: false,
-  cartGoods: {},
+  cartGoods: [],
   totalCount: 0,
   totalPrice: 0,
 };
-const getTotalPrice = (arr) => arr.reduce((sum, obj) => obj.price + sum, 0);
+
+// class CartProd {
+//   constructor(price, name, id, img) {
+//     this.price = price;
+//     this.name = name;
+//     this.id = id;
+//     this.img = img;
+//     this.quantity = 1;
+//   }
+//   price;
+//   name;
+//   id;
+//   img;
+//   quantity = 0;
+
+//   getTotalPricee() {
+//     return this.price * this.quantity;
+//   }
+// }
 
 const cartReduce = (state = initialState, action) => {
   switch (action.type) {
@@ -19,29 +37,15 @@ const cartReduce = (state = initialState, action) => {
         cartStatus: action.close,
       };
     case 'ADD_GOODS_CART': {
-      const currentGoodsItem = !state.cartGoods[action.goods.id]
-        ? [action.goods]
-        : [...state.cartGoods[action.goods.id].cartGoods, [action.goods]];
+      const goods = state.cartGoods.find((elem) => elem.id === action.goods.id);
+      goods === undefined ? state.cartGoods.push(action.goods) : (goods.quantity += 1);
+      const totalCount = state.cartGoods.reduce((sum, elem) => elem.quantity + sum, 0);
+      const totalPrice = state.cartGoods.reduce((sum, elem) => elem.quantity * elem.price + sum, 0);
 
-      const newGoods = {
-        ...state.cartGoods,
-        [action.goods.id]: {
-          cartGoods: currentGoodsItem,
-          totalPrice: [].concat
-            .apply([], currentGoodsItem)
-            .reduce((sum, obj) => obj.price + sum, 0),
-        },
-      };
-
-      const cartGoods = Object.values(newGoods).map((obj) => obj.cartGoods);
-      const allGoods = [].concat.apply([], cartGoods);
-      const totalPrice = allGoods.reduce((sum, obj) => obj.price + sum, 0);
-
-      console.log(allGoods);
       return {
         ...state,
-        cartGoods: newGoods,
-        totalCount: allGoods.length,
+        cartGoods: state.cartGoods,
+        totalCount,
         totalPrice,
       };
     }
