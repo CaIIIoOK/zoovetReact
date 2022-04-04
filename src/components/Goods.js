@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDom from 'react-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import Pagination from './Pagination';
 import { actionAddToCart } from '../redux/actions/cart';
@@ -6,7 +7,8 @@ import { actionAddToCart } from '../redux/actions/cart';
 function Goods() {
   const dispatch = useDispatch();
   const getGoods = useSelector(({ getGoods }) => getGoods.goods);
-  function addToCart(id, price, name, img, quantity) {
+
+  function addToCart(id, price, name, img, quantity, event) {
     const objProd = {
       id,
       price,
@@ -16,6 +18,11 @@ function Goods() {
     };
 
     dispatch(actionAddToCart(objProd));
+    function btnAddetToCart() {
+      event.target.lastChild.style.display = 'inline-block';
+    }
+
+    return btnAddetToCart();
   }
   return (
     <div className="main-page">
@@ -32,10 +39,21 @@ function Goods() {
                   <span>{item.availability === 1 ? 'Є в наявності' : 'Немає в наявності'}</span>
                   <button
                     className="btn-to-cart"
-                    onClick={() =>
-                      addToCart(item.id, item.Price_prod, item.Name_prod_ua, item.Img_prod, 1)
+                    onClick={(event) =>
+                      addToCart(
+                        item.id,
+                        item.Price_prod,
+                        item.Name_prod_ua,
+                        item.Img_prod,
+                        1,
+                        event,
+                      )
                     }>
                     В корзину
+                    <img
+                      src="https://img.icons8.com/material-two-tone/48/000000/shopping-cart--v1.png"
+                      alt="cart"
+                    />
                   </button>
                 </div>
               </div>
