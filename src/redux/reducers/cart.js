@@ -23,6 +23,17 @@ const initialState = {
 //     return this.price * this.quantity;
 //   }
 // }
+function reduceCartTotal(arr) {
+  return arr.reduce((sum, elem) => elem.quantity + sum, 0);
+}
+
+function reduceCartPrice(arr) {
+  return arr.reduce((sum, elem) => elem.quantity * elem.price + sum, 0);
+}
+
+function findProdById(arr, id) {
+  return arr.find((elem) => elem.id === id);
+}
 
 const cartReduce = (state = initialState, action) => {
   switch (action.type) {
@@ -37,11 +48,34 @@ const cartReduce = (state = initialState, action) => {
         cartStatus: action.close,
       };
     case 'ADD_GOODS_CART': {
-      const goods = state.cartGoods.find((elem) => elem.id === action.goods.id);
+      const goods = findProdById(state.cartGoods, action.goods.id);
       goods === undefined ? state.cartGoods.push(action.goods) : (goods.quantity += 1);
-      const totalCount = state.cartGoods.reduce((sum, elem) => elem.quantity + sum, 0);
-      const totalPrice = state.cartGoods.reduce((sum, elem) => elem.quantity * elem.price + sum, 0);
-
+      const totalCount = reduceCartTotal(state.cartGoods);
+      const totalPrice = reduceCartPrice(state.cartGoods);
+      return {
+        ...state,
+        cartGoods: state.cartGoods,
+        totalCount,
+        totalPrice,
+      };
+    }
+    case 'MINUS_CART': {
+      const goods = findProdById(state.cartGoods, action.id);
+      goods.quantity > 1 && (goods.quantity -= 1);
+      const totalCount = reduceCartTotal(state.cartGoods);
+      const totalPrice = reduceCartPrice(state.cartGoods);
+      return {
+        ...state,
+        cartGoods: state.cartGoods,
+        totalCount,
+        totalPrice,
+      };
+    }
+    case 'PLUS_CART': {
+      const goods = findProdById(state.cartGoods, action.id);
+      goods.quantity += 1;
+      const totalCount = reduceCartTotal(state.cartGoods);
+      const totalPrice = reduceCartPrice(state.cartGoods);
       return {
         ...state,
         cartGoods: state.cartGoods,

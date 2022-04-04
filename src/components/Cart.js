@@ -1,7 +1,7 @@
 import React from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { useSelector, useDispatch } from 'react-redux';
-import { cartClose } from '../redux/actions/cart';
+import { cartClose, actionMinusCart, actionPlusCart } from '../redux/actions/cart';
 
 function Cart() {
   const cartRef = React.useRef();
@@ -11,6 +11,14 @@ function Cart() {
 
   function toggleCart() {
     dispatch(cartClose(false));
+  }
+
+  function cartMinus(id) {
+    dispatch(actionMinusCart(id));
+  }
+
+  function cartPlus(id) {
+    dispatch(actionPlusCart(id));
   }
 
   return (
@@ -32,7 +40,16 @@ function Cart() {
                 <h4>{item.name}</h4>
                 <i className="fas fa-trash-alt trash"></i>
                 <hr />
-                <p>Кількість: {item.quantity}</p>
+                <p>
+                  Кількість:{' '}
+                  <button
+                    className="far fa-minus-square cart-minus"
+                    onClick={() => cartMinus(item.id)}></button>
+                  {item.quantity}{' '}
+                  <button
+                    className="far fa-plus-square cart-plus"
+                    onClick={() => cartPlus(item.id)}></button>
+                </p>
                 <hr />
                 <p>Ціна шт. : {item.price} грн</p>
               </div>

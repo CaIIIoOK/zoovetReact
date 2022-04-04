@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDom from 'react-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import Pagination from './Pagination';
 import { actionAddToCart } from '../redux/actions/cart';
@@ -16,14 +15,10 @@ function Goods() {
       img,
       quantity,
     };
-
     dispatch(actionAddToCart(objProd));
-    function btnAddetToCart() {
-      event.target.lastChild.style.display = 'inline-block';
-    }
-
-    return btnAddetToCart();
+    return (event.target.lastChild.style.display = 'inline-block');
   }
+
   return (
     <div className="main-page">
       <Pagination />

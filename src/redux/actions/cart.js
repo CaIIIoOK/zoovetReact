@@ -13,4 +13,14 @@ const actionAddToCart = (goods) => ({
   goods,
 });
 
-export { cartOpen, cartClose, actionAddToCart };
+const actionMinusCart = (id) => ({
+  type: 'MINUS_CART',
+  id,
+});
+
+const actionPlusCart = (id) => ({
+  type: 'PLUS_CART',
+  id,
+});
+
+export { cartOpen, cartClose, actionAddToCart, actionMinusCart, actionPlusCart };

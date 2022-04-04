@@ -90,6 +90,7 @@
   width: 100%;
 }
 .cart-item p {
+  font-size: 17px;
   margin: 10px 0px 10px 5px;
 }
 
@@ -123,4 +124,13 @@
   margin-left: 10px;
   font-size: 28px;
   font-weight: bold;
+}
+
+.cart-minus {
+  font-size: 20px;
+  margin-right: 5px;
+}
+.cart-plus {
+  font-size: 20px;
+  margin-left: 2px;
 }
