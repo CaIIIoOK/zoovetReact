@@ -2,12 +2,13 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Pagination from './Pagination';
 import { actionAddToCart } from '../redux/actions/cart';
+import { addToCartStatus } from '../redux/actions/goods';
 
 function Goods() {
   const dispatch = useDispatch();
-  const getGoods = useSelector(({ getGoods }) => getGoods.goods);
+  const { goods } = useSelector(({ getGoods }) => getGoods);
 
-  function addToCart(id, price, name, img, quantity, event) {
+  function addToCart(id, price, name, img, quantity) {
     const objProd = {
       id,
       price,
@@ -16,14 +17,14 @@ function Goods() {
       quantity,
     };
     dispatch(actionAddToCart(objProd));
-    return (event.target.lastChild.style.display = 'inline-block');
+    dispatch(addToCartStatus(id));
   }
 
   return (
     <div className="main-page">
       <Pagination />
       <div className="products__items">
-        {getGoods.map((item) => {
+        {goods.map((item) => {
           return (
             <div key={item.id} className="products__item">
               <img src={item.Img_prod} alt="Img_prod" />
@@ -34,21 +35,16 @@ function Goods() {
                   <span>{item.availability === 1 ? 'Є в наявності' : 'Немає в наявності'}</span>
                   <button
                     className="btn-to-cart"
-                    onClick={(event) =>
-                      addToCart(
-                        item.id,
-                        item.Price_prod,
-                        item.Name_prod_ua,
-                        item.Img_prod,
-                        1,
-                        event,
-                      )
+                    onClick={() =>
+                      addToCart(item.id, item.Price_prod, item.Name_prod_ua, item.Img_prod, 1)
                     }>
                     В корзину
-                    <img
-                      src="https://img.icons8.com/material-two-tone/48/000000/shopping-cart--v1.png"
-                      alt="cart"
-                    />
+                    {item.isInCart && (
+                      <img
+                        src="https://img.icons8.com/material-two-tone/48/000000/shopping-cart--v1.png"
+                        alt="cart"
+                      />
+                    )}
                   </button>
                 </div>
               </div>

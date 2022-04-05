@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { cartOpen } from '../redux/actions/cart';
+import { cartOpen } from '../redux/actions/cartStatus';
 
 function Header() {
   return (

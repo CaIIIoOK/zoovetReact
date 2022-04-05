@@ -1,13 +1,3 @@
-const cartOpen = (open) => ({
-  type: 'OPEN_CART',
-  open,
-});
-
-const cartClose = (close) => ({
-  type: 'CLOSE_CART',
-  close,
-});
-
 const actionAddToCart = (goods) => ({
   type: 'ADD_GOODS_CART',
   goods,
@@ -23,4 +13,10 @@ const actionPlusCart = (id) => ({
   id,
 });
 
-export { cartOpen, cartClose, actionAddToCart, actionMinusCart, actionPlusCart };
+const actionToTrash = (id, isInCart) => ({
+  type: 'TO_TRASH',
+  id,
+  isInCart,
+});
+
+export { actionAddToCart, actionMinusCart, actionPlusCart, actionToTrash };

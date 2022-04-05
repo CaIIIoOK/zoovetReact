@@ -1,13 +1,16 @@
 import React from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { useSelector, useDispatch } from 'react-redux';
-import { cartClose, actionMinusCart, actionPlusCart } from '../redux/actions/cart';
+import { actionMinusCart, actionPlusCart, actionToTrash } from '../redux/actions/cart';
+import { cartClose } from '../redux/actions/cartStatus';
+import { deleteFromCartStatus } from '../redux/actions/goods';
 
 function Cart() {
   const cartRef = React.useRef();
   const shadowRef = React.useRef();
   const dispatch = useDispatch();
-  const { cartStatus, cartGoods, totalPrice } = useSelector(({ cartReduce }) => cartReduce);
+  const { cartGoods, totalPrice } = useSelector(({ cartReduce }) => cartReduce);
+  const { cartStatus } = useSelector(({ cartStatus }) => cartStatus);
 
   function toggleCart() {
     dispatch(cartClose(false));
@@ -19,6 +22,11 @@ function Cart() {
 
   function cartPlus(id) {
     dispatch(actionPlusCart(id));
+  }
+
+  function itemToTrash(id) {
+    dispatch(actionToTrash(id));
+    dispatch(deleteFromCartStatus(id));
   }
 
   return (
@@ -38,7 +46,7 @@ function Cart() {
               <div key={item.id} className="cart-item">
                 <img src={item.img} alt="" />
                 <h4>{item.name}</h4>
-                <i className="fas fa-trash-alt trash"></i>
+                <i className="fas fa-trash-alt trash" onClick={() => itemToTrash(item.id)}></i>
                 <hr />
                 <p>
                   Кількість:{' '}
