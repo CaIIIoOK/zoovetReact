@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { actionMinusCart, actionPlusCart, actionToTrash } from '../redux/actions/cart';
 import { cartClose } from '../redux/actions/cartStatus';
 import { deleteFromCartStatus } from '../redux/actions/goods';
+import { Link } from 'react-router-dom';
 
 function Cart() {
   const cartRef = React.useRef();
@@ -66,6 +67,11 @@ function Cart() {
             <div className="totalCount">
               <p>Загальна сума:</p>
               <span>{totalPrice} грн</span>
+              <Link exact="true" to="/order" className="nav-link">
+                <button className="btn-to-order" onClick={toggleCart}>
+                  Оформити змовлення
+                </button>
+              </Link>
             </div>
           )}
         </div>

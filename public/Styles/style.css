@@ -63,3 +63,69 @@ button {
 .contactsPage {
   line-height: 20px;
 }
+
+.registration-form {
+  display: flex;
+  margin-left: 10px;
+  background-color: #f2f2f2;
+  padding: 5px 15px 15px 15px;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+  justify-items: center;
+  width: 90%;
+}
+.registration-form form {
+  width: 100%;
+}
+
+.btn-registration {
+  background-color: #7cd66a;
+  padding: 5px;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 15px;
+  text-decoration: none;
+  border-radius: 10px;
+  cursor: pointer;
+  align-items: center;
+  min-height: 35px;
+}
+
+.login {
+  display: flex;
+  padding: 5px;
+  margin: 10px;
+  border-radius: 3px;
+  width: 100%;
+  height: max-content;
+  justify-content: center;
+}
+
+.login form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  text-align: center;
+}
+.login input {
+  margin: 5px;
+  padding: 4px;
+  height: 30px;
+  border: 1px solid rgb(78, 55, 55);
+  border-radius: 3px;
+}
+
+.btn-login {
+  background-color: #7cd66a;
+  padding: 5px;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 15px;
+  text-decoration: none;
+  border-radius: 10px;
+  cursor: pointer;
+  align-items: center;
+  min-height: 35px;
+}
