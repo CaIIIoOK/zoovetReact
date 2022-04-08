@@ -1,7 +1,7 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { cartOpen } from '../redux/actions/cart';
+import { cartOpen } from '../redux/actions/cartStatus';
 
 function Header() {
   return (
@@ -80,10 +80,14 @@ function HeaderMenu() {
 function HeaderSearch() {
   return (
     <div className="search">
-      <input type="text" />
-      <button type="submit" id="searchBtn">
-        <i className="fas fa-search"></i>{' '}
-      </button>
+      <form action="/search">
+        <input type="text" />
+        <Link to="/search" className="nav-link">
+          <button type="submit" id="searchBtn">
+            <i className="fas fa-search"></i>
+          </button>
+        </Link>
+      </form>
     </div>
   );
 }
@@ -112,10 +116,10 @@ function HeaderCart() {
 function HeaderProfile() {
   return (
     <div className="profile">
-      <a href="/users-login">
+      <Link to="/user-login">
         <i className="fas fa-sign-in-alt"></i> Войти
-      </a>
-      <a href="/registration">Регистрация</a>
+      </Link>
+      <Link to="/registration">Регистрация</Link>
     </div>
   );
 }

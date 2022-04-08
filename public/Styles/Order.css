@@ -1,0 +1,82 @@
+.order-page {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  justify-content: space-between;
+}
+
+.order_form {
+  position: relative;
+  margin: 0 0 0 10px;
+  background-color: #f2f2f2;
+  padding: 5px 15px 15px 15px;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+  text-align: left;
+  width: 57%;
+}
+
+.form_control {
+  width: 100%;
+  margin: 5px;
+}
+
+.form_control input {
+  margin: 5px;
+  width: 90%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.form_control span {
+  color: tomato;
+  font-size: 12px;
+}
+
+.form_control input[type='checkbox'] {
+  width: 20px;
+  margin: 5px;
+}
+
+.delivery-select {
+  width: 200px;
+  display: inline-block;
+  margin: 10px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+.btn-order-send {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: #7cd66a;
+  padding: 5px;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 15px;
+  text-decoration: none;
+  border-radius: 10px;
+  cursor: pointer;
+  align-items: center;
+  min-height: 35px;
+}
+
+.order-cart {
+  background-color: #f2f2f2;
+  width: 40%;
+  height: 100vh;
+  padding: 10px;
+  border: 1px solid rgb(227, 227, 227);
+  overflow: auto;
+}
+
+.order-cart i {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}

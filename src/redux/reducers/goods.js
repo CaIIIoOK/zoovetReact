@@ -5,6 +5,10 @@ const initialState = {
   totalCount: 0,
 };
 
+function findProdById(arr, id) {
+  return arr.find((elem) => elem.id === id);
+}
+
 const getGoods = (state = initialState, action) => {
   switch (action.type) {
     case 'DISPLAY_GOODS':
@@ -18,6 +22,22 @@ const getGoods = (state = initialState, action) => {
         ...state,
         currentPage: action.currentPage,
       };
+    case 'ADD_TO_CART': {
+      const addProd = findProdById(state.goods, action.id);
+      addProd.isInCart = true;
+      return {
+        ...state,
+        goods: state.goods,
+      };
+    }
+    case 'DELETE_FROM_CART': {
+      const addProd = findProdById(state.goods, action.id);
+      addProd.isInCart = false;
+      return {
+        ...state,
+        goods: state.goods,
+      };
+    }
     default:
       return state;
   }
