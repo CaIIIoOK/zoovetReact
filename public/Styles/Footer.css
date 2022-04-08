@@ -1,11 +1,11 @@
 .footer {
-  height: 80px;
-  flex: 1 1 auto;
-  background-color: #030005;
   margin-top: 10px;
+  height: 80px;
+  background-color: #030005;
 }
 
 .footer__text {
+  padding: 5px;
   font-size: 12px;
   line-height: 12px;
   color: cornflowerblue;

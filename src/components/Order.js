@@ -1,18 +1,59 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { actionMinusCart, actionPlusCart, actionToTrash } from '../redux/actions/cart';
+import { actionMinusCart, actionPlusCart, actionToTrash, clearCart } from '../redux/actions/cart';
 import { deleteFromCartStatus } from '../redux/actions/goods';
+import { useForm } from 'react-hook-form';
 
 const Order = () => {
+  const { cartGoods, totalPrice } = useSelector(({ cartReduce }) => cartReduce);
+  const dispatch = useDispatch();
+
+  const {
+    register,
+    formState: { errors, isValid },
+    handleSubmit,
+    reset,
+  } = useForm({
+    mode: 'onChange',
+  });
+
+  const onSubmit = (data) => {
+    const objSendOrder = {
+      data,
+      cartGoods,
+      totalPrice,
+    };
+    console.log(objSendOrder);
+    dispatch(clearCart());
+    reset();
+  };
   return (
     <div className="order-page">
       <div className="order_form">
-        <form action="">
+        <form action="" onSubmit={handleSubmit(onSubmit)}>
           <div className="form_control">
             <label htmlFor="username">Ім'я</label>
             <hr />
-            <input type="text" id="username" placeholder="Введіть свє Ім'я" />
+            <input
+              type="text"
+              id="username"
+              placeholder="Введіть свє Ім'я"
+              {...register('username', {
+                required: 'Це поле потрібно заповнити',
+                minLength: {
+                  value: 5,
+                  message: 'Мінімум 5 символів',
+                },
+                maxLength: {
+                  value: 30,
+                  message: 'Забагато символів',
+                },
+              })}
+            />
+            <div className="error-input">
+              {errors?.username && <p>{errors?.username?.message || 'Error'}</p>}
+            </div>
           </div>
           <div className="form_control">
             <label htmlFor="usersecondname">Прізвище, По батькові</label>
@@ -21,35 +62,120 @@ const Order = () => {
               type="text"
               id="usersecondname"
               placeholder="Введіть своє прізвище та по батькові"
+              {...register('usersecondname', {
+                required: 'Це поле потрібно заповнити',
+                minLength: {
+                  value: 5,
+                  message: 'Мінімум 5 символів',
+                },
+                maxLength: {
+                  value: 30,
+                  message: 'Забагато символів',
+                },
+              })}
             />
+            <div className="error-input">
+              {errors?.usersecondname && <p>{errors?.usersecondname?.message || 'Error'}</p>}
+            </div>
           </div>
           <div className="form_control">
             <label htmlFor="phone">Телефон</label>
             <hr />
-            <input type="text" id="phone" placeholder="+380505555555" />
+            <input
+              type="number"
+              id="phone"
+              placeholder="+380505555555"
+              {...register('phone', {
+                required: 'Це поле потрібно заповнити',
+                minLength: {
+                  value: 5,
+                  message: 'Мінімум 5 символів',
+                },
+                maxLength: {
+                  value: 30,
+                  message: 'Забагато символів',
+                },
+              })}
+            />
+            <div className="error-input">
+              {errors?.phone && <p>{errors?.phone?.message || 'Error'}</p>}
+            </div>
           </div>
           <div className="form_control">
             <label htmlFor="email">Email</label>
             <hr />
-            <input type="text" id="email" placeholder="email@example.com" />
+            <input
+              type="text"
+              id="email"
+              placeholder="email@example.com"
+              {...register('email', {
+                required: 'Це поле потрібно заповнити',
+                minLength: {
+                  value: 5,
+                  message: 'Мінімум 5 символів',
+                },
+                maxLength: {
+                  value: 40,
+                  message: 'Забагато символів',
+                },
+                pattern: {
+                  value: /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/,
+                  message: 'Введіть коректний Email',
+                },
+              })}
+            />
+            <div className="error-input">
+              {errors?.email && <p>{errors?.email?.message || 'Error'}</p>}
+            </div>
           </div>
           <div className="form_control">
-            <label htmlFor="city">
-              Місто <span>(населений пункт)</span>{' '}
-            </label>
-            <input type="text" id="city" placeholder="Місто" />
+            <label htmlFor="city">Місто (населений пункт)</label>
+            <hr />
+            <input
+              type="text"
+              id="city"
+              placeholder="Місто"
+              {...register('city', {
+                required: 'Це поле потрібно заповнити',
+                minLength: {
+                  value: 5,
+                  message: 'Мінімум 5 символів',
+                },
+                maxLength: {
+                  value: 30,
+                  message: 'Забагато символів',
+                },
+              })}
+            />
+            <div className="error-input">
+              {errors?.city && <p>{errors?.city?.message || 'Error'}</p>}
+            </div>
           </div>
           <div className="form_control">
             <label htmlFor="street">Вулиця </label>
             <hr />
-            <input type="text" id="street" placeholder="Вулиця" />
+            <input
+              type="text"
+              id="street"
+              placeholder="Вулиця"
+              {...register('street', {
+                required: false,
+              })}
+            />
           </div>
           <div className="form_control">
             <label htmlFor="house">№ Будинку </label>
             <hr />
-            <input type="text" id="house" placeholder="Будинок" />
+            <input
+              type="text"
+              id="house"
+              placeholder="Будинок"
+              {...register('house', {
+                required: false,
+              })}
+            />
           </div>
-          <select name="delivery" className="delivery-select">
+          <select name="delivery" className="delivery-select" {...register('delivery')}>
             <option hidden>Обрати доставку</option>
             <option value="novap" id="novap">
               Доставка "Нова Почта"
@@ -62,7 +188,15 @@ const Order = () => {
             </option>
           </select>
           <div className="form_control">
-            <input type="checkbox" value="1" />
+            <input
+              type="checkbox"
+              {...register('check', {
+                required: 'Ви не прийняли умови',
+              })}
+            />
+            <div className="error-input">
+              {errors?.check && <p>{errors?.check?.message || 'Error'}</p>}
+            </div>
             <span>
               Я приймаю{' '}
               <Link exact="true" to="/delivery_info" className="nav-link">
@@ -71,7 +205,9 @@ const Order = () => {
               покупки
             </span>
           </div>
-          <button className="btn-order-send">Відправити замовлення</button>
+          <button className="btn-order-send" disabled={!isValid}>
+            Відправити замовлення
+          </button>
         </form>
       </div>
       <OrderCart />

@@ -19,4 +19,8 @@ const actionToTrash = (id, isInCart) => ({
   isInCart,
 });
 
-export { actionAddToCart, actionMinusCart, actionPlusCart, actionToTrash };
+const clearCart = () => ({
+  type: 'CLEAR_CART',
+});
+
+export { actionAddToCart, actionMinusCart, actionPlusCart, actionToTrash, clearCart };

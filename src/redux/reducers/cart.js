@@ -70,6 +70,14 @@ const cartReduce = (state = initialState, action) => {
         totalPrice,
       };
     }
+    case 'CLEAR_CART': {
+      return {
+        ...state,
+        cartGoods: [],
+        totalCount: 0,
+        totalPrice: 0,
+      };
+    }
 
     default:
       return state;

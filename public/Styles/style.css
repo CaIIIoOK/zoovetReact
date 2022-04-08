@@ -28,14 +28,17 @@ button {
   background-color: transparent;
   cursor: pointer;
 }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 /* ================ */
 
 .main {
   width: 97%;
-  min-height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   margin-left: auto;
   margin-right: auto;
 }
