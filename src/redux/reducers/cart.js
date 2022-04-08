@@ -5,24 +5,6 @@ const initialState = {
   totalPrice: 0,
 };
 
-// class CartProd {
-//   constructor(price, name, id, img) {
-//     this.price = price;
-//     this.name = name;
-//     this.id = id;
-//     this.img = img;
-//     this.quantity = 1;
-//   }
-//   price;
-//   name;
-//   id;
-//   img;
-//   quantity = 0;
-
-//   getTotalPricee() {
-//     return this.price * this.quantity;
-//   }
-// }
 function reduceCartTotal(arr) {
   return arr.reduce((sum, elem) => elem.quantity + sum, 0);
 }
