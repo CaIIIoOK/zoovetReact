@@ -15,3 +15,4 @@ export { default as Conditions } from '../components/Conditions';
 export { default as UserLogin } from '../components/UserLogin';
 export { default as MyOffice } from '../components/MyOffice';
 export { default as Search } from '../components/Search';
+export { default as ArrowTop } from '../components/ArrowTop';

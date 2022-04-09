@@ -132,3 +132,14 @@ input::-webkit-inner-spin-button {
   align-items: center;
   min-height: 35px;
 }
+
+#arrowTop {
+  bottom: 120px;
+  right: 10px;
+  visibility: hidden;
+  color: rgb(2, 117, 108);
+  font-size: 30px;
+  position: fixed;
+  cursor: pointer;
+  opacity: 0.5;
+}

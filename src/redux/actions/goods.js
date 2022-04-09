@@ -27,10 +27,19 @@ const deleteFromCartStatus = (id) => ({
   id,
 });
 
-const fetchGoods = (currentPage, perPage) => (dispatch) => {
+const setCategoryId = (id) => ({
+  type: 'SET_CATEGORY_ID',
+  id,
+});
+
+const fetchGoods = (currentPage, perPage, category) => (dispatch) => {
+  let catgoryId = `&categoty=${category}`;
+  if (!category) {
+    catgoryId = '';
+  }
   axios({
     method: 'GET',
-    url: `http://localhost:3001/goods?&perpage=${perPage}&current=${currentPage}`,
+    url: `http://localhost:3001/goods?&perpage=${perPage}&current=${currentPage}${catgoryId}`,
   }).then(({ data }) => {
     let productsWithCartStatus = data.goods.map((item) => {
       item.isInCart = false;
@@ -40,4 +49,11 @@ const fetchGoods = (currentPage, perPage) => (dispatch) => {
   });
 };
 
-export { fetchGoods, setCurrentPage, setStatusGoodsCart, addToCartStatus, deleteFromCartStatus };
+export {
+  fetchGoods,
+  setCurrentPage,
+  setStatusGoodsCart,
+  addToCartStatus,
+  deleteFromCartStatus,
+  setCategoryId,
+};

@@ -1,29 +1,43 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCategory } from '../redux/actions/categorys';
+import { setCategoryId, setCurrentPage } from '../redux/actions/goods';
 import { NavLink } from 'react-router-dom';
+import LoadingCategory from './LoadingCategory';
 
 function Categorys() {
   const dispatch = useDispatch();
-  const categorys = useSelector(({ categorys }) => categorys.categorysName);
+  const { categorysName, isLoaded } = useSelector(({ categorys }) => categorys);
 
   React.useEffect(() => {
     dispatch(fetchCategory());
   }, [dispatch]);
 
+  function setCategoryIdAndPage(cat) {
+    dispatch(setCurrentPage(1));
+    dispatch(setCategoryId(cat));
+  }
+
   return (
     <div className="main-page">
       <div className="categorys__items">
-        {categorys.map((cat, index) => {
-          return (
-            <div key={index} className="category__item">
-              <NavLink to={'/cat?id=' + cat.ID_category}>
-                <p>{cat.Category}</p>
-                <img src={cat.Img_category} alt="category" />
-              </NavLink>
-            </div>
-          );
-        })}
+        {isLoaded
+          ? categorysName.map((cat) => {
+              return (
+                <div
+                  key={cat.ID_category}
+                  className="category__item"
+                  onClick={() => setCategoryIdAndPage(cat.ID_category)}>
+                  <NavLink to={'/goods?id=' + cat.ID_category}>
+                    <p>{cat.Category}</p>
+                    <img src={cat.Img_category} alt="category" />
+                  </NavLink>
+                </div>
+              );
+            })
+          : Array(25)
+              .fill(0)
+              .map((_, index) => <LoadingCategory key={index} />)}
       </div>
     </div>
   );

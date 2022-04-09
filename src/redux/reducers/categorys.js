@@ -1,5 +1,6 @@
 const initialState = {
   categorysName: [],
+  isLoaded: false,
 };
 
 const categorys = (state = initialState, action) => {
@@ -8,6 +9,7 @@ const categorys = (state = initialState, action) => {
       return {
         ...state,
         categorysName: action.name,
+        isLoaded: true,
       };
 
     default:

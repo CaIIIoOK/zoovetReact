@@ -3,6 +3,8 @@ const initialState = {
   currentPage: 1,
   goodsPerPage: 30,
   totalCount: 0,
+  categoryId: 0,
+  isLoaded: false,
 };
 
 function findProdById(arr, id) {
@@ -16,7 +18,9 @@ const getGoods = (state = initialState, action) => {
         ...state,
         goods: action.goods,
         totalCount: action.totalCount,
+        isLoaded: true,
       };
+
     case 'SET_GOODS':
       return {
         ...state,
@@ -38,6 +42,14 @@ const getGoods = (state = initialState, action) => {
         goods: state.goods,
       };
     }
+    case 'SET_CATEGORY_ID': {
+      return {
+        ...state,
+        categoryId: action.id,
+        isLoaded: false,
+      };
+    }
+
     default:
       return state;
   }

@@ -15,6 +15,7 @@ import {
   UserLogin,
   MyOffice,
   Search,
+  ArrowTop,
 } from '../components';
 
 const Container = () => {
@@ -35,6 +36,7 @@ const Container = () => {
         <Route path="/search" element={<Search />} />
         <Route path="*" element={<Error />} />
       </Routes>
+      <ArrowTop />
     </div>
   );
 };

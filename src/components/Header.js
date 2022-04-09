@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { cartOpen } from '../redux/actions/cartStatus';
+import { setCategoryId, setCurrentPage } from '../redux/actions/goods';
 
 function Header() {
   return (
@@ -44,12 +45,18 @@ function HeaderTelephone() {
 }
 
 function HeaderMenu() {
+  const dispatch = useDispatch();
+  function showAllGoods() {
+    dispatch(setCategoryId(0));
+    dispatch(setCurrentPage(1));
+  }
+
   return (
     <nav className="header-menu">
       <ul>
         <li>
           <NavLink exact="true" to="/" className="nav-link">
-            Головна{' '}
+            Головна
           </NavLink>
         </li>
         <li>
@@ -58,7 +65,7 @@ function HeaderMenu() {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/goods" className="nav-link">
+          <NavLink to="/goods" className="nav-link" onClick={() => showAllGoods()}>
             Усі товари
           </NavLink>
         </li>
