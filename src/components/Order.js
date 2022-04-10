@@ -4,11 +4,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { actionMinusCart, actionPlusCart, actionToTrash, clearCart } from '../redux/actions/cart';
 import { deleteFromCartStatus } from '../redux/actions/goods';
 import { useForm } from 'react-hook-form';
+import Swal from 'sweetalert2';
 
 const Order = () => {
   const { cartGoods, totalPrice } = useSelector(({ cartReduce }) => cartReduce);
   const dispatch = useDispatch();
-
   const {
     register,
     formState: { errors, isValid },
@@ -27,7 +27,14 @@ const Order = () => {
     console.log(objSendOrder);
     dispatch(clearCart());
     reset();
+    Swal.fire({
+      title: 'Дякуємо за замовлення',
+      text: "Ми з вами зв'яжемося",
+      icon: 'success',
+      confirmButtonText: 'Ок',
+    });
   };
+
   return (
     <div className="order-page">
       <div className="order_form">
@@ -42,8 +49,8 @@ const Order = () => {
               {...register('username', {
                 required: 'Це поле потрібно заповнити',
                 minLength: {
-                  value: 5,
-                  message: 'Мінімум 5 символів',
+                  value: 2,
+                  message: 'Мінімум 2 символів',
                 },
                 maxLength: {
                   value: 30,
@@ -56,17 +63,17 @@ const Order = () => {
             </div>
           </div>
           <div className="form_control">
-            <label htmlFor="usersecondname">Прізвище, По батькові</label>
+            <label htmlFor="usersecondname">Прізвище</label>
             <hr />
             <input
               type="text"
               id="usersecondname"
-              placeholder="Введіть своє прізвище та по батькові"
+              placeholder="Введіть своє прізвище"
               {...register('usersecondname', {
                 required: 'Це поле потрібно заповнити',
                 minLength: {
-                  value: 5,
-                  message: 'Мінімум 5 символів',
+                  value: 2,
+                  message: 'Мінімум 2 символів',
                 },
                 maxLength: {
                   value: 30,

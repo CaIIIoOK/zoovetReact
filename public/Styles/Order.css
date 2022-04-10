@@ -33,7 +33,7 @@
 
 .form_control span {
   color: tomato;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .form_control input[type='checkbox'] {
@@ -71,7 +71,7 @@
 .order-cart {
   background-color: #f2f2f2;
   width: 40%;
-  height: 725px;
+  height: 750px;
   padding: 10px;
   border: 1px solid rgb(227, 227, 227);
   overflow: auto;

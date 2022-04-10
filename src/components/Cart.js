@@ -13,8 +13,10 @@ function Cart() {
   const { cartGoods, totalPrice } = useSelector(({ cartReduce }) => cartReduce);
   const { cartStatus } = useSelector(({ cartStatus }) => cartStatus);
 
-  function toggleCart() {
+  function closeCart() {
     dispatch(cartClose(false));
+    document.querySelector('body').style.paddingRight = '0px';
+    document.querySelector('body').style.overflow = 'auto';
   }
 
   function cartMinus(id) {
@@ -40,7 +42,7 @@ function Cart() {
         mountOnEnter
         unmountOnExit>
         <div ref={cartRef} className="cart">
-          <i className="fas fa-times" onClick={toggleCart}></i>
+          <i className="fas fa-times" onClick={closeCart}></i>
           <h3>{cartGoods.length === 0 ? 'Корзина пуста' : 'Корзина замовлень:'}</h3>
           {!(cartGoods.length === 0) &&
             cartGoods.map((item) => (
@@ -68,7 +70,7 @@ function Cart() {
               <p>Загальна сума:</p>
               <span>{totalPrice} грн</span>
               <Link exact="true" to="/order" className="nav-link">
-                <button className="btn-to-order" onClick={toggleCart}>
+                <button className="btn-to-order" onClick={closeCart}>
                   Оформити змовлення
                 </button>
               </Link>
@@ -83,7 +85,7 @@ function Cart() {
         classNames="cart-node"
         mountOnEnter
         unmountOnExit>
-        <div ref={shadowRef} className="shadow" onClick={toggleCart}></div>
+        <div ref={shadowRef} className="shadow" onClick={closeCart}></div>
       </CSSTransition>
     </>
   );

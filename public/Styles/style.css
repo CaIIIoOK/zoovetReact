@@ -94,7 +94,9 @@ input::-webkit-inner-spin-button {
   align-items: center;
   min-height: 35px;
 }
-
+.btn-registration:disabled {
+  background-color: #aebcab;
+}
 .login {
   display: flex;
   padding: 5px;
@@ -142,4 +144,33 @@ input::-webkit-inner-spin-button {
   position: fixed;
   cursor: pointer;
   opacity: 0.5;
+}
+
+.help-pass {
+  background-color: #a0fafc;
+  border-radius: 10px;
+  padding: 1px;
+  margin-left: 5px;
+  border: 1px solid rgb(159, 157, 157);
+  font-size: 22px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.help-text {
+  border: 1px solid rgb(159, 157, 157);
+  background-color: #a0fafc;
+  border-radius: 10px;
+  text-align: center;
+  position: absolute;
+  font-size: 10px;
+  font-weight: 400;
+  visibility: hidden;
+  color: black;
+  width: 250px;
+  top: -20px;
+  left: 100px;
+}
+
+.help-pass:hover .help-text {
+  visibility: visible;
 }

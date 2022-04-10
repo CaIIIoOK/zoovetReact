@@ -2,7 +2,6 @@ import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { cartOpen } from '../redux/actions/cartStatus';
-import { setCategoryId, setCurrentPage } from '../redux/actions/goods';
 
 function Header() {
   return (
@@ -45,12 +44,6 @@ function HeaderTelephone() {
 }
 
 function HeaderMenu() {
-  const dispatch = useDispatch();
-  function showAllGoods() {
-    dispatch(setCategoryId(0));
-    dispatch(setCurrentPage(1));
-  }
-
   return (
     <nav className="header-menu">
       <ul>
@@ -65,9 +58,9 @@ function HeaderMenu() {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/goods" className="nav-link" onClick={() => showAllGoods()}>
+          <a href="/goods" className="nav-link">
             Усі товари
-          </NavLink>
+          </a>
         </li>
         <li>
           <NavLink to="/delivery_info" className="nav-link">
@@ -105,6 +98,9 @@ function HeaderCart() {
 
   function toggleCartOpen() {
     dispatch(cartOpen(true));
+    let scrollWidth = window.innerWidth - document.querySelector('body').offsetWidth;
+    document.querySelector('body').style.overflow = 'hidden';
+    document.querySelector('body').style.paddingRight = scrollWidth + 'px';
   }
 
   return (
