@@ -1,31 +1,18 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
+import { registration } from '../back-end-req/request';
 
 const Registration = () => {
-  const MySwal = withReactContent(Swal);
-  let navigate = useNavigate();
   const {
     register,
     formState: { errors, isValid },
     handleSubmit,
-    reset,
   } = useForm({
     mode: 'onChange',
   });
   const onSubmit = (data) => {
-    console.log(data);
-    reset();
-    MySwal.fire({
-      title: 'Успішна реєстрація',
-      icon: 'success',
-      confirmButtonText: 'Ок',
-      willClose: () => {
-        return navigate('/user-login');
-      },
-    });
+    registration(data);
   };
 
   return (
@@ -48,7 +35,7 @@ const Registration = () => {
                   message: 'Мінімум 5 латинських символів',
                 },
                 maxLength: {
-                  value: 30,
+                  value: 16,
                   message: 'Забагато символів',
                 },
                 pattern: {
@@ -84,7 +71,7 @@ const Registration = () => {
                   message: 'Мінімум 6 символів',
                 },
                 maxLength: {
-                  value: 30,
+                  value: 16,
                   message: 'Забагато символів',
                 },
                 pattern: {
@@ -111,7 +98,7 @@ const Registration = () => {
                   message: 'Мінімум 2 символів',
                 },
                 maxLength: {
-                  value: 30,
+                  value: 16,
                   message: 'Забагато символів',
                 },
               })}
@@ -134,7 +121,7 @@ const Registration = () => {
                   message: 'Мінімум 2 символів',
                 },
                 maxLength: {
-                  value: 30,
+                  value: 16,
                   message: 'Забагато символів',
                 },
               })}
@@ -157,7 +144,7 @@ const Registration = () => {
                   message: 'Мінімум 5 символів',
                 },
                 maxLength: {
-                  value: 30,
+                  value: 16,
                   message: 'Забагато символів',
                 },
               })}
@@ -180,7 +167,7 @@ const Registration = () => {
                   message: 'Мінімум 5 символів',
                 },
                 maxLength: {
-                  value: 40,
+                  value: 20,
                   message: 'Забагато символів',
                 },
                 pattern: {

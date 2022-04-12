@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchGoods, setCurrentPage } from '../redux/actions/goods';
+import { setCurrentPage } from '../redux/actions/goods';
+import { fetchGoods } from '../back-end-req/request';
 
 function Pagination() {
   const dispatch = useDispatch();

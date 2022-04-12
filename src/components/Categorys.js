@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchCategory } from '../redux/actions/categorys';
+import { fetchCategory } from '../back-end-req/request';
 import { setCategoryId, setCurrentPage } from '../redux/actions/goods';
 import { NavLink } from 'react-router-dom';
 import LoadingCategory from './LoadingCategory';
