@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCurrentPage } from '../redux/actions/goods';
-import { fetchGoods } from '../back-end-req/request';
+import fetchGoods from '../back-end-request/fetchGoods';
 
 function Pagination() {
   const dispatch = useDispatch();
@@ -36,7 +36,7 @@ function Pagination() {
 
   React.useEffect(() => {
     dispatch(fetchGoods(currentPage, goodsPerPage, categoryId));
-  }, [currentPage, categoryId]);
+  }, [currentPage, categoryId, goodsPerPage, dispatch]);
 
   function arrowMinus() {
     if (currentPage !== 1) {

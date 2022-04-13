@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { registration } from '../back-end-req/request';
+import fetchRegistration from '../back-end-request/fetchRegistration';
 
 const Registration = () => {
   const {
@@ -12,7 +12,8 @@ const Registration = () => {
     mode: 'onChange',
   });
   const onSubmit = (data) => {
-    registration(data);
+    delete data.check;
+    fetchRegistration(data);
   };
 
   return (
@@ -22,6 +23,12 @@ const Registration = () => {
           <div className="form_control">
             <label htmlFor="userlogin">
               Логін <span>(буде використовуватись для входу в кабінет)</span>
+              <span className="help-pass">
+                ?
+                <p className="help-text">
+                  Логін повинен містити тільки латинські символи (не більше 16)
+                </p>
+              </span>
             </label>
             <hr />
             <input
@@ -136,7 +143,8 @@ const Registration = () => {
             <input
               type="tel"
               id="phone"
-              placeholder="+380505555555"
+              placeholder="+380509999999"
+              pattern="[+0-9]{13}"
               {...register('phone', {
                 required: 'Це поле потрібно заповнити',
                 minLength: {
@@ -144,7 +152,7 @@ const Registration = () => {
                   message: 'Мінімум 5 символів',
                 },
                 maxLength: {
-                  value: 16,
+                  value: 20,
                   message: 'Забагато символів',
                 },
               })}
@@ -167,7 +175,7 @@ const Registration = () => {
                   message: 'Мінімум 5 символів',
                 },
                 maxLength: {
-                  value: 20,
+                  value: 30,
                   message: 'Забагато символів',
                 },
                 pattern: {

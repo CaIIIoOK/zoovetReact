@@ -4,10 +4,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { actionMinusCart, actionPlusCart, actionToTrash, clearCart } from '../redux/actions/cart';
 import { deleteFromCartStatus } from '../redux/actions/goods';
 import { useForm } from 'react-hook-form';
-import Swal from 'sweetalert2';
+import fetchOrder from '../back-end-request/fetchOrder';
 
 const Order = () => {
-  const { cartGoods, totalPrice } = useSelector(({ cartReduce }) => cartReduce);
+  const { cartGoods } = useSelector(({ cartReduce }) => cartReduce);
   const dispatch = useDispatch();
   const {
     register,
@@ -19,20 +19,14 @@ const Order = () => {
   });
 
   const onSubmit = (data) => {
+    delete data.check;
     const objSendOrder = {
       data,
       cartGoods,
-      totalPrice,
     };
-    console.log(objSendOrder);
+    fetchOrder(objSendOrder);
     dispatch(clearCart());
     reset();
-    Swal.fire({
-      title: 'Дякуємо за замовлення',
-      text: "Ми з вами зв'яжемося",
-      icon: 'success',
-      confirmButtonText: 'Ок',
-    });
   };
 
   return (
@@ -89,9 +83,10 @@ const Order = () => {
             <label htmlFor="phone">Телефон</label>
             <hr />
             <input
-              type="number"
+              type="tel"
               id="phone"
               placeholder="+380505555555"
+              pattern="[+0-9]{13}"
               {...register('phone', {
                 required: 'Це поле потрібно заповнити',
                 minLength: {
@@ -122,7 +117,7 @@ const Order = () => {
                   message: 'Мінімум 5 символів',
                 },
                 maxLength: {
-                  value: 40,
+                  value: 30,
                   message: 'Забагато символів',
                 },
                 pattern: {
@@ -145,8 +140,8 @@ const Order = () => {
               {...register('city', {
                 required: 'Це поле потрібно заповнити',
                 minLength: {
-                  value: 5,
-                  message: 'Мінімум 5 символів',
+                  value: 3,
+                  message: 'Мінімум 3 символів',
                 },
                 maxLength: {
                   value: 30,
@@ -157,30 +152,6 @@ const Order = () => {
             <div className="error-input">
               {errors?.city && <p>{errors?.city?.message || 'Error'}</p>}
             </div>
-          </div>
-          <div className="form_control">
-            <label htmlFor="street">Вулиця </label>
-            <hr />
-            <input
-              type="text"
-              id="street"
-              placeholder="Вулиця"
-              {...register('street', {
-                required: false,
-              })}
-            />
-          </div>
-          <div className="form_control">
-            <label htmlFor="house">№ Будинку </label>
-            <hr />
-            <input
-              type="text"
-              id="house"
-              placeholder="Будинок"
-              {...register('house', {
-                required: false,
-              })}
-            />
           </div>
           <select name="delivery" className="delivery-select" {...register('delivery')}>
             <option hidden>Обрати доставку</option>
