@@ -4,6 +4,7 @@ const initialState = {
   goodsPerPage: 30,
   totalCount: 0,
   categoryId: 0,
+  soloItemId: 0,
   isLoaded: false,
 };
 
@@ -46,6 +47,13 @@ const getGoods = (state = initialState, action) => {
       return {
         ...state,
         categoryId: action.id,
+        isLoaded: false,
+      };
+    }
+    case 'SET_SOLO_ITEM_ID': {
+      return {
+        ...state,
+        goods: action.goods,
         isLoaded: false,
       };
     }

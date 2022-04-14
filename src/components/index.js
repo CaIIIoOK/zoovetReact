@@ -16,3 +16,4 @@ export { default as UserLogin } from '../components/UserLogin';
 export { default as MyOffice } from '../components/MyOffice';
 export { default as Search } from '../components/Search';
 export { default as ArrowTop } from '../components/ArrowTop';
+export { default as SingleGoods } from '../components/SingleGoods';

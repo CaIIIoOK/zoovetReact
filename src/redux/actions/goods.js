@@ -30,6 +30,11 @@ const setCategoryId = (id) => ({
   id,
 });
 
+const setSoloItemData = (goods) => ({
+  type: 'SET_SOLO_ITEM_ID',
+  goods,
+});
+
 export {
   goodsDisplay,
   setCurrentPage,
@@ -37,4 +42,5 @@ export {
   addToCartStatus,
   deleteFromCartStatus,
   setCategoryId,
+  setSoloItemData,
 };

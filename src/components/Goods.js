@@ -1,9 +1,12 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+
 import Pagination from './Pagination';
 import { actionAddToCart } from '../redux/actions/cart';
 import { addToCartStatus } from '../redux/actions/goods';
 import LoadingGoods from './LoadingGoods';
+import fetchGoodsSoloItem from '../back-end-request/fetchGoodsSoloItem';
 
 function Goods() {
   const dispatch = useDispatch();
@@ -20,6 +23,9 @@ function Goods() {
     dispatch(actionAddToCart(objProd));
     dispatch(addToCartStatus(id));
   }
+  function setSoloItem(itemId) {
+    dispatch(fetchGoodsSoloItem(itemId));
+  }
 
   return (
     <div className="main-page">
@@ -27,27 +33,32 @@ function Goods() {
         {isLoaded
           ? goods.map((item) => {
               return (
-                <div key={item.id} className="products__item">
-                  <img src={item.Img_prod} alt="Img_prod" />
-                  <div className="price-name">
-                    <p>Ціна: {item.Price_prod} грн.</p>
-                    {item.Name_prod_ua}
-                    <div className="btn-availability">
-                      <span>{item.availability === 1 ? 'Є в наявності' : 'Немає в наявності'}</span>
-                      <button
-                        className="btn-to-cart"
-                        onClick={() =>
-                          addToCart(item.id, item.Price_prod, item.Name_prod_ua, item.Img_prod, 1)
-                        }>
-                        В корзину
-                        {item.isInCart && (
-                          <img
-                            src="https://img.icons8.com/material-two-tone/48/000000/shopping-cart--v1.png"
-                            alt="cart"
-                          />
-                        )}
-                      </button>
+                <div key={item.id} className="products__item" onClick={() => setSoloItem(item.id)}>
+                  <NavLink to={'/goods-solo?&id=' + item.id}>
+                    <img src={item.Img_prod} alt="Img_prod" />
+                    <div className="price-name-price">
+                      <p>
+                        Ціна: <b>{item.Price_prod}</b> грн.
+                      </p>
+                      <p>{item.Name_prod_ua}</p>
                     </div>
+                  </NavLink>
+
+                  <div className="btn-availability">
+                    <span>{item.availability === 1 ? 'Є в наявності' : 'Немає в наявності'}</span>
+                    <button
+                      className="btn-to-cart"
+                      onClick={() =>
+                        addToCart(item.id, item.Price_prod, item.Name_prod_ua, item.Img_prod, 1)
+                      }>
+                      В корзину
+                      {item.isInCart && (
+                        <img
+                          src="https://img.icons8.com/material-two-tone/48/000000/shopping-cart--v1.png"
+                          alt="cart"
+                        />
+                      )}
+                    </button>
                   </div>
                 </div>
               );

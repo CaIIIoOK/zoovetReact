@@ -16,6 +16,7 @@ import {
   MyOffice,
   Search,
   ArrowTop,
+  SingleGoods,
 } from '../components';
 
 const Container = () => {
@@ -26,6 +27,7 @@ const Container = () => {
         <Route exact path="/" element={<Main />} />
         <Route path="/categorys" element={<Categorys />} />
         <Route path="/goods" element={<Goods />} />
+        <Route path="/goods-solo" element={<SingleGoods />} />
         <Route path="/delivery_info" element={<DeliveryInfo />} />
         <Route path="/contacts" element={<Contacts />} />
         <Route path="/order" element={<Order />} />

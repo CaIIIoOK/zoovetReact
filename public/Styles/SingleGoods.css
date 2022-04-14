@@ -1,0 +1,41 @@
+.goods-item {
+  display: flex;
+  flex-direction: row;
+}
+
+.img-name-block {
+  display: flex;
+  flex-direction: column;
+  margin: 0 15px 0 10px;
+  align-items: center;
+  text-align: center;
+  background-color: rgb(231, 250, 248);
+  border-radius: 10px;
+  height: max-content;
+  position: relative;
+  padding-bottom: 45px;
+}
+
+.img-name-block p {
+  align-items: center;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  padding: 15px 0;
+}
+.img-name-block img {
+  width: 300px;
+  max-height: 420px;
+}
+.solo img {
+  margin: 0px;
+  margin-left: 2px;
+  width: 20px;
+}
+.goods-description {
+  line-height: 17px;
+  color: black;
+  text-align: justify;
+}
+
+.goods-description p {
+  text-indent: 1.7em;
+}
