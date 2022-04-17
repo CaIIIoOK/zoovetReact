@@ -54,7 +54,7 @@ const getGoods = (state = initialState, action) => {
       return {
         ...state,
         goods: action.goods,
-        isLoaded: false,
+        isLoaded: true,
       };
     }
 

@@ -42,13 +42,13 @@
 }
 
 .delivery-select {
-  width: 200px;
-  display: inline-block;
+  width: 90%;
   margin: 10px;
   padding: 12px;
   border: 1px solid #ccc;
   border-radius: 3px;
 }
+
 .btn-order-send {
   position: absolute;
   bottom: 10px;
@@ -90,4 +90,59 @@
   font-size: 15px;
   color: red;
   position: absolute;
+}
+
+.cityDelivery {
+  display: none;
+}
+
+.cityInformation {
+  display: none;
+  padding: 5px;
+  position: absolute;
+  top: 62px;
+  left: 5px;
+  width: max-content;
+  min-width: 300px;
+  height: max-content;
+  max-height: 150px;
+  background-color: white;
+  z-index: 1003;
+  border: 1px solid #ccc;
+  overflow-x: auto;
+}
+
+.cityInformation li {
+  padding: 4px;
+  margin: 5px;
+  color: #000;
+  cursor: pointer;
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-top-color: rgb(207, 204, 204);
+}
+
+.cityInformation li:hover {
+  transition: 0.5s;
+  border-radius: 3px;
+  background-color: rgb(182, 180, 180);
+}
+
+#noneRef {
+  color: rgb(219, 51, 51);
+}
+
+#warehouse {
+  display: none;
+  width: 100%;
+}
+
+#warehouse select {
+  padding: 10px;
+  width: 90%;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-left: 5px;
+  margin-top: 17px;
+  overflow: auto;
 }

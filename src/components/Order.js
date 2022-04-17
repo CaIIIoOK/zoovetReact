@@ -5,14 +5,24 @@ import { actionMinusCart, actionPlusCart, actionToTrash, clearCart } from '../re
 import { deleteFromCartStatus } from '../redux/actions/goods';
 import { useForm } from 'react-hook-form';
 import fetchOrder from '../back-end-request/fetchOrder';
+import fetchCityDelivery from '../back-end-request/fetchCityDelivery';
+import fetchWarehouse from '../back-end-request/fetchWarehouse';
+import { setCityDelivery } from '../redux/actions/setCityDelivery';
 
 const Order = () => {
   const { cartGoods } = useSelector(({ cartReduce }) => cartReduce);
+  const { city, warehouse } = useSelector(({ cityDelivery }) => cityDelivery);
+  const inputRef = React.useRef();
+  const warehouseRef = React.useRef();
+  const cityInformationRef = React.useRef();
+  const [deliveryName, setDeliveryName] = React.useState('');
+
   const dispatch = useDispatch();
   const {
     register,
     formState: { errors, isValid },
     handleSubmit,
+    setValue,
     reset,
   } = useForm({
     mode: 'onChange',
@@ -29,6 +39,34 @@ const Order = () => {
     reset();
   };
 
+  const showInputDelivery = (event) => {
+    setDeliveryName(event.target.value);
+    return (inputRef.current.style.display = 'inline-block');
+  };
+
+  const getInputDeliveryCity = (event) => {
+    if (event.target.value.length >= 3) {
+      cityInformationRef.current.style.display = 'inline-block';
+      dispatch(
+        fetchCityDelivery({
+          deliveryName,
+          value: event.target.value,
+        }),
+      );
+    } else {
+      cityInformationRef.current.style.display = 'none';
+      if (warehouseRef) {
+        warehouseRef.current.style.display = 'none';
+      }
+      dispatch(setCityDelivery([]));
+    }
+  };
+  const addCityInput = (cityRef, present) => {
+    cityInformationRef.current.style.display = 'none';
+    setValue('cityDelivery', present);
+    dispatch(fetchWarehouse(cityRef));
+    warehouseRef.current.style.display = 'inline-block';
+  };
   return (
     <div className="order-page">
       <div className="order_form">
@@ -83,10 +121,9 @@ const Order = () => {
             <label htmlFor="phone">Телефон</label>
             <hr />
             <input
-              type="tel"
+              type="text"
               id="phone"
               placeholder="+380505555555"
-              pattern="[+0-9]{13}"
               {...register('phone', {
                 required: 'Це поле потрібно заповнити',
                 minLength: {
@@ -153,10 +190,17 @@ const Order = () => {
               {errors?.city && <p>{errors?.city?.message || 'Error'}</p>}
             </div>
           </div>
-          <select name="delivery" className="delivery-select" {...register('delivery')}>
+
+          <label htmlFor="delivery-select">Оберіть доставку</label>
+          <select
+            name="delivery"
+            className="delivery-select"
+            {...register('delivery', {
+              onChange: (e) => showInputDelivery(e),
+            })}>
             <option hidden>Обрати доставку</option>
             <option value="novap" id="novap">
-              Доставка "Нова Почта"
+              Доставка "Нова Пошта"
             </option>
             <option value="justin" id="justin">
               Доставка "Justin"
@@ -165,6 +209,48 @@ const Order = () => {
               Доставка "Укрпочта"
             </option>
           </select>
+          <div className="form_control cityDelivery" ref={inputRef}>
+            <label htmlFor="delivery-city">Наслений пункт</label>
+            <hr />
+            <input
+              type="text"
+              name="cityDelivery"
+              id="cityDelivery"
+              placeholder="Наслений пункт"
+              {...register('cityDelivery', {
+                required: true,
+                onChange: (event) => {
+                  return getInputDeliveryCity(event);
+                },
+              })}
+            />
+            <ul className="cityInformation" ref={cityInformationRef}>
+              {city &&
+                city.map((elem) => {
+                  return (
+                    <li
+                      key={elem.Ref}
+                      onClick={() => {
+                        return addCityInput(elem.DeliveryCity, elem.Present);
+                      }}>
+                      {elem.Present}
+                    </li>
+                  );
+                })}
+
+              {city.length === 0 && <li id="noneRef">По даному запиту нічого не знайдено</li>}
+            </ul>
+            <div ref={warehouseRef} id="warehouse">
+              <select name="warehouse" {...register('warehouse')}>
+                <option hidden>Оберіть відділення</option>
+                {warehouse &&
+                  warehouse.map((elem) => {
+                    return <option key={elem.Ref}>{elem.Description}</option>;
+                  })}
+              </select>
+            </div>
+          </div>
+
           <div className="form_control">
             <input
               type="checkbox"

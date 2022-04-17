@@ -12,7 +12,8 @@ function Goods() {
   const dispatch = useDispatch();
   const { goods, isLoaded } = useSelector(({ getGoods }) => getGoods);
 
-  function addToCart(id, price, name, img, quantity) {
+  function addToCart(id, price, name, img, quantity, event) {
+    event.stopPropagation();
     const objProd = {
       id,
       price,
@@ -33,8 +34,8 @@ function Goods() {
         {isLoaded
           ? goods.map((item) => {
               return (
-                <div key={item.id} className="products__item" onClick={() => setSoloItem(item.id)}>
-                  <NavLink to={'/goods-solo?&id=' + item.id}>
+                <div key={item.id} className="products__item">
+                  <NavLink to={'/goods-solo?&id=' + item.id} onClick={() => setSoloItem(item.id)}>
                     <img src={item.Img_prod} alt="Img_prod" />
                     <div className="price-name-price">
                       <p>
@@ -48,8 +49,15 @@ function Goods() {
                     <span>{item.availability === 1 ? 'Є в наявності' : 'Немає в наявності'}</span>
                     <button
                       className="btn-to-cart"
-                      onClick={() =>
-                        addToCart(item.id, item.Price_prod, item.Name_prod_ua, item.Img_prod, 1)
+                      onClick={(event) =>
+                        addToCart(
+                          item.id,
+                          item.Price_prod,
+                          item.Name_prod_ua,
+                          item.Img_prod,
+                          1,
+                          event,
+                        )
                       }>
                       В корзину
                       {item.isInCart && (
