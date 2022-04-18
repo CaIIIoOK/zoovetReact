@@ -8,4 +8,9 @@ const setDeliveryWarehouse = (warehouse) => ({
   warehouse,
 });
 
-export { setCityDelivery, setDeliveryWarehouse };
+const setCityDeliveryJustin = (cityJustin) => ({
+  type: 'SET_CITY_DELIVERY_JUSTIN',
+  cityJustin,
+});
+
+export { setCityDelivery, setDeliveryWarehouse, setCityDeliveryJustin };

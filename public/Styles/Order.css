@@ -96,7 +96,7 @@
   display: none;
 }
 
-.cityInformation {
+.custom_select {
   display: none;
   padding: 5px;
   position: absolute;
@@ -112,7 +112,7 @@
   overflow-x: auto;
 }
 
-.cityInformation li {
+.custom_select li {
   padding: 4px;
   margin: 5px;
   color: #000;
@@ -122,7 +122,7 @@
   border-top-color: rgb(207, 204, 204);
 }
 
-.cityInformation li:hover {
+.custom_select li:hover {
   transition: 0.5s;
   border-radius: 3px;
   background-color: rgb(182, 180, 180);

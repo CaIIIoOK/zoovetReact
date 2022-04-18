@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form';
 import fetchOrder from '../back-end-request/fetchOrder';
 import fetchCityDelivery from '../back-end-request/fetchCityDelivery';
 import fetchWarehouse from '../back-end-request/fetchWarehouse';
-import { setCityDelivery } from '../redux/actions/setCityDelivery';
+import { setCityDelivery, setDeliveryWarehouse } from '../redux/actions/setCityDelivery';
 
 const Order = () => {
   const { cartGoods } = useSelector(({ cartReduce }) => cartReduce);
@@ -41,6 +41,13 @@ const Order = () => {
 
   const showInputDelivery = (event) => {
     setDeliveryName(event.target.value);
+    if (event.target.value === 'justin' || event.target.value === 'ukrp') {
+      inputRef.current.style.display = 'none';
+      return;
+    }
+    setValue('cityDelivery', '');
+    warehouseRef.current.style.display = 'none';
+    cityInformationRef.current.style.display = 'none';
     return (inputRef.current.style.display = 'inline-block');
   };
 
@@ -61,12 +68,14 @@ const Order = () => {
       dispatch(setCityDelivery([]));
     }
   };
-  const addCityInput = (cityRef, present) => {
+  const addCityToInput = (cityRef, present) => {
     cityInformationRef.current.style.display = 'none';
+    dispatch(setDeliveryWarehouse([]));
     setValue('cityDelivery', present);
     dispatch(fetchWarehouse(cityRef));
     warehouseRef.current.style.display = 'inline-block';
   };
+
   return (
     <div className="order-page">
       <div className="order_form">
@@ -218,27 +227,38 @@ const Order = () => {
               id="cityDelivery"
               placeholder="Наслений пункт"
               {...register('cityDelivery', {
-                required: true,
                 onChange: (event) => {
                   return getInputDeliveryCity(event);
                 },
               })}
             />
-            <ul className="cityInformation" ref={cityInformationRef}>
-              {city &&
+            <ul className="custom_select" ref={cityInformationRef}>
+              {city.length !== 0 ? (
                 city.map((elem) => {
                   return (
                     <li
                       key={elem.Ref}
                       onClick={() => {
-                        return addCityInput(elem.DeliveryCity, elem.Present);
+                        return addCityToInput(elem.DeliveryCity, elem.Present);
                       }}>
                       {elem.Present}
                     </li>
                   );
-                })}
-
-              {city.length === 0 && <li id="noneRef">По даному запиту нічого не знайдено</li>}
+                })
+              ) : (
+                // ) : cityJustin.length !== 0 ? (
+                //   <li
+                //     onClick={() => {
+                //       return addCityToInput(
+                //         { cityJustin: cityJustin[0].fields.uuid },
+                //         `${cityJustin[0].fields.descr}, ${cityJustin[0].fields.district.descr} р-н, ${cityJustin[0].fields.objectOwner.descr} обл.`,
+                //       );
+                //     }}>
+                //     {cityJustin[0].fields.descr}, {cityJustin[0].fields.district.descr} р-н,{' '}
+                //     {cityJustin[0].fields.objectOwner.descr} обл.
+                //   </li>
+                <li id="noneRef">По даному запиту нічого не знайдено</li>
+              )}
             </ul>
             <div ref={warehouseRef} id="warehouse">
               <select name="warehouse" {...register('warehouse')}>
@@ -250,7 +270,6 @@ const Order = () => {
               </select>
             </div>
           </div>
-
           <div className="form_control">
             <input
               type="checkbox"

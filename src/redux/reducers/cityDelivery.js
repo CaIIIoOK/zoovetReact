@@ -1,5 +1,6 @@
 const initialState = {
   city: [],
+  cityJustin: [],
   warehouse: [],
 };
 
@@ -9,6 +10,11 @@ const cityDelivery = (state = initialState, action) => {
       return {
         ...state,
         city: action.city,
+      };
+    case 'SET_CITY_DELIVERY_JUSTIN':
+      return {
+        ...state,
+        cityJustin: action.cityJustin,
       };
     case 'SET_WAREHOUSE':
       return {
