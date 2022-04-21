@@ -9,7 +9,7 @@ import DOMPurify from 'dompurify';
 const SingleGoods = () => {
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
-  const { goods, isLoaded } = useSelector(({ getGoods }) => getGoods);
+  const { goods } = useSelector(({ getGoods }) => getGoods);
 
   React.useEffect(() => {
     let id = searchParams.get('id');

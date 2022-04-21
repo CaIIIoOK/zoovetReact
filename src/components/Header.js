@@ -1,7 +1,8 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { cartOpen } from '../redux/actions/cartStatus';
+import { setUserHashAction } from '../redux/actions/setUserDataAction';
 
 function Header() {
   return (
@@ -117,12 +118,32 @@ function HeaderCart() {
 }
 
 function HeaderProfile() {
+  const { login } = useSelector(({ userDataReduser }) => userDataReduser);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const logOut = () => {
+    dispatch(setUserHashAction(''));
+    navigate('/user-login', { replace: true });
+  };
   return (
     <div className="profile">
-      <Link to="/user-login">
-        <i className="fas fa-sign-in-alt"></i> Войти
-      </Link>
-      <Link to="/registration">Регистрация</Link>
+      {!login ? (
+        <Link to="/user-login">
+          <i className="fas fa-sign-in-alt"></i> Увійти
+        </Link>
+      ) : (
+        <Link to="/my-office">
+          <button className="header-button">{login}</button>
+        </Link>
+      )}
+      {!login ? (
+        <Link to="/registration">Регістрація</Link>
+      ) : (
+        <button className="header-button" onClick={logOut}>
+          Вийти
+        </button>
+      )}
     </div>
   );
 }

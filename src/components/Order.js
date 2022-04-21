@@ -11,7 +11,7 @@ import { setCityDelivery, setDeliveryWarehouse } from '../redux/actions/setCityD
 
 const Order = () => {
   const { cartGoods } = useSelector(({ cartReduce }) => cartReduce);
-  const { city, warehouse } = useSelector(({ cityDelivery }) => cityDelivery);
+  const { city, cityJustin, warehouse } = useSelector(({ cityDelivery }) => cityDelivery);
   const inputRef = React.useRef();
   const warehouseRef = React.useRef();
   const cityInformationRef = React.useRef();
@@ -41,7 +41,7 @@ const Order = () => {
 
   const showInputDelivery = (event) => {
     setDeliveryName(event.target.value);
-    if (event.target.value === 'justin' || event.target.value === 'ukrp') {
+    if (event.target.value === 'ukrp') {
       inputRef.current.style.display = 'none';
       return;
     }
@@ -72,7 +72,12 @@ const Order = () => {
     cityInformationRef.current.style.display = 'none';
     dispatch(setDeliveryWarehouse([]));
     setValue('cityDelivery', present);
-    dispatch(fetchWarehouse(cityRef));
+    dispatch(
+      fetchWarehouse({
+        deliveryName,
+        cityRef,
+      }),
+    );
     warehouseRef.current.style.display = 'inline-block';
   };
 
@@ -222,7 +227,8 @@ const Order = () => {
             <label htmlFor="delivery-city">Наслений пункт</label>
             <hr />
             <input
-              type="text"
+              type="search"
+              autoComplete="address-level4"
               name="cityDelivery"
               id="cityDelivery"
               placeholder="Наслений пункт"
@@ -245,18 +251,18 @@ const Order = () => {
                     </li>
                   );
                 })
+              ) : cityJustin.length !== 0 ? (
+                <li
+                  onClick={() => {
+                    return addCityToInput(
+                      cityJustin[0].fields.uuid,
+                      `${cityJustin[0].fields.descr}, ${cityJustin[0].fields.district.descr} р-н, ${cityJustin[0].fields.objectOwner.descr} обл.`,
+                    );
+                  }}>
+                  {cityJustin[0].fields.descr}, {cityJustin[0].fields.district.descr} р-н,{' '}
+                  {cityJustin[0].fields.objectOwner.descr} обл.
+                </li>
               ) : (
-                // ) : cityJustin.length !== 0 ? (
-                //   <li
-                //     onClick={() => {
-                //       return addCityToInput(
-                //         { cityJustin: cityJustin[0].fields.uuid },
-                //         `${cityJustin[0].fields.descr}, ${cityJustin[0].fields.district.descr} р-н, ${cityJustin[0].fields.objectOwner.descr} обл.`,
-                //       );
-                //     }}>
-                //     {cityJustin[0].fields.descr}, {cityJustin[0].fields.district.descr} р-н,{' '}
-                //     {cityJustin[0].fields.objectOwner.descr} обл.
-                //   </li>
                 <li id="noneRef">По даному запиту нічого не знайдено</li>
               )}
             </ul>

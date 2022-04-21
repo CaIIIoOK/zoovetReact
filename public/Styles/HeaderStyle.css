@@ -119,3 +119,8 @@
   display: inline-block;
   text-decoration: none;
 }
+
+.header-button {
+  color: black;
+  margin-left: 10px;
+}

@@ -34,7 +34,7 @@ const Container = () => {
         <Route path="/registration" element={<Registration />} />
         <Route path="/conditions" element={<Conditions />} />
         <Route path="/user-login" element={<UserLogin />} />
-        <Route path="/my-office" element={<MyOffice />} />
+        <Route exact path="/my-office" element={<MyOffice />} />
         <Route path="/search" element={<Search />} />
         <Route path="*" element={<Error />} />
       </Routes>
