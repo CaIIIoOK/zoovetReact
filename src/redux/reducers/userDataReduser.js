@@ -5,22 +5,10 @@ const initialState = {
   city: '',
   email: '',
   phone: '',
-  hash: '',
 };
 
 const userDataReduser = (state = initialState, action) => {
   switch (action.type) {
-    case 'SET_USER_HASH':
-      return {
-        ...state,
-        hash: action.hash,
-        login: '',
-        name: '',
-        id: 0,
-        city: '',
-        email: '',
-        phone: '',
-      };
     case 'SET_USER_DATA':
       return {
         ...state,
@@ -31,6 +19,8 @@ const userDataReduser = (state = initialState, action) => {
         login: action.login,
         phone: action.phone,
       };
+    case 'CLEAR_USER_DATA':
+      return (state = action.state);
 
     default:
       return state;

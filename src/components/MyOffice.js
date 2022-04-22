@@ -4,7 +4,6 @@ import { useNavigate, Link } from 'react-router-dom';
 
 const MyOffice = () => {
   const { name } = useSelector(({ userDataReduser }) => userDataReduser);
-  const dispatch = useDispatch();
 
   return (
     <div className="main-page">

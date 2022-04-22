@@ -1,11 +1,10 @@
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-import { setUserHashAction } from '../redux/actions/setUserDataAction';
+import fetchUserData from './fetchUserData';
 
 const fetchValidationHash = (data) => (dispatch) => {
   try {
-    const MySwal = withReactContent(Swal);
     let url = `http://localhost:3001/user-login`;
     axios
       .post(
@@ -17,9 +16,10 @@ const fetchValidationHash = (data) => (dispatch) => {
       )
       .then(function ({ data }) {
         if (data.status === 'sucsess') {
-          dispatch(setUserHashAction(data.hash));
+          dispatch(fetchUserData(data.hash));
         }
         if (data === 'denied') {
+          const MySwal = withReactContent(Swal);
           MySwal.fire({
             title: 'Невірний логін бо пароль',
             icon: 'error',

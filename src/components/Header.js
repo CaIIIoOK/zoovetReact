@@ -2,7 +2,9 @@ import React from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { cartOpen } from '../redux/actions/cartStatus';
-import { setUserHashAction } from '../redux/actions/setUserDataAction';
+import { useCookies } from 'react-cookie';
+import { clearUserDataAction } from '../redux/actions/setUserDataAction';
+import fetchUserData from '../back-end-request/fetchUserData';
 
 function Header() {
   return (
@@ -119,13 +121,23 @@ function HeaderCart() {
 
 function HeaderProfile() {
   const { login } = useSelector(({ userDataReduser }) => userDataReduser);
+  const [cookies, setCookie, removeCookie] = useCookies();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const logOut = () => {
-    dispatch(setUserHashAction(''));
+    dispatch(clearUserDataAction({}));
+    removeCookie('hash');
+    removeCookie('user');
     navigate('/user-login', { replace: true });
   };
+
+  React.useEffect(() => {
+    if (cookies.hash !== undefined) {
+      dispatch(fetchUserData(cookies.hash));
+    }
+  }, []);
+
   return (
     <div className="profile">
       {!login ? (

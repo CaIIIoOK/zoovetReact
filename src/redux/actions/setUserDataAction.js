@@ -1,8 +1,3 @@
-const setUserHashAction = (hash) => ({
-  type: 'SET_USER_HASH',
-  hash,
-});
-
 const setUserDataAction = (login, name, id, city, email, phone) => ({
   type: 'SET_USER_DATA',
   login,
@@ -13,4 +8,9 @@ const setUserDataAction = (login, name, id, city, email, phone) => ({
   phone,
 });
 
-export { setUserHashAction, setUserDataAction };
+const clearUserDataAction = (state) => ({
+  type: 'CLEAR_USER_DATA',
+  state,
+});
+
+export { setUserDataAction, clearUserDataAction };
