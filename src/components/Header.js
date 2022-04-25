@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { cartOpen } from '../redux/actions/cartStatus';
 import { useCookies } from 'react-cookie';
 import { clearUserDataAction } from '../redux/actions/setUserDataAction';
-import fetchUserData from '../back-end-request/fetchUserData';
+import { setLoginForHead } from '../redux/actions/setUserDataAction';
 
 function Header() {
   return (
@@ -120,10 +120,16 @@ function HeaderCart() {
 }
 
 function HeaderProfile() {
+  const [, , removeCookie] = useCookies(['user']);
   const { login } = useSelector(({ userDataReduser }) => userDataReduser);
-  const [cookies, setCookie, removeCookie] = useCookies();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  let [cookie] = React.useState(
+    document.cookie.replace(/(?:(?:^|.*;\s*)user\s*=\s*([^;]*).*$)|^.*$/, '$1'),
+  );
+  React.useEffect(() => {
+    dispatch(setLoginForHead(cookie));
+  }, []);
 
   const logOut = () => {
     dispatch(clearUserDataAction({}));
@@ -131,12 +137,6 @@ function HeaderProfile() {
     removeCookie('user');
     navigate('/user-login', { replace: true });
   };
-
-  React.useEffect(() => {
-    if (cookies.hash !== undefined) {
-      dispatch(fetchUserData(cookies.hash));
-    }
-  }, []);
 
   return (
     <div className="profile">
@@ -146,7 +146,9 @@ function HeaderProfile() {
         </Link>
       ) : (
         <Link to="/my-office">
-          <button className="header-button">{login}</button>
+          <button className="header-button">
+            <i className="fas fa-user-circle"></i> {login}
+          </button>
         </Link>
       )}
       {!login ? (

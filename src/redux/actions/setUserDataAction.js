@@ -1,9 +1,9 @@
-const setUserDataAction = (login, name, id, city, email, phone) => ({
+const setUserDataAction = (login, name, id, secondname, email, phone) => ({
   type: 'SET_USER_DATA',
   login,
   name,
   id,
-  city,
+  secondname,
   email,
   phone,
 });
@@ -13,4 +13,9 @@ const clearUserDataAction = (state) => ({
   state,
 });
 
-export { setUserDataAction, clearUserDataAction };
+const setLoginForHead = (login) => ({
+  type: 'SET_LOGIN',
+  login,
+});
+
+export { setUserDataAction, clearUserDataAction, setLoginForHead };

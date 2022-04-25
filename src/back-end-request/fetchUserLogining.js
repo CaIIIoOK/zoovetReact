@@ -1,19 +1,17 @@
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-import fetchUserData from './fetchUserData';
+import fetchUserData from '../back-end-request/fetchUserData';
 
-const fetchValidationHash = (data) => (dispatch) => {
+// axios.defaults.withCredentials = true;
+
+const fetchUserLogining = (data) => (dispatch) => {
   try {
     let url = `http://localhost:3001/user-login`;
     axios
-      .post(
-        url,
-        {
-          data,
-        },
-        { withCredentials: true },
-      )
+      .post(url, {
+        data,
+      })
       .then(function ({ data }) {
         if (data.status === 'sucsess') {
           dispatch(fetchUserData(data.hash));
@@ -21,7 +19,7 @@ const fetchValidationHash = (data) => (dispatch) => {
         if (data === 'denied') {
           const MySwal = withReactContent(Swal);
           MySwal.fire({
-            title: 'Невірний логін бо пароль',
+            title: 'Невірний логін або пароль',
             icon: 'error',
             confirmButtonText: 'Ок',
           });
@@ -32,4 +30,4 @@ const fetchValidationHash = (data) => (dispatch) => {
   }
 };
 
-export default fetchValidationHash;
+export default fetchUserLogining;

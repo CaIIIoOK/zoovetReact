@@ -1,23 +1,23 @@
 import axios from 'axios';
 import { setUserDataAction } from '../redux/actions/setUserDataAction';
+axios.defaults.withCredentials = true;
 
-const fetchUserData = (data) => (dispatch) => {
+const fetchUserData = (hash) => (dispatch) => {
   try {
-    let url = `http://localhost:3001/validate-user`;
+    let url = `http://localhost:3001/get-user-data`;
     axios
       .post(url, {
-        data,
+        hash,
       })
       .then(function ({ data }) {
-        let d = data[0];
         dispatch(
           setUserDataAction(
-            d.user_login,
-            d.user_name,
-            d.id,
-            d.user_city,
-            d.user_email,
-            d.user_phone,
+            data[0].user_login,
+            data[0].user_name,
+            data[0].id,
+            data[0].user_usersecondname,
+            data[0].user_email,
+            data[0].user_phone,
           ),
         );
       });

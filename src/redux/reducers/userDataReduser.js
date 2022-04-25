@@ -2,7 +2,7 @@ const initialState = {
   login: '',
   name: '',
   id: 0,
-  city: '',
+  secondname: '',
   email: '',
   phone: '',
 };
@@ -14,10 +14,15 @@ const userDataReduser = (state = initialState, action) => {
         ...state,
         name: action.name,
         id: action.id,
-        city: action.city,
+        secondname: action.secondname,
         email: action.email,
         login: action.login,
         phone: action.phone,
+      };
+    case 'SET_LOGIN':
+      return {
+        ...state,
+        login: action.login,
       };
     case 'CLEAR_USER_DATA':
       return (state = action.state);

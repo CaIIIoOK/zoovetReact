@@ -121,6 +121,11 @@
 }
 
 .header-button {
+  font-size: 15px;
   color: black;
   margin-left: 10px;
+}
+
+.header-button i {
+  margin-right: 10px;
 }

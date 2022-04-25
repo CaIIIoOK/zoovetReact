@@ -16,6 +16,16 @@ const Order = () => {
   const warehouseRef = React.useRef();
   const cityInformationRef = React.useRef();
   const [deliveryName, setDeliveryName] = React.useState('');
+  const userData = useSelector(({ userDataReduser }) => userDataReduser);
+
+  React.useEffect(() => {
+    if (userData.login) {
+      setValue('username', userData.name);
+      setValue('usersecondname', userData.secondname);
+      setValue('phone', userData.phone);
+      setValue('email', userData.email);
+    }
+  }, []);
 
   const dispatch = useDispatch();
   const {
