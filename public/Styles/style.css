@@ -134,6 +134,23 @@ input::-webkit-inner-spin-button {
   align-items: center;
   min-height: 35px;
 }
+.userIn {
+  text-align: center;
+}
+.userIn p {
+  margin-bottom: 20px;
+  font-size: 30px;
+}
+.userIn button {
+  padding: 5px;
+  border-radius: 10px;
+  background-color: rgb(188, 249, 255);
+}
+.userIn a {
+  text-align: center;
+  color: black;
+  text-decoration: none;
+}
 
 #arrowTop {
   bottom: 120px;

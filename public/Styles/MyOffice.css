@@ -1,0 +1,89 @@
+.My-office-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.my-data {
+  padding: 10px;
+  flex-direction: column;
+  width: max-content;
+  min-width: 500px;
+  height: max-content;
+  border: 2px solid gray;
+  border-radius: 10px;
+  background-color: rgb(130, 246, 246);
+}
+.my-data p {
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.form-my-data {
+  display: flex;
+  flex-direction: column;
+}
+.form-my-data input {
+  width: 50%;
+  border-radius: 5px;
+  font-size: 17px;
+  margin: 10px;
+  padding: 5px;
+  text-align: left;
+}
+.form-my-data input[type='password'] {
+  background-color: rgb(239, 239, 239);
+}
+
+.form-my-data label {
+  text-align: right;
+  position: relative;
+}
+.form-my-data img {
+  cursor: pointer;
+  width: 20px;
+  right: 20px;
+  top: 15px;
+  position: absolute;
+}
+
+.button-myoffice {
+  background-color: rgb(167, 255, 162);
+  color: black;
+  border-radius: 5px;
+  padding: 5px;
+  width: max-content;
+  border: 1px solid rgb(167, 167, 167);
+}
+.button-myoffice:hover {
+  transition: 500ms;
+  background-color: rgb(3, 186, 12);
+}
+
+.button-block {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.my-office-error p {
+  position: absolute;
+  font-size: 11px;
+  color: red;
+  right: 15px;
+  bottom: -6px;
+}
+#galochka {
+  display: none;
+  right: 20px;
+}
+
+#passImg {
+  right: 45px;
+}
+
+#passGalochka {
+  display: none;
+  right: 45px;
+}

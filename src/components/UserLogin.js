@@ -38,9 +38,13 @@ const UserLogin = () => {
           </form>
         </div>
       ) : (
-        <div>
-          <p>Ласкаво просимо</p>
-          <Link to="/my-office">Перейти до особистого кабінету</Link>
+        <div className="userIn">
+          <p>Ласкаво просимо :)</p>
+          <Link to="/my-office">
+            <button>
+              Перейти до особистого кабінету <i className="fas fa-user-circle"></i>
+            </button>
+          </Link>
         </div>
       )}
     </div>
