@@ -2,10 +2,10 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
-const fetchChangeUserData = (data) => (dispatch) => {
+const fetchChangePassword = (data) => (dispatch) => {
   try {
     const MySwal = withReactContent(Swal);
-    let url = `http://localhost:3001/change-user-data`;
+    let url = `http://localhost:3001/change-password`;
     axios
       .post(url, {
         data,
@@ -30,4 +30,4 @@ const fetchChangeUserData = (data) => (dispatch) => {
   }
 };
 
-export default fetchChangeUserData;
+export default fetchChangePassword;

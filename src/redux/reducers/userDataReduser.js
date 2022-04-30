@@ -1,11 +1,11 @@
 const initialState = {
   login: '',
-  pass: '',
   name: '',
   id: 0,
   secondname: '',
   email: '',
   phone: '',
+  passModalStatus: false,
 };
 
 const userDataReduser = (state = initialState, action) => {
@@ -18,13 +18,17 @@ const userDataReduser = (state = initialState, action) => {
         secondname: action.secondname,
         email: action.email,
         login: action.login,
-        pass: action.pass,
         phone: action.phone,
       };
     case 'SET_LOGIN':
       return {
         ...state,
         login: action.login,
+      };
+    case 'SHOW_PASS_MODAL':
+      return {
+        ...state,
+        passModalStatus: action.passModalStatus,
       };
     case 'CLEAR_USER_DATA':
       return (state = action.state);
