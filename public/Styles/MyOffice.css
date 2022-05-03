@@ -69,21 +69,12 @@
   right: 20px;
 }
 
-#passImg {
-  right: 45px;
-}
-
-#passGalochka {
-  display: none;
-  right: 45px;
-}
-
 .passModal {
   display: flex;
   width: 50%;
   flex-direction: column;
   align-items: center;
-  position: absolute;
+  position: fixed;
   padding: 10px;
   margin: auto;
   background: #ffffff;
@@ -98,7 +89,11 @@
 }
 .passModal input[type='password'] {
   border: 1px solid gray;
+  background-color: rgb(196, 255, 251);
+}
 
+.passModal input[type='text'] {
+  border: 1px solid gray;
   background-color: rgb(196, 255, 251);
 }
 
@@ -108,6 +103,13 @@
   position: relative;
 }
 
+.passModal span {
+  color: red;
+  position: absolute;
+  font-size: 10px;
+  top: 32px;
+  right: 20px;
+}
 .passShadow {
   position: fixed;
   width: 100%;
@@ -127,10 +129,48 @@
   font-size: 22px;
 }
 
-.passModal span {
-  color: red;
-  position: absolute;
+.change-help-pass {
+  display: inline-block;
+  background-color: #a0fafc;
+  border-radius: 10px;
+  padding: 2px;
+  margin-left: 5px;
+  border: 1px solid rgb(159, 157, 157);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.change-help-pass p {
   font-size: 10px;
-  top: 32px;
-  right: 20px;
+  border: 1px solid rgb(159, 157, 157);
+  background-color: #a0fafc;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 400;
+  color: black;
+  width: 250px;
+}
+.change-help-text {
+  position: absolute;
+  visibility: hidden;
+  top: -5px;
+  right: -65px;
+}
+
+.change-help-pass:hover .change-help-text {
+  visibility: visible;
+}
+
+.btn-and-img {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 35%;
+}
+.eyePass img {
+  margin-right: 10px;
+  position: static;
+  width: 40px;
 }

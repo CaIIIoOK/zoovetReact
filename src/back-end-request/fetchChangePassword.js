@@ -13,13 +13,16 @@ const fetchChangePassword = (data) => (dispatch) => {
       .then(function ({ data }) {
         if (data === 1) {
           MySwal.fire({
-            title: 'Дані змінено',
+            title: 'Пароль змінено',
             icon: 'success',
             confirmButtonText: 'Ок',
+            willClose: () => {
+              return (window.location.pathname = '/my-office');
+            },
           });
         } else {
           MySwal.fire({
-            title: 'Помилка',
+            title: 'Поточний пароль не вірний',
             icon: 'error',
             confirmButtonText: 'Ок',
           });
