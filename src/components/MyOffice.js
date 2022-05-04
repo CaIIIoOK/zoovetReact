@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import ChangePasswordBlock from './ChangePasswordBlock';
+import MyOrders from './MyOrders';
 import { setPassModalStatus } from '../redux/actions/setUserDataAction';
 
 import fetchUserData from '../back-end-request/fetchUserData';
@@ -17,7 +18,7 @@ const MyOffice = () => {
   );
   React.useEffect(() => {
     dispatch(fetchUserData(cookie));
-  }, [cookie]);
+  }, []);
 
   const setValueInput = (e) => {
     if (e.target.parentElement.children[0].name === 'phone') {
@@ -73,14 +74,12 @@ const MyOffice = () => {
   return (
     <div className="main-page">
       <div className="My-office-page">
+        <MyOrders />
         <div className="my-data">
           <p>Дані користувача:</p>
           {userData ? (
             <form className="form-my-data">
-              <label>
-                Логін:
-                <input type="button" name="login" defaultValue={userData.login} readOnly />
-              </label>
+              <i>Логін: {userData.login}</i>
               <label>
                 Ім'я:
                 <input type="button" name="name" defaultValue={userData.name} />

@@ -43,6 +43,7 @@ const Order = () => {
     const objSendOrder = {
       data,
       cartGoods,
+      login: userData.login,
     };
     fetchOrder(objSendOrder);
     dispatch(clearCart());

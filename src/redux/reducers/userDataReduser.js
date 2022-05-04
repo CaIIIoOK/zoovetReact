@@ -5,6 +5,7 @@ const initialState = {
   secondname: '',
   email: '',
   phone: '',
+  orders: [],
   passModalStatus: false,
 };
 
@@ -29,6 +30,11 @@ const userDataReduser = (state = initialState, action) => {
       return {
         ...state,
         passModalStatus: action.passModalStatus,
+      };
+    case 'SET_USER_ORDERS':
+      return {
+        ...state,
+        orders: action.orders,
       };
     case 'CLEAR_USER_DATA':
       return (state = action.state);

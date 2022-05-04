@@ -23,4 +23,15 @@ const setLoginForHead = (login) => ({
   login,
 });
 
-export { setUserDataAction, clearUserDataAction, setLoginForHead, setPassModalStatus };
+const setUserOrders = (orders) => ({
+  type: 'SET_USER_ORDERS',
+  orders,
+});
+
+export {
+  setUserDataAction,
+  clearUserDataAction,
+  setLoginForHead,
+  setPassModalStatus,
+  setUserOrders,
+};

@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 
 .my-data {
@@ -47,7 +48,11 @@
   top: 15px;
   position: absolute;
 }
-
+.form-my-data i {
+  margin: 10px;
+  font-size: 20px;
+  text-align: right;
+}
 .button-myoffice {
   background-color: rgb(167, 255, 162);
   color: black;
@@ -173,4 +178,12 @@
   margin-right: 10px;
   position: static;
   width: 40px;
+}
+
+.my-order {
+  width: 100%;
+  min-height: 200px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid cadetblue;
 }
