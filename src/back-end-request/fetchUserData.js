@@ -12,12 +12,13 @@ const fetchUserData = (hash) => (dispatch) => {
       .then(function ({ data }) {
         dispatch(
           setUserDataAction(
-            data[0].user_login,
-            data[0].user_name,
-            data[0].id,
-            data[0].user_usersecondname,
-            data[0].user_email,
-            data[0].user_phone,
+            data.reqUser[0].user_login,
+            data.reqUser[0].user_name,
+            data.reqUser[0].id,
+            data.reqUser[0].user_usersecondname,
+            data.reqUser[0].user_email,
+            data.reqUser[0].user_phone,
+            data.orders,
           ),
         );
       });

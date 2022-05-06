@@ -186,4 +186,45 @@
   padding: 10px;
   margin-bottom: 10px;
   border: 1px solid cadetblue;
+  display: flex;
+  flex-direction: column;
+  color: black;
+}
+.my-order img {
+  width: 60px;
+  margin-right: 10px;
+}
+
+.my-order li {
+  margin: 10px;
+  padding: 5px;
+  width: 95%;
+  display: flex;
+  align-items: center;
+  border: 1px solid rgb(230, 230, 230);
+  border-radius: 10px;
+  position: relative;
+}
+.my-order span {
+  font-size: 17px;
+  width: 17%;
+}
+.my-order a {
+  text-decoration: none;
+}
+.table-my-orders {
+  display: none;
+  vertical-align: middle;
+}
+.table-my-orders th,
+td {
+  padding: 5px;
+  text-align: center;
+
+  border-style: solid;
+}
+
+.table-my-orders th {
+  color: rgb(120, 120, 120);
+  font-weight: 600;
 }

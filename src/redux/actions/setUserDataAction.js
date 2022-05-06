@@ -1,4 +1,4 @@
-const setUserDataAction = (login, name, id, secondname, email, phone) => ({
+const setUserDataAction = (login, name, id, secondname, email, phone, orders) => ({
   type: 'SET_USER_DATA',
   login,
   name,
@@ -6,6 +6,7 @@ const setUserDataAction = (login, name, id, secondname, email, phone) => ({
   secondname,
   email,
   phone,
+  orders,
 });
 
 const clearUserDataAction = (state) => ({
@@ -23,15 +24,4 @@ const setLoginForHead = (login) => ({
   login,
 });
 
-const setUserOrders = (orders) => ({
-  type: 'SET_USER_ORDERS',
-  orders,
-});
-
-export {
-  setUserDataAction,
-  clearUserDataAction,
-  setLoginForHead,
-  setPassModalStatus,
-  setUserOrders,
-};
+export { setUserDataAction, clearUserDataAction, setLoginForHead, setPassModalStatus };

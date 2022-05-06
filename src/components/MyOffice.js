@@ -12,7 +12,9 @@ import fetchChangeUserData from '../back-end-request/fetchChangeUserData';
 
 const MyOffice = () => {
   const dispatch = useDispatch();
-  const userData = useSelector(({ userDataReduser }) => userDataReduser);
+  const { name, secondname, email, phone, login } = useSelector(
+    ({ userDataReduser }) => userDataReduser,
+  );
   let [cookie, ,] = React.useState(
     document.cookie.replace(/(?:(?:^|.*;\s*)hash\s*=\s*([^;]*).*$)|^.*$/, '$1'),
   );
@@ -34,10 +36,21 @@ const MyOffice = () => {
 
   const applyChange = (e) => {
     const MySwal = withReactContent(Swal);
+    if (
+      name === e.target.parentElement.children[0].value ||
+      secondname === e.target.parentElement.children[0].value ||
+      email === e.target.parentElement.children[0].value ||
+      phone === e.target.parentElement.children[0].value
+    ) {
+      e.target.style.display = 'none';
+      e.target.parentElement.children[0].type = 'button';
+      e.target.parentElement.children[1].style.display = 'inline';
+      return;
+    }
     let dataArr = [
       e.target.parentElement.children[0].name,
       e.target.parentElement.children[0].value,
-      userData.login,
+      login,
       cookie,
     ];
     if (dataArr[1] === '' || dataArr[1].length < 2) {
@@ -62,6 +75,7 @@ const MyOffice = () => {
     e.target.parentElement.children[0].type = 'button';
     e.target.parentElement.children[1].style.display = 'inline';
     dispatch(fetchChangeUserData(dataArr));
+    dispatch(fetchUserData(cookie));
   };
 
   const showChangePassword = (e) => {
@@ -77,12 +91,12 @@ const MyOffice = () => {
         <MyOrders />
         <div className="my-data">
           <p>Дані користувача:</p>
-          {userData ? (
+          {login !== '' ? (
             <form className="form-my-data">
-              <i>Логін: {userData.login}</i>
+              <i>Логін: {login}</i>
               <label>
                 Ім'я:
-                <input type="button" name="name" defaultValue={userData.name} />
+                <input type="button" name="name" defaultValue={name} />
                 <img src="./img/icon-edit.png" alt="" onClick={(e) => setValueInput(e)} />
                 <img
                   src="./img/icon-galochka.png"
@@ -93,7 +107,7 @@ const MyOffice = () => {
               </label>
               <label>
                 Прізвище:
-                <input type="button" name="usersecondname" defaultValue={userData.secondname} />
+                <input type="button" name="usersecondname" defaultValue={secondname} />
                 <img src="./img/icon-edit.png" alt="" onClick={(e) => setValueInput(e)} />
                 <img
                   src="./img/icon-galochka.png"
@@ -104,7 +118,7 @@ const MyOffice = () => {
               </label>
               <label>
                 Email:
-                <input type="button" name="email" defaultValue={userData.email} />
+                <input type="button" name="email" defaultValue={email} />
                 <img src="./img/icon-edit.png" alt="" onClick={(e) => setValueInput(e)} />
                 <img
                   src="./img/icon-galochka.png"
@@ -115,12 +129,7 @@ const MyOffice = () => {
               </label>
               <label>
                 Номер телефону:
-                <input
-                  type="button"
-                  name="phone"
-                  pattern="[+0-9]{13}"
-                  defaultValue={userData.phone}
-                />
+                <input type="button" name="phone" pattern="[+0-9]{13}" defaultValue={phone} />
                 <img src="./img/icon-edit.png" alt="" onClick={(e) => setValueInput(e)} />
                 <img
                   src="./img/icon-galochka.png"

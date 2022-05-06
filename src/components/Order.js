@@ -330,7 +330,7 @@ function OrderCart() {
   function cartPlus(id) {
     dispatch(actionPlusCart(id));
   }
-
+  console.log(cartGoods);
   return (
     <div className="order-cart">
       <h3>{cartGoods.length === 0 ? 'Корзина пуста' : 'Корзина замовлень:'}</h3>
