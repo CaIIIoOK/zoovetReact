@@ -8,8 +8,10 @@ import fetchOrder from '../back-end-request/fetchOrder';
 import fetchCityDelivery from '../back-end-request/fetchCityDelivery';
 import fetchWarehouse from '../back-end-request/fetchWarehouse';
 import { setCityDelivery, setDeliveryWarehouse } from '../redux/actions/setCityDelivery';
+import fetchUserData from '../back-end-request/fetchUserData';
 
 const Order = () => {
+  const dispatch = useDispatch();
   const { cartGoods } = useSelector(({ cartReduce }) => cartReduce);
   const { city, cityJustin, warehouse } = useSelector(({ cityDelivery }) => cityDelivery);
   const inputRef = React.useRef();
@@ -17,17 +19,26 @@ const Order = () => {
   const cityInformationRef = React.useRef();
   const [deliveryName, setDeliveryName] = React.useState('');
   const userData = useSelector(({ userDataReduser }) => userDataReduser);
+  let [cookie, ,] = React.useState(
+    document.cookie.replace(/(?:(?:^|.*;\s*)hash\s*=\s*([^;]*).*$)|^.*$/, '$1'),
+  );
 
   React.useEffect(() => {
-    if (userData.login) {
-      setValue('username', userData.name);
-      setValue('usersecondname', userData.secondname);
-      setValue('phone', userData.phone);
-      setValue('email', userData.email);
+    if (cookie === '' || cookie === undefined) {
+      return;
+    } else {
+      dispatch(fetchUserData(cookie));
     }
+    return;
   }, []);
 
-  const dispatch = useDispatch();
+  React.useEffect(() => {
+    setValue('username', userData.name);
+    setValue('usersecondname', userData.secondname);
+    setValue('phone', userData.phone);
+    setValue('email', userData.email);
+  }, [userData]);
+
   const {
     register,
     formState: { errors, isValid },
@@ -330,7 +341,6 @@ function OrderCart() {
   function cartPlus(id) {
     dispatch(actionPlusCart(id));
   }
-  console.log(cartGoods);
   return (
     <div className="order-cart">
       <h3>{cartGoods.length === 0 ? 'Корзина пуста' : 'Корзина замовлень:'}</h3>

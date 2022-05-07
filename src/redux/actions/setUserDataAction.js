@@ -1,6 +1,7 @@
-const setUserDataAction = (login, name, id, secondname, email, phone, orders) => ({
+const setUserDataAction = (login, permission, name, id, secondname, email, phone, orders) => ({
   type: 'SET_USER_DATA',
   login,
+  permission,
   name,
   id,
   secondname,

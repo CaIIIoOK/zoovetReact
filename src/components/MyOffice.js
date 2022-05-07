@@ -6,7 +6,6 @@ import withReactContent from 'sweetalert2-react-content';
 import ChangePasswordBlock from './ChangePasswordBlock';
 import MyOrders from './MyOrders';
 import { setPassModalStatus } from '../redux/actions/setUserDataAction';
-
 import fetchUserData from '../back-end-request/fetchUserData';
 import fetchChangeUserData from '../back-end-request/fetchChangeUserData';
 

@@ -13,6 +13,7 @@ const fetchUserData = (hash) => (dispatch) => {
         dispatch(
           setUserDataAction(
             data.reqUser[0].user_login,
+            data.reqUser[0].permission,
             data.reqUser[0].user_name,
             data.reqUser[0].id,
             data.reqUser[0].user_usersecondname,

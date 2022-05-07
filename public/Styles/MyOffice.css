@@ -38,14 +38,16 @@
 }
 
 .form-my-data label {
-  text-align: right;
+  display: flex;
+  align-items: center;
   position: relative;
+  flex-direction: column;
 }
 .form-my-data img {
   cursor: pointer;
   width: 20px;
-  right: 20px;
-  top: 15px;
+  right: 120px;
+  top: 30px;
   position: absolute;
 }
 .form-my-data i {
@@ -71,7 +73,7 @@
 
 #galochka {
   display: none;
-  right: 20px;
+  right: 120px;
 }
 
 .passModal {
@@ -199,15 +201,17 @@
   margin: 10px;
   padding: 5px;
   width: 95%;
+  min-height: 90px;
   display: flex;
   align-items: center;
   border: 1px solid rgb(230, 230, 230);
   border-radius: 10px;
   position: relative;
+  justify-content: space-between;
 }
 .my-order span {
-  font-size: 17px;
-  width: 17%;
+  font-size: 16px;
+  width: 16%;
 }
 .my-order a {
   text-decoration: none;
@@ -215,13 +219,13 @@
 .table-my-orders {
   display: none;
   vertical-align: middle;
+  font-size: 12px;
+  width: 65%;
 }
 .table-my-orders th,
 td {
-  padding: 5px;
+  padding-right: 5px;
   text-align: center;
-
-  border-style: solid;
 }
 
 .table-my-orders th {

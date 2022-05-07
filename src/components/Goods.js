@@ -34,7 +34,11 @@ function Goods() {
         {isLoaded
           ? goods.map((item) => {
               return (
-                <div key={item.id} className="products__item">
+                <div
+                  key={item.id}
+                  className={
+                    item.availability === 1 ? 'products__item' : 'products__item availability'
+                  }>
                   <NavLink to={'/goods-solo?&id=' + item.id} onClick={() => setSoloItem(item.id)}>
                     <img src={item.Img_prod} alt="Img_prod" />
                     <div className="price-name-price">
@@ -44,7 +48,6 @@ function Goods() {
                       <p>{item.Name_prod_ua}</p>
                     </div>
                   </NavLink>
-
                   <div className="btn-availability">
                     <span>{item.availability === 1 ? 'Є в наявності' : 'Немає в наявності'}</span>
                     <button

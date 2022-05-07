@@ -39,3 +39,52 @@
 .goods-description p {
   text-indent: 1.7em;
 }
+.redact-btn {
+  font-size: 14px;
+  margin: 5px;
+  background-color: aqua;
+  padding: 5px;
+  border-radius: 10px;
+}
+.redact-prod {
+  display: flex;
+  flex-direction: column;
+}
+.redact-prod label {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  margin-bottom: 5px;
+  width: 50%;
+  position: relative;
+}
+.redact-prod input {
+  font-size: 15px;
+  border: 1px solid rgb(183, 183, 183);
+  padding: 5px;
+  border-radius: 10px;
+  margin-top: 5px;
+}
+
+.redact-prod textarea {
+  height: 300px;
+  font-size: 15px;
+  border: 1px solid rgb(183, 183, 183);
+  padding: 5px;
+  border-radius: 10px;
+  margin-top: 5px;
+}
+.redact-prod button {
+  width: max-content;
+}
+
+.butonst-admin {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.btn-apply {
+  font-size: 17px;
+  background-color: rgb(32, 225, 32);
+}
