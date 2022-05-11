@@ -5,7 +5,7 @@ import withReactContent from 'sweetalert2-react-content';
 const fetchRegistration = (data) => {
   try {
     const MySwal = withReactContent(Swal);
-    let url = `http://localhost:3001/registration`;
+    let url = `/registration`;
     axios
       .post(url, {
         data,

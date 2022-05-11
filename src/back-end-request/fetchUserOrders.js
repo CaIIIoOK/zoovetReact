@@ -3,7 +3,7 @@ import { setUserOrders } from '../redux/actions/setUserDataAction';
 
 const fetchUserOrders = (login) => (dispatch) => {
   try {
-    let url = `http://localhost:3001/get-user-orders`;
+    let url = `/get-user-orders`;
     axios
       .post(url, {
         login,

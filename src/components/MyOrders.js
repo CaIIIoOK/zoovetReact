@@ -39,13 +39,13 @@ const MyOrders = () => {
                   <img
                     src="./img/icons-arrow-orders-left.png"
                     alt=""
-                    style={{ width: '20px', display: 'none', marginLeft: '5px' }}
+                    style={{ width: '20px', display: 'none', marginLeft: '5px', cursor: 'pointer' }}
                     onClick={(e) => setTableHide(e)}
                   />
                   <img
                     src="./img/icons-arrow-orders.png"
                     alt=""
-                    style={{ width: '20px', marginLeft: '5px' }}
+                    style={{ width: '20px', marginLeft: '5px', cursor: 'pointer' }}
                     onClick={(e) => setTableShow(e)}
                   />
                   <table className="table-my-orders">

@@ -3,7 +3,7 @@ import { setCityDelivery, setCityDeliveryJustin } from '../redux/actions/setCity
 
 const fetchCityDelivery = (data) => (dispatch) => {
   try {
-    const url = 'http://localhost:3001/delivery-city';
+    const url = '/delivery-city';
     axios
       .post(url, {
         data,

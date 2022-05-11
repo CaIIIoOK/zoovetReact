@@ -5,6 +5,8 @@ import { cartOpen } from '../redux/actions/cartStatus';
 import { useCookies } from 'react-cookie';
 import { clearUserDataAction } from '../redux/actions/setUserDataAction';
 import { setLoginForHead } from '../redux/actions/setUserDataAction';
+import fetchSearch from '../back-end-request/fetchSearch';
+import { setSearchVal } from '../redux/actions/searchAction';
 
 function Header() {
   return (
@@ -12,6 +14,7 @@ function Header() {
       <HeaderLogo />
       <HeaderTelephone />
       <HeaderMenu />
+      <BurgerMenu />
       <HeaderSearch />
       <HeaderCart />
       <HeaderProfile />
@@ -80,16 +83,77 @@ function HeaderMenu() {
   );
 }
 
+function BurgerMenu() {
+  const [showMenu, setShowMenu] = React.useState(false);
+
+  const showBurgerNav = () => {
+    setShowMenu(!showMenu);
+  };
+  return (
+    <>
+      {!showMenu && (
+        <nav className="burger" onClick={showBurgerNav}>
+          <i className="fas fa-bars"></i>
+        </nav>
+      )}
+      {showMenu && (
+        <>
+          <nav className="burger-menu">
+            <ul>
+              <li>
+                <NavLink exact="true" to="/" className="nav-link" onClick={showBurgerNav}>
+                  Головна
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/categorys" className="nav-link" onClick={showBurgerNav}>
+                  Категорії товарів
+                </NavLink>
+              </li>
+              <li>
+                <a href="/goods" className="nav-link" onClick={showBurgerNav}>
+                  Усі товари
+                </a>
+              </li>
+              <li>
+                <NavLink to="/delivery_info" className="nav-link" onClick={showBurgerNav}>
+                  Способи доставки
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/contacts" className="nav-link" onClick={showBurgerNav}>
+                  Контакти
+                </NavLink>
+              </li>
+            </ul>
+          </nav>
+          <div className="shadow" onClick={showBurgerNav}></div>
+        </>
+      )}
+    </>
+  );
+}
+
 function HeaderSearch() {
+  const searchRefVal = React.useRef();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const searchOnsubmit = (e) => {
+    e.preventDefault();
+    dispatch(fetchSearch(searchRefVal.current.value));
+    dispatch(setSearchVal(searchRefVal.current.value));
+    searchRefVal.current.value = '';
+    navigate('/search', { replace: true });
+  };
+
   return (
     <div className="search">
-      <form action="/search">
-        <input type="text" />
-        <Link to="/search" className="nav-link">
-          <button type="submit" id="searchBtn">
-            <i className="fas fa-search"></i>
-          </button>
-        </Link>
+      <form onSubmit={(e) => searchOnsubmit(e)}>
+        <input type="text" ref={searchRefVal} />
+        <button type="submit" id="searchBtn">
+          <i className="fas fa-search"></i>
+        </button>
       </form>
     </div>
   );

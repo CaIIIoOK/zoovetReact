@@ -5,7 +5,11 @@ import fetchGoods from '../back-end-request/fetchGoods';
 
 function Pagination() {
   const dispatch = useDispatch();
-
+  const { currentPage, goodsPerPage, totalCount, categoryId } = useSelector(
+    ({ getGoods }) => getGoods,
+  );
+  const pagesCount = Math.ceil(totalCount / goodsPerPage);
+  let pages = [];
   function createPages(pages, pagesCount, currentPage) {
     if (pagesCount > 6) {
       if (currentPage > 3) {
@@ -25,13 +29,6 @@ function Pagination() {
       }
     }
   }
-  const { currentPage, goodsPerPage, totalCount, categoryId } = useSelector(
-    ({ getGoods }) => getGoods,
-  );
-
-  const pagesCount = Math.ceil(totalCount / goodsPerPage);
-
-  let pages = [];
   createPages(pages, pagesCount, currentPage);
 
   React.useEffect(() => {

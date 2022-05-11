@@ -5,7 +5,7 @@ import withReactContent from 'sweetalert2-react-content';
 const fetchChangeUserData = (data) => (dispatch) => {
   try {
     const MySwal = withReactContent(Swal);
-    let url = `http://localhost:3001/change-user-data`;
+    let url = `/change-user-data`;
     axios
       .post(url, {
         data,

@@ -7,7 +7,7 @@ import fetchUserData from '../back-end-request/fetchUserData';
 
 const fetchUserLogining = (data) => (dispatch) => {
   try {
-    let url = `http://localhost:3001/user-login`;
+    let url = `/user-login`;
     axios
       .post(url, {
         data,

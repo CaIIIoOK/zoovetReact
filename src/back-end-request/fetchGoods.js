@@ -9,7 +9,7 @@ const fetchGoods = (currentPage, perPage, category) => (dispatch) => {
     }
     axios({
       method: 'GET',
-      url: `http://localhost:3001/goods?&perpage=${perPage}&current=${currentPage}${catgoryId}`,
+      url: `/goods?&perpage=${perPage}&current=${currentPage}${catgoryId}`,
     }).then(({ data }) => {
       let productsWithCartStatus = data.goods.map((item) => {
         item.isInCart = false;

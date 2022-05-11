@@ -29,7 +29,7 @@ function Categorys() {
                   className="category__item"
                   onClick={() => setCategoryIdAndPage(cat.ID_category)}>
                   <NavLink to={'/goods?cat-id=' + cat.ID_category}>
-                    <p>{cat.Category}</p>
+                    <p>{cat.Category_UA}</p>
                     <img src={cat.Img_category} alt="category" />
                   </NavLink>
                 </div>

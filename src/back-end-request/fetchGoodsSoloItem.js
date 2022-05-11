@@ -5,7 +5,7 @@ const fetchGoodsSoloItem = (itemId) => (dispatch) => {
   try {
     axios({
       method: 'GET',
-      url: `http://localhost:3001/goods-solo?&itemId=${itemId}`,
+      url: `/goods-solo?&itemId=${itemId}`,
     }).then(({ data }) => {
       let productsWithCartStatus = data.map((item) => {
         item.isInCart = false;

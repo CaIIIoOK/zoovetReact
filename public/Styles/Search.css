@@ -1,0 +1,38 @@
+.searchResultContainer {
+  color: black;
+}
+
+.searchResultContainer img {
+  width: 80px;
+  margin-right: 10px;
+}
+.searchResultContainer li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid rgb(214, 214, 214);
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.searchResultContainer a {
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
+  align-items: center;
+  width: 30%;
+  height: max-content;
+  color: black;
+  margin-right: 10px;
+}
+
+.searchResultContainer i {
+  overflow: auto;
+  max-height: 100px;
+  text-align: justify;
+  width: 65%;
+  margin-left: 10px;
+  padding: 5px;
+}

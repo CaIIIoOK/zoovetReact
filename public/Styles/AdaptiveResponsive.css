@@ -1,0 +1,177 @@
+@media (max-width: 1400px) {
+  .header-menu li {
+    font-size: 12px;
+  }
+
+  .telephone a,
+  p {
+    font-size: 9px;
+  }
+  .header-logo {
+    width: 200px;
+  }
+  .header-logo img {
+    height: 50px;
+  }
+  .search input {
+    width: 100px;
+    height: 20px;
+  }
+
+  .cartImg img {
+    width: 25px;
+  }
+  .cart-count {
+    font-size: 12px;
+    width: 15px;
+  }
+  .header-button {
+    font-size: 12px;
+  }
+  .sidebar-menu a {
+    font-size: 14px;
+  }
+  .category__item img {
+    height: 70%;
+    width: 70%;
+  }
+}
+@media (max-width: 1080px) {
+  .header {
+    height: 100px;
+    justify-content: space-around;
+  }
+  .header-menu {
+    display: none;
+  }
+  .burger {
+    display: inline;
+  }
+  .sidebar {
+    display: none;
+  }
+  .main-page {
+    width: 100%;
+  }
+  .header-logo img {
+    height: 40px;
+  }
+  .profile {
+    right: 5px;
+    top: 5px;
+  }
+  .profile a {
+    margin: 0;
+  }
+  .telephone p {
+    margin-top: 5px;
+  }
+  .telephone {
+    position: absolute;
+    top: 5px;
+    margin: 0;
+  }
+  .telephone a {
+    font-size: 7px;
+  }
+  .products__item {
+    width: 150px;
+    min-height: 300px;
+  }
+  .products__item img {
+    width: 130px;
+    max-height: 200px;
+  }
+  .btn-to-cart {
+    min-height: 15px;
+    font-size: 7px;
+    padding: 2px;
+    margin-right: 5px;
+  }
+  .btn-availability span {
+    font-size: 8px;
+  }
+  .totalCount span {
+    font-size: 17px;
+  }
+  #sort-goods {
+    font-size: 12px;
+    top: 105px;
+  }
+  .my-order li {
+    flex-direction: column;
+  }
+  .my-order img {
+    margin-bottom: 5px;
+    margin-top: 5px;
+  }
+  .table-my-orders {
+    font-size: 10px;
+    width: 95%;
+  }
+}
+
+@media (max-width: 540px) {
+  .header-logo img {
+    height: 30px;
+  }
+  .header-logo {
+    width: 150px;
+  }
+
+  .header-logo p,
+  .profile button {
+    font-size: 7px;
+  }
+  .category__item {
+    height: 100px;
+  }
+  .category__item p {
+    font-size: 45%;
+    margin: 0px;
+  }
+  .category__item img {
+    height: 60%;
+    width: 60%;
+  }
+  .goods-item {
+    flex-direction: column;
+  }
+  .img-name-block img {
+    width: 150px;
+    max-height: 300px;
+  }
+  .img-name-block {
+    width: 50%;
+    margin: 0 auto;
+  }
+  .main-page {
+    margin: 0;
+  }
+  .telephone a {
+    font-size: 6px;
+  }
+  .burger-menu {
+    font-size: 10px;
+  }
+  .my-data {
+    min-width: 300px;
+  }
+  .form-my-data img {
+    right: 20px;
+  }
+  .form-my-data input {
+    width: 95%;
+  }
+  .my-order li {
+    flex-direction: column;
+  }
+  .my-order img {
+    margin-bottom: 5px;
+    margin-top: 5px;
+  }
+  .table-my-orders {
+    font-size: 7px;
+    width: 95%;
+  }
+}

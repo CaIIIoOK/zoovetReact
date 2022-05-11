@@ -3,7 +3,7 @@ import { categoryDisplay } from '../redux/actions/categorys';
 
 const fetchCategory = () => (dispatch) => {
   try {
-    axios.get('http://localhost:3001/category').then(({ data }) => {
+    axios.get('/category').then(({ data }) => {
       return dispatch(categoryDisplay(data));
     });
   } catch (error) {

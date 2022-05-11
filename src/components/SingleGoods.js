@@ -21,7 +21,9 @@ const SingleGoods = () => {
   React.useEffect(() => {
     let id = searchParams.get('id');
     dispatch(fetchGoodsSoloItem(id));
-    dispatch(fetchUserData(cookie));
+    if (cookie !== '') {
+      dispatch(fetchUserData(cookie));
+    }
   }, []);
   function addToCart(id, price, name, img, quantity) {
     const objProd = {
@@ -81,6 +83,7 @@ const SingleGoods = () => {
                   )}
                   <button
                     className="btn-to-cart"
+                    disabled={item.availability === 1 ? false : true}
                     onClick={() =>
                       addToCart(item.id, item.Price_prod, item.Name_prod_ua, item.Img_prod, 1)
                     }>

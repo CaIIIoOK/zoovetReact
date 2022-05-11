@@ -5,6 +5,7 @@ import getGoods from './goods';
 import cartStatus from './cartStatus';
 import cityDelivery from './cityDelivery';
 import userDataReduser from './userDataReduser';
+import searchReduser from './searchReduser';
 
 const rootReducer = combineReducers({
   cartReduce,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   cartStatus,
   cityDelivery,
   userDataReduser,
+  searchReduser,
 });
 
 export default rootReducer;

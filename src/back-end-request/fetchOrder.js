@@ -5,7 +5,7 @@ import withReactContent from 'sweetalert2-react-content';
 const fetchOrder = (data) => {
   try {
     const MySwal = withReactContent(Swal);
-    let url = `http://localhost:3001/order`;
+    let url = `/order`;
     axios
       .post(url, {
         data,

@@ -4,7 +4,7 @@ axios.defaults.withCredentials = true;
 
 const fetchUserData = (hash) => (dispatch) => {
   try {
-    let url = `http://localhost:3001/get-user-data`;
+    let url = `/get-user-data`;
     axios
       .post(url, {
         hash,

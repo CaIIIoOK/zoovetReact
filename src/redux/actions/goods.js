@@ -9,11 +9,6 @@ const setCurrentPage = (currentPage) => ({
   currentPage,
 });
 
-const setStatusGoodsCart = (toCartStatus) => ({
-  type: 'TO_CART_STATUS',
-  toCartStatus,
-});
-
 const addToCartStatus = (id, isInCart) => ({
   type: 'ADD_TO_CART',
   id,
@@ -38,7 +33,6 @@ const setSoloItemData = (goods) => ({
 export {
   goodsDisplay,
   setCurrentPage,
-  setStatusGoodsCart,
   addToCartStatus,
   deleteFromCartStatus,
   setCategoryId,
