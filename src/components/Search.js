@@ -11,26 +11,28 @@ const Search = () => {
     <div className="main-page">
       <div className="searchResultContainer">
         <p style={{ margin: '10px' }}>
-          Результат пошуку{' '}
+          Результат пошуку:{' '}
           {searchResult.length === 0 ? `"${value}" не дав результатів` : `"${value}"`}
         </p>
-        {searchResult.map((elem) => {
-          const cleanHTML = DOMPurify.sanitize(elem.Description_UA);
-          return (
-            <ul key={elem.id}>
-              <li>
-                <NavLink to={'/goods-solo?&id=' + elem.id}>
-                  <img src={elem.Img_prod} alt="" />
-                  <p>{elem.Name_prod_ua}</p>
-                </NavLink>
-                <span>
-                  Ціна:<b>{elem.Price_prod}</b>
-                </span>
-                <i dangerouslySetInnerHTML={{ __html: cleanHTML }}></i>
-              </li>
-            </ul>
-          );
-        })}
+        {searchResult.length !== 0
+          ? searchResult.map((elem) => {
+              const cleanHTML = DOMPurify.sanitize(elem.Description_UA);
+              return (
+                <ul key={elem.id}>
+                  <li>
+                    <NavLink to={'/goods-solo?&id=' + elem.id}>
+                      <img src={elem.Img_prod} alt="" />
+                      <p>{elem.Name_prod_ua}</p>
+                    </NavLink>
+                    <span>
+                      Ціна:<b>{elem.Price_prod}</b>
+                    </span>
+                    <i dangerouslySetInnerHTML={{ __html: cleanHTML }}></i>
+                  </li>
+                </ul>
+              );
+            })
+          : ''}
       </div>
     </div>
   );
