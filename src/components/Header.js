@@ -141,10 +141,12 @@ function HeaderSearch() {
 
   const searchOnsubmit = (e) => {
     e.preventDefault();
-    dispatch(fetchSearch(searchRefVal.current.value));
-    dispatch(setSearchVal(searchRefVal.current.value));
-    searchRefVal.current.value = '';
-    navigate('/search', { replace: true });
+    if (searchRefVal.current.value.length >= 3) {
+      dispatch(fetchSearch(searchRefVal.current.value));
+      dispatch(setSearchVal(searchRefVal.current.value));
+      searchRefVal.current.value = '';
+      navigate('/search', { replace: true });
+    }
   };
 
   return (

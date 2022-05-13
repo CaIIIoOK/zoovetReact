@@ -8,12 +8,14 @@ import MyOrders from './MyOrders';
 import { setPassModalStatus } from '../redux/actions/setUserDataAction';
 import fetchUserData from '../back-end-request/fetchUserData';
 import fetchChangeUserData from '../back-end-request/fetchChangeUserData';
+import AdminOrders from './AdminOrders';
 
 const MyOffice = () => {
   const dispatch = useDispatch();
-  const { name, secondname, email, phone, login } = useSelector(
+  const { name, secondname, email, phone, login, permission } = useSelector(
     ({ userDataReduser }) => userDataReduser,
   );
+
   let [cookie, ,] = React.useState(
     document.cookie.replace(/(?:(?:^|.*;\s*)hash\s*=\s*([^;]*).*$)|^.*$/, '$1'),
   );
@@ -84,10 +86,11 @@ const MyOffice = () => {
     document.querySelector('body').style.overflow = 'hidden';
     document.querySelector('body').style.paddingRight = scrollWidth + 'px';
   };
+
   return (
     <div className="main-page">
       <div className="My-office-page">
-        <MyOrders />
+        {permission === 'admin' ? <AdminOrders /> : <MyOrders />}
         <div className="my-data">
           <p>Дані користувача:</p>
           {login !== '' ? (

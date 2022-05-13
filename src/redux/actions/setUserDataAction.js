@@ -25,4 +25,15 @@ const setLoginForHead = (login) => ({
   login,
 });
 
-export { setUserDataAction, clearUserDataAction, setLoginForHead, setPassModalStatus };
+const getAdminOrdersAction = (orders) => ({
+  type: 'GET_ADMIN_ORDERS',
+  orders,
+});
+
+export {
+  setUserDataAction,
+  clearUserDataAction,
+  setLoginForHead,
+  setPassModalStatus,
+  getAdminOrdersAction,
+};

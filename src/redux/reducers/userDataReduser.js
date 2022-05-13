@@ -34,6 +34,11 @@ const userDataReduser = (state = initialState, action) => {
         ...state,
         passModalStatus: action.passModalStatus,
       };
+    case 'GET_ADMIN_ORDERS':
+      return {
+        ...state,
+        orders: action.orders,
+      };
     case 'CLEAR_USER_DATA':
       return (state = action.state);
 
