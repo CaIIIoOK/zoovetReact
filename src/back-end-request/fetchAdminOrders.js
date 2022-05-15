@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { getAdminOrdersAction } from '../redux/actions/setUserDataAction';
+import { getAdminOrdersAction } from '../redux/actions/getAdminOrders';
+axios.defaults.withCredentials = true;
 
 const fetchAdminOrders = () => (dispatch) => {
   try {

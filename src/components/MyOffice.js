@@ -8,6 +8,7 @@ import MyOrders from './MyOrders';
 import { setPassModalStatus } from '../redux/actions/setUserDataAction';
 import fetchUserData from '../back-end-request/fetchUserData';
 import fetchChangeUserData from '../back-end-request/fetchChangeUserData';
+
 import AdminOrders from './AdminOrders';
 
 const MyOffice = () => {
@@ -15,12 +16,14 @@ const MyOffice = () => {
   const { name, secondname, email, phone, login, permission } = useSelector(
     ({ userDataReduser }) => userDataReduser,
   );
-
   let [cookie, ,] = React.useState(
     document.cookie.replace(/(?:(?:^|.*;\s*)hash\s*=\s*([^;]*).*$)|^.*$/, '$1'),
   );
+
   React.useEffect(() => {
-    dispatch(fetchUserData(cookie));
+    if (cookie !== '') {
+      dispatch(fetchUserData(cookie));
+    }
   }, []);
 
   const setValueInput = (e) => {

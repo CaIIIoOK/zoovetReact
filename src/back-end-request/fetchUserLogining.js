@@ -2,8 +2,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import fetchUserData from '../back-end-request/fetchUserData';
-
-// axios.defaults.withCredentials = true;
+axios.defaults.withCredentials = true;
 
 const fetchUserLogining = (data) => (dispatch) => {
   try {

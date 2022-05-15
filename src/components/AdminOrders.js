@@ -1,12 +1,12 @@
 import React from 'react';
-import fetchAdminOrders from '../back-end-request/fetchAdminOrders';
 import fetchGoodsSoloItem from '../back-end-request/fetchGoodsSoloItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import fetchAdminOrders from '../back-end-request/fetchAdminOrders';
 
 export default function AdminOrders() {
   const dispatch = useDispatch();
-  const { orders } = useSelector(({ userDataReduser }) => userDataReduser);
+  const { orders } = useSelector(({ adminOrders }) => adminOrders);
 
   React.useEffect(() => {
     dispatch(fetchAdminOrders());

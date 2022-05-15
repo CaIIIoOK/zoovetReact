@@ -6,6 +6,7 @@ import cartStatus from './cartStatus';
 import cityDelivery from './cityDelivery';
 import userDataReduser from './userDataReduser';
 import searchReduser from './searchReduser';
+import adminOrders from './adminOrders';
 
 const rootReducer = combineReducers({
   cartReduce,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   cityDelivery,
   userDataReduser,
   searchReduser,
+  adminOrders,
 });
 
 export default rootReducer;
