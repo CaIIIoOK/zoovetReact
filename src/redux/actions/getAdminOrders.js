@@ -3,4 +3,4 @@ const getAdminOrdersAction = (orders) => ({
   orders,
 });
 
-export { getAdminOrdersAction };
+export default getAdminOrdersAction;

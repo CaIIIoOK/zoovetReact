@@ -2,12 +2,14 @@ import React from 'react';
 import fetchUserLogining from '../back-end-request/fetchUserLogining';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const UserLogin = () => {
   const loginRef = React.useRef();
   const passRef = React.useRef();
   const dispatch = useDispatch();
   const userData = useSelector(({ userDataReduser }) => userDataReduser);
+  const [btnAct, setBtnAct] = React.useState(true);
 
   const authorization = (e) => {
     e.preventDefault();
@@ -17,7 +19,9 @@ const UserLogin = () => {
     };
     dispatch(fetchUserLogining(data));
   };
-
+  const onChange = () => {
+    setBtnAct(false);
+  };
   return (
     <div className="main-page">
       {!userData.login ? (
@@ -32,9 +36,10 @@ const UserLogin = () => {
               placeholder="Введіть свій пароль"
               ref={passRef}
             />
-            <button className="btn-login" onClick={(e) => authorization(e)}>
+            <button className="btn-login" disabled={btnAct} onClick={(e) => authorization(e)}>
               Увійти
             </button>
+            <ReCAPTCHA sitekey="6LeocHIdAAAAAGu-IlshK7DBK20WXip_ccSgooKm" onChange={onChange} />
           </form>
         </div>
       ) : (

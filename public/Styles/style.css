@@ -133,6 +133,11 @@ input::-webkit-inner-spin-button {
   cursor: pointer;
   align-items: center;
   min-height: 35px;
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
+.btn-login:disabled {
+  background-color: #b2b2b2;
 }
 .userIn {
   text-align: center;

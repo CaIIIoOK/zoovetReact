@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getAdminOrdersAction } from '../redux/actions/getAdminOrders';
+import getAdminOrdersAction from '../redux/actions/getAdminOrders';
 axios.defaults.withCredentials = true;
 
 const fetchAdminOrders = () => (dispatch) => {
@@ -12,4 +12,21 @@ const fetchAdminOrders = () => (dispatch) => {
   }
 };
 
-export default fetchAdminOrders;
+const fetchChangeAdminOrders = (data) => (dispatch) => {
+  try {
+    const url = '/get-admin-orders';
+    axios
+      .post(url, {
+        data,
+      })
+      .then(({ data }) => {
+        if (!data) {
+          console.log('error cange staus');
+        }
+      });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { fetchAdminOrders, fetchChangeAdminOrders };

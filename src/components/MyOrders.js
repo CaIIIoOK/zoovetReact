@@ -23,7 +23,7 @@ const MyOrders = () => {
   };
   return (
     <div className="my-order">
-      <h2>Мої замовлення</h2>
+      <h3>Мої замовлення</h3>
       {orders.length !== 0
         ? orders.map((elem) => {
             return (
@@ -52,7 +52,7 @@ const MyOrders = () => {
                     <tbody>
                       <tr>
                         <th>Кількість</th>
-                        <th>Ціна</th>
+                        <th>Ціна за шт.</th>
                         <th>Загальна сума</th>
                         <th>Доставка</th>
                         <th>{elem.user_deliverycityArea ? 'Населений пункт' : ''}</th>

@@ -2,7 +2,7 @@ import React from 'react';
 import fetchGoodsSoloItem from '../back-end-request/fetchGoodsSoloItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import fetchAdminOrders from '../back-end-request/fetchAdminOrders';
+import { fetchAdminOrders, fetchChangeAdminOrders } from '../back-end-request/fetchAdminOrders';
 
 export default function AdminOrders() {
   const dispatch = useDispatch();
@@ -26,6 +26,23 @@ export default function AdminOrders() {
   const showSoloItem = (id) => {
     dispatch(fetchGoodsSoloItem(id));
   };
+  const changeStatusDelivery = (e, id) => {
+    let data = {
+      value: e.target.value,
+      id,
+    };
+    dispatch(fetchChangeAdminOrders(data));
+    console.log(e.target.value);
+    if (e.target.value === '1') {
+      e.target.offsetParent.style.backgroundColor = 'plum';
+    }
+    if (e.target.value === '2') {
+      e.target.offsetParent.style.backgroundColor = 'rgb(108, 233, 255)';
+    }
+    if (e.target.value === '3') {
+      e.target.offsetParent.style.backgroundColor = 'rgb(91, 253, 153)';
+    }
+  };
 
   return (
     <div className="my-order">
@@ -34,8 +51,36 @@ export default function AdminOrders() {
         ? orders.map((elem) => {
             return (
               <ul key={elem.id}>
-                <li>
-                  {' '}
+                <li
+                  className={
+                    elem.status === 1
+                      ? 'purpAdm'
+                      : elem.status === 2
+                      ? 'blueAdm'
+                      : elem.status === 3
+                      ? 'greanAdm'
+                      : 'redAdmn'
+                  }>
+                  <div className="buttons-admin-order">
+                    <button
+                      value={1}
+                      style={{ backgroundColor: 'plum' }}
+                      onClick={(e) => changeStatusDelivery(e, elem.id)}>
+                      Дзвінок
+                    </button>
+                    <button
+                      value={2}
+                      style={{ backgroundColor: 'rgb(108, 233, 255)' }}
+                      onClick={(e) => changeStatusDelivery(e, elem.id)}>
+                      Відправлено
+                    </button>
+                    <button
+                      value={3}
+                      style={{ backgroundColor: 'rgb(91, 253, 153)' }}
+                      onClick={(e) => changeStatusDelivery(e, elem.id)}>
+                      Отримано
+                    </button>
+                  </div>
                   <img src={elem.goods_img} alt="" />
                   <NavLink
                     to={'/goods-solo?&id=' + elem.goods_id}
@@ -58,9 +103,10 @@ export default function AdminOrders() {
                     <tbody>
                       <tr>
                         <th>Кількість</th>
-                        <th>Ціна</th>
+                        <th>Ціна за шт.</th>
                         <th>Загальна сума</th>
                         <th>Доставка</th>
+                        <th>Імя, Прізвище, Телефон, Місто</th>
                         <th>{elem.user_deliverycityArea ? 'Населений пункт' : ''}</th>
                         <th>{elem.user_warehouse === 'Оберіть відділення' ? '' : 'Відділення'}</th>
                         <th>Дата</th>
@@ -70,6 +116,15 @@ export default function AdminOrders() {
                         <td>{elem.goods_cost}</td>
                         <td>{elem.total}</td>
                         <td>{elem.user_delivery}</td>
+                        <td>
+                          {elem.user_name +
+                            ' ' +
+                            elem.user_usersecondname +
+                            ' ' +
+                            elem.user_phone +
+                            ' ' +
+                            elem.user_city}
+                        </td>
                         <td>{elem.user_deliverycityArea}</td>
                         <td>
                           {elem.user_warehouse === 'Оберіть відділення' ? '' : elem.user_warehouse}
