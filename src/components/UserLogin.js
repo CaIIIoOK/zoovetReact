@@ -39,7 +39,9 @@ const UserLogin = () => {
             <button className="btn-login" disabled={btnAct} onClick={(e) => authorization(e)}>
               Увійти
             </button>
-            <ReCAPTCHA sitekey="6LeocHIdAAAAAGu-IlshK7DBK20WXip_ccSgooKm" onChange={onChange} />
+            <div className="recaptcha">
+              <ReCAPTCHA sitekey="6LeocHIdAAAAAGu-IlshK7DBK20WXip_ccSgooKm" onChange={onChange} />
+            </div>
           </form>
         </div>
       ) : (

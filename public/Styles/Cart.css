@@ -44,8 +44,10 @@
   cursor: pointer;
 }
 
-.cart-item h4 {
+.cart-item span {
   margin: 5px;
+  color: black;
+  font-weight: 700;
 }
 .cart-item img {
   margin: 5px;

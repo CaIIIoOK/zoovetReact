@@ -178,6 +178,40 @@
   .btn-availability img {
     width: 10px;
   }
+  .cart-item img {
+    width: 15%;
+  }
+  .cart-item {
+    font-size: 12px;
+  }
+  .cart-item button {
+    font-size: 12px;
+  }
+  .cart-item p {
+    font-size: 12px;
+    margin: 0px 0px 5px 5px;
+  }
+  .cart h3 {
+    font-size: 14px;
+  }
+  .btn-to-order {
+    font-size: 13px;
+    min-height: 20px;
+    letter-spacing: 1.2px;
+  }
+  .cart i {
+    top: 5px;
+    right: 5px;
+  }
+  .error-input {
+    top: 82%;
+  }
+  .order-page {
+    width: 100%;
+  }
+  .order_form {
+    margin-left: 0;
+  }
 }
 
 @media (max-width: 540px) {
@@ -219,11 +253,18 @@
   .my-data {
     min-width: 300px;
   }
+  .my-data p,
+  .my-data i,
+  .form-my-data input {
+    font-size: 13px;
+  }
   .form-my-data img {
-    right: 20px;
+    right: 15px;
+    top: 22px;
   }
   .form-my-data input {
     width: 95%;
+    margin: 5px;
   }
   .my-order li {
     flex-direction: column;
@@ -239,6 +280,9 @@
   .profile a {
     margin-right: 3px;
     font-size: 7px;
+  }
+  .profile {
+    min-width: 100px;
   }
   .main-page h4 {
     font-size: 14px;
@@ -290,8 +334,7 @@
     width: 100%;
     font-size: 12px;
   }
-  .order-page button,
-  .order-page p {
+  .order-page button {
     font-size: 12px;
   }
   .order_form {
@@ -303,5 +346,41 @@
   }
   .btn-availability img {
     width: 10px;
+  }
+  .cart-item {
+    font-size: 10px;
+  }
+  .cart-item button {
+    font-size: 10px;
+  }
+  .cart-item p {
+    font-size: 9px;
+    margin: 0px 0px 5px 5px;
+  }
+  .cart h3 {
+    font-size: 12px;
+  }
+  .telephone {
+    left: 40%;
+  }
+  .btn-to-order {
+    font-size: 12px;
+    min-height: 15px;
+    letter-spacing: 1px;
+  }
+  .totalCount span {
+    font-size: 14px;
+    margin-right: 3px;
+  }
+  .form_control span {
+    font-size: 12px;
+  }
+  .form_control input,
+  .delivery-select {
+    margin-bottom: 10px;
+    padding: 8px;
+  }
+  .order-cart {
+    font-size: 10px;
   }
 }

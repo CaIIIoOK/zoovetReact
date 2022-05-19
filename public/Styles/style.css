@@ -192,7 +192,10 @@ input::-webkit-inner-spin-button {
   top: -20px;
   left: 100px;
 }
-
 .help-pass:hover .help-text {
   visibility: visible;
+}
+.recaptcha {
+  display: flex;
+  justify-content: center;
 }

@@ -48,7 +48,7 @@ function Cart() {
             cartGoods.map((item) => (
               <div key={item.id} className="cart-item">
                 <img src={item.img} alt="" />
-                <h4>{item.name}</h4>
+                <span>{item.name}</span>
                 <i className="fas fa-trash-alt trash" onClick={() => itemToTrash(item.id)}></i>
                 <hr />
                 <p>
