@@ -40,7 +40,7 @@ const UserLogin = () => {
               Увійти
             </button>
             <div className="recaptcha">
-              <ReCAPTCHA sitekey="6LfM1vQfAAAAAMQ842tpjo5_rzJXvYpXe4_3xRv8" onChange={onChange} />
+              <ReCAPTCHA sitekey="6LfM1vQfAAAAAMAbY7Cp0oBzVJbXTcj-ThZ8prpE" onChange={onChange} />
             </div>
           </form>
         </div>
