@@ -1,10 +1,11 @@
 import axios from 'axios';
 import { setUserDataAction } from '../redux/actions/setUserDataAction';
+import { URL } from './config';
 axios.defaults.withCredentials = true;
 
 const fetchUserData = (hash) => (dispatch) => {
   try {
-    let url = `/get-user-data`;
+    let url = `${URL}/get-user-data`;
     axios
       .post(url, {
         hash,

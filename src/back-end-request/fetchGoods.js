@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { goodsDisplay } from '../redux/actions/goods';
+import { URL } from './config';
 
 const fetchGoods = (currentPage, perPage, category) => (dispatch) => {
   try {
@@ -9,7 +10,7 @@ const fetchGoods = (currentPage, perPage, category) => (dispatch) => {
     }
     axios({
       method: 'GET',
-      url: `/goods?&perpage=${perPage}&current=${currentPage}${catgoryId}`,
+      url: `${URL}/goods?&perpage=${perPage}&current=${currentPage}${catgoryId}`,
     }).then(({ data }) => {
       let productsWithCartStatus = data.goods.map((item) => {
         item.isInCart = false;

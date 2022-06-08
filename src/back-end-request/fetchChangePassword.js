@@ -1,12 +1,13 @@
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { URL } from './config';
 import withReactContent from 'sweetalert2-react-content';
 axios.defaults.withCredentials = true;
 
 const fetchChangePassword = (data) => (dispatch) => {
   try {
     const MySwal = withReactContent(Swal);
-    let url = `/change-password`;
+    let url = `${URL}/change-password`;
     axios
       .post(url, {
         data,

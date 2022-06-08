@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { searchGoodsByVal } from '../redux/actions/searchAction';
+import { URL } from './config';
 
 const fetchSearch = (data) => (dispatch) => {
   try {
-    let url = `/search`;
+    let url = `${URL}/search`;
     axios
       .post(url, {
         data,

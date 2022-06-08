@@ -1,9 +1,10 @@
 import axios from 'axios';
+import { URL } from './config';
 import { setDeliveryWarehouse } from '../redux/actions/setCityDelivery';
 
 const fetchWarehouse = (data) => (dispatch) => {
   try {
-    const url = '/warehouse';
+    const url = `${URL}/warehouse`;
     axios
       .post(url, {
         data,

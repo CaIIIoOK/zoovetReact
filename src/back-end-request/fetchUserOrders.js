@@ -1,10 +1,11 @@
 import axios from 'axios';
 import { setUserOrders } from '../redux/actions/setUserDataAction';
+import { URL } from './config';
 axios.defaults.withCredentials = true;
 
 const fetchUserOrders = (login) => (dispatch) => {
   try {
-    let url = `/get-user-orders`;
+    let url = `${URL}/get-user-orders`;
     axios
       .post(url, {
         login,

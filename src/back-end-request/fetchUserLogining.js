@@ -2,11 +2,12 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import fetchUserData from '../back-end-request/fetchUserData';
+import { URL } from './config';
 axios.defaults.withCredentials = true;
 
 const fetchUserLogining = (data) => (dispatch) => {
   try {
-    let url = `/user-login`;
+    let url = `${URL}/user-login`;
     axios
       .post(url, {
         data,

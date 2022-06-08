@@ -1,10 +1,11 @@
 import axios from 'axios';
 import getAdminOrdersAction from '../redux/actions/getAdminOrders';
+import { URL } from './config';
 axios.defaults.withCredentials = true;
 
 const fetchAdminOrders = () => (dispatch) => {
   try {
-    axios.get('/get-admin-orders').then(({ data }) => {
+    axios.get(`${URL}/get-admin-orders`).then(({ data }) => {
       return dispatch(getAdminOrdersAction(data));
     });
   } catch (error) {
@@ -14,7 +15,7 @@ const fetchAdminOrders = () => (dispatch) => {
 
 const fetchChangeAdminOrders = (data) => (dispatch) => {
   try {
-    const url = '/get-admin-orders';
+    const url = `${URL}/get-admin-orders`;
     axios
       .post(url, {
         data,
