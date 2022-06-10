@@ -7,7 +7,7 @@ axios.defaults.withCredentials = true;
 const fetchChangeUserData = (data) => (dispatch) => {
   try {
     const MySwal = withReactContent(Swal);
-    let url = `${URL}/change-user-data`;
+    let url = `http://localhost:3001/change-user-data`;
     axios
       .post(url, {
         data,

@@ -40,6 +40,7 @@
 
 .products__item {
   border: 1px solid rgb(134, 134, 134);
+  border-radius: 5px;
   padding: 8px;
   margin: 10px 20px 5px 0px;
   width: 190px;
