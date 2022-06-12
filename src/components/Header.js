@@ -2,10 +2,10 @@ import React from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { cartOpen } from '../redux/actions/cartStatus';
-import { useCookies } from 'react-cookie';
 import { clearUserDataAction } from '../redux/actions/setUserDataAction';
 import { setLoginForHead } from '../redux/actions/setUserDataAction';
 import fetchSearch from '../back-end-request/fetchSearch';
+import removeCookie from '../back-end-request/removeCookie';
 import { setSearchVal } from '../redux/actions/searchAction';
 
 function Header() {
@@ -186,7 +186,6 @@ function HeaderCart() {
 }
 
 function HeaderProfile() {
-  const [, , removeCookie] = useCookies(['user']);
   const { login } = useSelector(({ userDataReduser }) => userDataReduser);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -199,8 +198,7 @@ function HeaderProfile() {
 
   const logOut = () => {
     dispatch(clearUserDataAction({}));
-    removeCookie('hash');
-    removeCookie('user');
+    dispatch(removeCookie());
     navigate('/user-login', { replace: true });
   };
 
