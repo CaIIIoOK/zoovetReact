@@ -127,3 +127,34 @@
   position: absolute;
   background-color: #b3ffff;
 }
+
+.admin_goods {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.admin_good {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  color: black;
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+.admin_good input {
+  padding: 5px;
+  border: 1px solid rgb(213, 58, 58);
+  margin-right: 5px;
+  border-radius: 5px;
+}
+#nameAdminProd {
+  width: 500px;
+}
+#priceAdminProd {
+  width: 100px;
+}

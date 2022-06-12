@@ -212,6 +212,21 @@
   .order_form {
     margin-left: 0;
   }
+  #nameAdminProd {
+    width: 150px;
+  }
+  #priceAdminProd {
+    width: 50px;
+  }
+  .admin_goods {
+    font-size: 10px;
+  }
+  .btn-apply {
+    font-size: 10px;
+  }
+  .admin_good input {
+    font-size: 10px;
+  }
 }
 
 @media (max-width: 540px) {

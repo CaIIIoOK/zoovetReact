@@ -72,6 +72,7 @@ const SingleGoods = () => {
                 <p>
                   Ціна: <b>{item.Price_prod}</b> грн.
                 </p>
+                <p style={{ fontSize: 12, opacity: 0.5 }}>Код товару: {item.Product_code}</p>
                 <div className="btn-availability solo">
                   <span>{item.availability === 1 ? 'Є в наявності' : 'Немає в наявності'}</span>
                   {permission === 'admin' ? (

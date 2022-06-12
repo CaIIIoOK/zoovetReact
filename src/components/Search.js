@@ -27,7 +27,10 @@ const Search = () => {
                     <span>
                       Ціна:<b>{elem.Price_prod}</b>
                     </span>
-                    <i dangerouslySetInnerHTML={{ __html: cleanHTML }}></i>
+                    <i
+                      dangerouslySetInnerHTML={{ __html: cleanHTML }}
+                      style={{ marginRight: 10 }}></i>
+                    <p style={{ fontSize: 12, opacity: 0.5 }}>Код товару: {elem.Product_code}</p>
                   </li>
                 </ul>
               );

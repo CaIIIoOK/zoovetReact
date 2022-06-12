@@ -99,6 +99,7 @@ function Goods() {
                         Ціна: <b>{item.Price_prod}</b> грн.
                       </p>
                       <p>{item.Name_prod_ua}</p>
+                      <p style={{ fontSize: 12, opacity: 0.5 }}>Код товару: {item.Product_code}</p>
                     </div>
                   </NavLink>
                   <div className="btn-availability">

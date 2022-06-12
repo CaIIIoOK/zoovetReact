@@ -11,6 +11,7 @@ module.exports = function (app) {
       '/change-prod-data',
       '/change-password',
       '/get-user-data',
+      '/change-prod-data-all',
     ],
     createProxyMiddleware(proxy),
   );

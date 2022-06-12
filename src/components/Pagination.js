@@ -8,6 +8,10 @@ function Pagination() {
   const { currentPage, goodsPerPage, totalCount, categoryId } = useSelector(
     ({ getGoods }) => getGoods,
   );
+  React.useEffect(() => {
+    dispatch(fetchGoods(currentPage, goodsPerPage, categoryId));
+  }, [currentPage, categoryId, goodsPerPage, dispatch]);
+
   const pagesCount = Math.ceil(totalCount / goodsPerPage);
   let pages = [];
   function createPages(pages, pagesCount, currentPage) {
@@ -30,10 +34,6 @@ function Pagination() {
     }
   }
   createPages(pages, pagesCount, currentPage);
-
-  React.useEffect(() => {
-    dispatch(fetchGoods(currentPage, goodsPerPage, categoryId));
-  }, [currentPage, categoryId, goodsPerPage, dispatch]);
 
   function arrowMinus() {
     if (currentPage !== 1) {

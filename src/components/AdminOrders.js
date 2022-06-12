@@ -1,7 +1,7 @@
 import React from 'react';
 import fetchGoodsSoloItem from '../back-end-request/fetchGoodsSoloItem';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { fetchAdminOrders, fetchChangeAdminOrders } from '../back-end-request/fetchAdminOrders';
 
 export default function AdminOrders() {
@@ -47,6 +47,19 @@ export default function AdminOrders() {
   return (
     <div className="my-order">
       <h3>Замовлення</h3>
+      <Link
+        to="/admin-change-prod-all"
+        style={{
+          textAlign: 'center',
+          marginBottom: 10,
+          fontSize: 20,
+          padding: 5,
+          backgroundColor: 'red',
+          borderRadius: 10,
+          width: 200,
+        }}>
+        Редагувати товари
+      </Link>
       {orders.length !== 0
         ? orders.map((elem) => {
             return (
