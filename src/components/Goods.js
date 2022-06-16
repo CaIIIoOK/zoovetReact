@@ -95,7 +95,17 @@ function Goods() {
                         Ціна: <b>{item.Price_prod}</b> грн.
                       </p>
                       <p>{item.Name_prod_ua}</p>
-                      <span>Код товару: {item.Product_code}</span>
+                      {item.Product_code && <span>Код товару: {item.Product_code}</span>}
+                      {item.Producer && (
+                        <span style={{ fontSize: 10, marginTop: 5 }}>
+                          Виробник: {item.Producer}
+                        </span>
+                      )}
+                      {item.Producing_country && (
+                        <span style={{ fontSize: 10, marginTop: 5 }}>
+                          Країна виробник: {item.Producing_country}
+                        </span>
+                      )}
                     </div>
                   </NavLink>
                   <div className="btn-availability">

@@ -2,11 +2,12 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { URL } from './config';
+axios.defaults.withCredentials = true;
 
 const fetchDeleteReview = (data) => (dispatch) => {
   try {
     const MySwal = withReactContent(Swal);
-    let url = `${URL}/delete-review`;
+    let url = `/delete-review`;
     axios
       .post(url, {
         data,
