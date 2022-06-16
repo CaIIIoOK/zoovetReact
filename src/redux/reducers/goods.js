@@ -1,5 +1,7 @@
 const initialState = {
   goods: [],
+  reviews: [],
+  singleGoods: [],
   currentPage: 1,
   goodsPerPage: 30,
   totalCount: 0,
@@ -53,8 +55,14 @@ const getGoods = (state = initialState, action) => {
     case 'SET_SOLO_ITEM_ID': {
       return {
         ...state,
-        goods: action.goods,
+        singleGoods: action.goods,
         isLoaded: true,
+      };
+    }
+    case 'SET_REVIEWS': {
+      return {
+        ...state,
+        reviews: action.review,
       };
     }
 

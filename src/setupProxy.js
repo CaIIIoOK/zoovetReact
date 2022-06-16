@@ -12,6 +12,7 @@ module.exports = function (app) {
       '/change-password',
       '/get-user-data',
       '/change-prod-data-all',
+      '/delete-review',
     ],
     createProxyMiddleware(proxy),
   );

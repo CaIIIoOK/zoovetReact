@@ -29,6 +29,10 @@ const setSoloItemData = (goods) => ({
   type: 'SET_SOLO_ITEM_ID',
   goods,
 });
+const setReviews = (review) => ({
+  type: 'SET_REVIEWS',
+  review,
+});
 
 export {
   goodsDisplay,
@@ -37,4 +41,5 @@ export {
   deleteFromCartStatus,
   setCategoryId,
   setSoloItemData,
+  setReviews,
 };

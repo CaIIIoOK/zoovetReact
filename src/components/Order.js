@@ -238,9 +238,9 @@ const Order = () => {
             <option value="novap" id="novap">
               Доставка "Нова Пошта"
             </option>
-            <option value="justin" id="justin">
+            {/* <option value="justin" id="justin">
               Доставка "Justin"
-            </option>
+            </option> */}
             <option value="ukrp" id="ukrp">
               Доставка "Укрпочта"
             </option>

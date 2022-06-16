@@ -7,20 +7,21 @@ import { addToCartStatus } from '../redux/actions/goods';
 import DOMPurify from 'dompurify';
 import fetchChangeProdData from '../back-end-request/fetchChangeProdData';
 import fetchUserData from '../back-end-request/fetchUserData';
+import Reviews from './Reviews';
 
 const SingleGoods = () => {
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
-  const { goods } = useSelector(({ getGoods }) => getGoods);
+  const { singleGoods } = useSelector(({ getGoods }) => getGoods);
   const [prodToInput, setProdToInput] = React.useState(false);
   const { permission } = useSelector(({ userDataReduser }) => userDataReduser);
+  const idQuery = searchParams.get('id');
 
   let [cookie, ,] = React.useState(
     document.cookie.replace(/(?:(?:^|.*;\s*)hash\s*=\s*([^;]*).*$)|^.*$/, '$1'),
   );
   React.useEffect(() => {
-    let id = searchParams.get('id');
-    dispatch(fetchGoodsSoloItem(id));
+    dispatch(fetchGoodsSoloItem(idQuery));
     if (cookie !== '') {
       dispatch(fetchUserData(cookie));
     }
@@ -38,8 +39,7 @@ const SingleGoods = () => {
   }
   const changeProd = () => {
     setProdToInput(!prodToInput);
-    let id = searchParams.get('id');
-    dispatch(fetchGoodsSoloItem(id));
+    dispatch(fetchGoodsSoloItem(idQuery));
   };
   const applyChanges = (e, id) => {
     e.preventDefault();
@@ -48,9 +48,10 @@ const SingleGoods = () => {
       cookie,
       img: e.target.form[0].value,
       name: e.target.form[1].value,
-      price: e.target.form[2].value,
-      availability: e.target.form[3].value,
-      description: e.target.form[4].value,
+      code: e.target.form[2].value,
+      price: e.target.form[3].value,
+      availability: e.target.form[4].value,
+      description: e.target.form[5].value,
     };
     let conf = window.confirm('Ви впевнені?');
     if (conf) {
@@ -61,46 +62,49 @@ const SingleGoods = () => {
   };
   return (
     <div className="main-page">
-      {goods.map((item) => {
+      {singleGoods.map((item) => {
         const cleanHTML = DOMPurify.sanitize(item.Description_UA);
         if (!prodToInput) {
           return (
-            <div className="goods-item" key={item.id}>
-              <div className="img-name-block">
-                <img src={item.Img_prod} alt="Img_prod" />
-                <p>{item.Name_prod_ua}</p>
-                <p>
-                  Ціна: <b>{item.Price_prod}</b> грн.
-                </p>
-                <p style={{ fontSize: 12, opacity: 0.5 }}>Код товару: {item.Product_code}</p>
-                <div className="btn-availability solo">
-                  <span>{item.availability === 1 ? 'Є в наявності' : 'Немає в наявності'}</span>
-                  {permission === 'admin' ? (
-                    <button className="redact-btn" onClick={changeProd}>
-                      Редагувати товар
-                    </button>
-                  ) : (
-                    ''
-                  )}
-                  <button
-                    className="btn-to-cart"
-                    disabled={item.availability === 1 ? false : true}
-                    onClick={() =>
-                      addToCart(item.id, item.Price_prod, item.Name_prod_ua, item.Img_prod, 1)
-                    }>
-                    В корзину
-                    {item.isInCart && (
-                      <img
-                        src="https://img.icons8.com/material-two-tone/48/000000/shopping-cart--v1.png"
-                        alt="cart"
-                      />
+            <div key={item.id}>
+              <div className="goods-item">
+                <div className="img-name-block">
+                  <img src={item.Img_prod} alt="Img_prod" />
+                  <p>{item.Name_prod_ua}</p>
+                  <p>
+                    Ціна: <b>{item.Price_prod}</b> грн.
+                  </p>
+                  <p style={{ fontSize: 12, opacity: 0.5 }}>Код товару: {item.Product_code}</p>
+                  <div className="btn-availability solo">
+                    <span>{item.availability === 1 ? 'Є в наявності' : 'Немає в наявності'}</span>
+                    {permission === 'admin' ? (
+                      <button className="redact-btn" onClick={changeProd}>
+                        Редагувати товар
+                      </button>
+                    ) : (
+                      ''
                     )}
-                  </button>
+                    <button
+                      className="btn-to-cart"
+                      disabled={item.availability === 1 ? false : true}
+                      onClick={() =>
+                        addToCart(item.id, item.Price_prod, item.Name_prod_ua, item.Img_prod, 1)
+                      }>
+                      В корзину
+                      {item.isInCart && (
+                        <img
+                          src="https://img.icons8.com/material-two-tone/48/000000/shopping-cart--v1.png"
+                          alt="cart"
+                        />
+                      )}
+                    </button>
+                  </div>
+                </div>
+                <div className="goods-description">
+                  <p dangerouslySetInnerHTML={{ __html: cleanHTML }}></p>
                 </div>
               </div>
-              <div className="goods-description">
-                <p dangerouslySetInnerHTML={{ __html: cleanHTML }}></p>
-              </div>
+              <Reviews prodName={item.Name_prod_ua} id={item.id} />
             </div>
           );
         } else {
@@ -119,6 +123,10 @@ const SingleGoods = () => {
                 <label htmlFor="nameProd">
                   Назва товару:
                   <input defaultValue={item.Name_prod_ua} type="text" name="nameProd" />
+                </label>
+                <label htmlFor="codeProd">
+                  Код товару:
+                  <input defaultValue={item.Product_code} type="text" name="codeProd" />
                 </label>
                 <label htmlFor="price">
                   Ціна:

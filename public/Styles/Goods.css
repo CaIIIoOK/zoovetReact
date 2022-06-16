@@ -72,6 +72,11 @@
 .price-name-price p {
   color: black;
 }
+.price-name-price span {
+  text-decoration: none;
+  color: rgb(91, 91, 91);
+  margin-top: 10px;
+}
 .btn-to-cart {
   background-color: #7cd66a;
   padding: 5px;
@@ -153,7 +158,7 @@
   border-radius: 5px;
 }
 #nameAdminProd {
-  width: 500px;
+  width: 400px;
 }
 #priceAdminProd {
   width: 100px;

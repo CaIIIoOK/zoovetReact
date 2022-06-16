@@ -6,7 +6,6 @@ import Pagination from './Pagination';
 import { actionAddToCart } from '../redux/actions/cart';
 import { addToCartStatus } from '../redux/actions/goods';
 import LoadingGoods from './LoadingGoods';
-import fetchGoodsSoloItem from '../back-end-request/fetchGoodsSoloItem';
 import { goodsDisplay } from '../redux/actions/goods';
 import { cartOpen } from '../redux/actions/cartStatus';
 
@@ -26,9 +25,6 @@ function Goods() {
     };
     dispatch(actionAddToCart(objProd));
     dispatch(addToCartStatus(id));
-  }
-  function setSoloItem(itemId) {
-    dispatch(fetchGoodsSoloItem(itemId));
   }
 
   function sortGoods() {
@@ -92,14 +88,14 @@ function Goods() {
                   className={
                     item.availability === 1 ? 'products__item' : 'products__item availability'
                   }>
-                  <NavLink to={'/goods-solo?&id=' + item.id} onClick={() => setSoloItem(item.id)}>
+                  <NavLink to={'/goods-solo?&id=' + item.id}>
                     <img src={item.Img_prod} alt="Img_prod" />
                     <div className="price-name-price">
                       <p>
                         Ціна: <b>{item.Price_prod}</b> грн.
                       </p>
                       <p>{item.Name_prod_ua}</p>
-                      <p style={{ fontSize: 12, opacity: 0.5 }}>Код товару: {item.Product_code}</p>
+                      <span>Код товару: {item.Product_code}</span>
                     </div>
                   </NavLink>
                   <div className="btn-availability">

@@ -20,6 +20,7 @@ const AdminGoods = () => {
       name: e.target.form[0].value,
       price: e.target.form[1].value,
       availability: e.target.form[2].value,
+      code: e.target.form[3].value,
     };
     let conf = window.confirm('Ви впевнені?');
     if (conf) {
@@ -62,11 +63,23 @@ const AdminGoods = () => {
                     id="priceAdminProd"
                   />
                 </label>
-                <button className="redact-btn btn-apply" onClick={(e) => applyChanges(e, item.id)}>
+                <label htmlFor="availability">
+                  Код:
+                  <input
+                    defaultValue={item.Product_code}
+                    type="text"
+                    name="code"
+                    id="priceAdminProd"
+                  />
+                </label>
+                <button
+                  className="redact-btn btn-apply"
+                  onClick={(e) => applyChanges(e, item.id)}
+                  style={{ fontSize: 12 }}>
                   Прийняти зміни
                 </button>
               </form>
-              <img src={item.Img_prod} alt="" style={{ width: 50, height: 50 }} />
+              <img src={item.Img_prod} alt="" style={{ width: 30, height: 35, marginRight: 5 }} />
               <NavLink
                 to={'/goods-solo?&id=' + item.id}
                 onClick={() => fetchGoodsSoloItem(item.id)}>

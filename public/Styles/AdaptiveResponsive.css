@@ -4,8 +4,7 @@
     letter-spacing: 1.5px;
   }
 
-  .telephone a,
-  p {
+  .telephone a p {
     font-size: 9px;
     letter-spacing: 1.5px;
   }
@@ -27,7 +26,8 @@
     font-size: 12px;
     width: 15px;
   }
-  .header-button {
+  .header-button,
+  p {
     font-size: 12px;
   }
   .sidebar-menu a {
@@ -39,6 +39,9 @@
   }
   .btn-availability img {
     width: 10px;
+  }
+  .price-name-price span {
+    font-size: 8px;
   }
 }
 @media (max-width: 1080px) {
@@ -226,6 +229,46 @@
   }
   .admin_good input {
     font-size: 10px;
+  }
+  .review_block {
+    width: 100%;
+  }
+  .button_block {
+    font-size: 12px;
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+  .review_user_date {
+    font-size: 13px;
+  }
+  .goods-description {
+    font-size: 13px;
+    padding: 5px;
+  }
+  .review_btn {
+    padding: 5px;
+  }
+  .img-name-block p {
+    padding: 5px;
+  }
+  .review_modal {
+    padding: 5px;
+    width: 70%;
+  }
+  .modal_buttons {
+    padding: 5px;
+    margin-top: 5px;
+  }
+  .modal_buttons button {
+    padding: 5px;
+    width: 30%;
+    font-size: 13px;
+  }
+  .review_modal textarea {
+    height: 150px;
+  }
+  .modal_container {
+    padding: 5px;
   }
 }
 
