@@ -8,20 +8,24 @@ import DOMPurify from 'dompurify';
 import fetchChangeProdData from '../back-end-request/fetchChangeProdData';
 import fetchUserData from '../back-end-request/fetchUserData';
 import Reviews from './Reviews';
+import fetchCategory from '../back-end-request/fetchCategory';
 
 const SingleGoods = () => {
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
   const { singleGoods } = useSelector(({ getGoods }) => getGoods);
+  const { categorysName } = useSelector(({ categorys }) => categorys);
   const [prodToInput, setProdToInput] = React.useState(false);
   const { permission } = useSelector(({ userDataReduser }) => userDataReduser);
   const idQuery = searchParams.get('id');
+  const changeProdForm = React.useRef();
 
   let [cookie, ,] = React.useState(
     document.cookie.replace(/(?:(?:^|.*;\s*)hash\s*=\s*([^;]*).*$)|^.*$/, '$1'),
   );
   React.useEffect(() => {
     dispatch(fetchGoodsSoloItem(idQuery));
+    dispatch(fetchCategory());
     if (cookie !== '') {
       dispatch(fetchUserData(cookie));
     }
@@ -41,17 +45,29 @@ const SingleGoods = () => {
     setProdToInput(!prodToInput);
     dispatch(fetchGoodsSoloItem(idQuery));
   };
-  const applyChanges = (e, id) => {
+  const applyChanges = (id, e) => {
     e.preventDefault();
+    if (
+      changeProdForm.current.img.value === '' ||
+      changeProdForm.current.name.value === '' ||
+      changeProdForm.current.price.value === '' ||
+      changeProdForm.current.availability.value === '' ||
+      changeProdForm.current.description.value === ''
+    ) {
+      alert('Усі поля повинні бути заповнені');
+      return;
+    }
     const prodData = {
       id,
       cookie,
-      img: e.target.form[0].value,
-      name: e.target.form[1].value,
-      code: e.target.form[2].value,
-      price: e.target.form[3].value,
-      availability: e.target.form[4].value,
-      description: e.target.form[5].value,
+      categoryID: changeProdForm.current.category.value,
+      categoryName: changeProdForm.current.category.selectedOptions[0].label,
+      img: changeProdForm.current.img.value,
+      name: changeProdForm.current.nameProd.value,
+      code: changeProdForm.current.codeProd.value,
+      price: changeProdForm.current.price.value,
+      availability: changeProdForm.current.availability.value,
+      description: changeProdForm.current.description.value,
     };
     let conf = window.confirm('Ви впевнені?');
     if (conf) {
@@ -110,7 +126,28 @@ const SingleGoods = () => {
         } else {
           return (
             <div className="redact-prod" key={item.id}>
-              <form>
+              <form ref={changeProdForm}>
+                <label htmlFor="category">Змінити категорію:</label>
+                <select defaultValue="" name="category" className="selectRedactCategory">
+                  <option value="" label="Оберіть категорію" disabled></option>
+                  {categorysName.map((item) => {
+                    return (
+                      <option
+                        value={item.ID_category}
+                        key={item.ID_category}
+                        label={item.Category_UA}></option>
+                    );
+                  })}
+                </select>
+                <label htmlFor="currentCategory">
+                  Актуальна категорія:
+                  <input
+                    defaultValue={item.Category + ' ID: ' + item.ID_category}
+                    type="text"
+                    name="currentCategory"
+                    disabled
+                  />
+                </label>
                 <label htmlFor="img">
                   Силка на картинку:
                   <input defaultValue={item.Img_prod} type="text" name="img" />
@@ -146,7 +183,7 @@ const SingleGoods = () => {
                   </button>
                   <button
                     className="redact-btn btn-apply"
-                    onClick={(e) => applyChanges(e, item.id)}>
+                    onClick={(e) => applyChanges(item.id, e)}>
                     Прийняти зміни
                   </button>
                 </div>

@@ -13,6 +13,8 @@ module.exports = function (app) {
       '/get-user-data',
       '/change-prod-data-all',
       '/delete-review',
+      '/new-product',
+      '/change-category',
     ],
     createProxyMiddleware(proxy),
   );

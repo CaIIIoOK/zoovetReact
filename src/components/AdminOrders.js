@@ -3,10 +3,12 @@ import fetchGoodsSoloItem from '../back-end-request/fetchGoodsSoloItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
 import { fetchAdminOrders, fetchChangeAdminOrders } from '../back-end-request/fetchAdminOrders';
+import NewGoodsModal from './NewGoodsModal';
 
 export default function AdminOrders() {
   const dispatch = useDispatch();
   const { orders } = useSelector(({ adminOrders }) => adminOrders);
+  const [showNewProdModal, setShowNewProdModal] = React.useState(false);
 
   React.useEffect(() => {
     dispatch(fetchAdminOrders());
@@ -47,19 +49,37 @@ export default function AdminOrders() {
   return (
     <div className="my-order">
       <h3>Замовлення</h3>
-      <Link
-        to="/admin-change-prod-all"
-        style={{
-          textAlign: 'center',
-          marginBottom: 10,
-          fontSize: 20,
-          padding: 5,
-          backgroundColor: 'red',
-          borderRadius: 10,
-          width: 200,
-        }}>
-        Редагувати товари
-      </Link>
+      <div style={{ display: 'flex', flexDirection: 'row' }}>
+        <Link
+          to="/admin-change-prod-all"
+          style={{
+            textAlign: 'center',
+            marginBottom: 10,
+            marginRight: 10,
+            fontSize: 15,
+            padding: 5,
+            backgroundColor: 'rgb(64, 252, 233)',
+            borderRadius: 10,
+            width: 150,
+          }}>
+          Редагувати товари або категорї
+        </Link>
+        <button
+          style={{
+            textAlign: 'center',
+            marginBottom: 10,
+            fontSize: 15,
+            padding: 5,
+            backgroundColor: 'rgb(64, 252, 233)',
+            borderRadius: 10,
+            width: 150,
+          }}
+          onClick={() => setShowNewProdModal(true)}>
+          Додати новий товар
+        </button>
+        {showNewProdModal && <NewGoodsModal modalShow={setShowNewProdModal} />}
+      </div>
+
       {orders.length !== 0
         ? orders
             .map((elem) => {
