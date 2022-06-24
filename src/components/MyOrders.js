@@ -1,79 +1,111 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import fetchGoodsSoloItem from '../back-end-request/fetchGoodsSoloItem';
 
 const MyOrders = () => {
-  const dispatch = useDispatch();
-  const { orders } = useSelector(({ userDataReduser }) => userDataReduser);
-
-  const setTableShow = (e) => {
+  const { orders, totalPrice } = useSelector(({ userDataReduser }) => userDataReduser);
+  const showOrderInformation = (e) => {
+    e.target.offsetParent.nextElementSibling.style.display = 'flex';
+    e.target.style.display = 'none';
+    e.target.nextElementSibling.style.display = 'inline';
+    e.target.previousSibling.style.display = 'none';
+  };
+  const hideOrderInformation = (e) => {
+    e.target.offsetParent.nextElementSibling.style.display = 'none';
+    e.target.style.display = 'none';
     e.target.previousSibling.style.display = 'inline';
-    e.target.style.display = 'none';
-    e.target.nextSibling.style.display = 'inline';
-  };
-
-  const setTableHide = (e) => {
-    e.target.style.display = 'none';
-    e.target.nextSibling.style.display = 'inline';
-    e.target.nextSibling.nextSibling.style.display = 'none';
-  };
-  const showSoloItem = (id) => {
-    dispatch(fetchGoodsSoloItem(id));
+    e.target.previousElementSibling.previousElementSibling.style.display = 'flex';
   };
   return (
-    <div className="my-order">
+    <div className="my-orders">
       <h3>Мої замовлення</h3>
       {orders.length !== 0
-        ? orders.map((elem) => {
+        ? orders.map((elem, idnex) => {
             return (
-              <ul key={elem.id}>
-                <li>
-                  {' '}
-                  <img src={elem.goods_img} alt="" />
-                  <NavLink
-                    to={'/goods-solo?&id=' + elem.goods_id}
-                    onClick={() => showSoloItem(elem.id)}>
-                    <span>{elem.goods_name} </span>
-                  </NavLink>
+              <div className="user_order" key={elem.id}>
+                <div className="number_date_total_img">
+                  <div className="date_price_block">
+                    <p style={{ color: 'gray' }}>
+                      № {elem.id} від {elem.date.slice(0, 10)}{' '}
+                    </p>
+                    <p>Загальна сума: {totalPrice[idnex]} грн.</p>
+                  </div>
+                  <div style={{ position: 'absolute', right: 50 }}>
+                    {elem.user_order.map((item, index) => {
+                      return (
+                        <img
+                          src={item.img}
+                          alt=""
+                          key={index}
+                          style={{ width: 25, marginRight: 5 }}></img>
+                      );
+                    })}
+                  </div>
                   <img
-                    src="./img/icons-arrow-orders-left.png"
+                    src="./img/icons-arrow-orders-down.png"
                     alt=""
-                    style={{ width: '20px', display: 'none', marginLeft: '5px', cursor: 'pointer' }}
-                    onClick={(e) => setTableHide(e)}
+                    style={{ width: 20, cursor: 'pointer' }}
+                    onClick={(e) => showOrderInformation(e)}
                   />
                   <img
-                    src="./img/icons-arrow-orders.png"
+                    src="./img/icons-arrow-orders-top.png"
                     alt=""
-                    style={{ width: '20px', marginLeft: '5px', cursor: 'pointer' }}
-                    onClick={(e) => setTableShow(e)}
+                    style={{ width: 20, cursor: 'pointer', display: 'none' }}
+                    onClick={(e) => hideOrderInformation(e)}
                   />
-                  <table className="table-my-orders">
-                    <tbody>
-                      <tr>
-                        <th>Кількість</th>
-                        <th>Ціна за шт.</th>
-                        <th>Загальна сума</th>
-                        <th>Доставка</th>
-                        <th>{elem.user_deliverycityArea ? 'Населений пункт' : ''}</th>
-                        <th>{elem.user_warehouse === 'Оберіть відділення' ? '' : 'Відділення'}</th>
-                        <th>Дата</th>
-                      </tr>
-                      <tr>
-                        <td>{elem.goods_amount}</td>
-                        <td>{elem.goods_cost}</td>
-                        <td>{elem.total}</td>
-                        <td>{elem.user_delivery}</td>
-                        <td>{elem.user_deliverycityArea}</td>
-                        <td>
-                          {elem.user_warehouse === 'Оберіть відділення' ? '' : elem.user_warehouse}
-                        </td>
-                        <td>{elem.date.slice(0, 16)}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </li>
-              </ul>
+                </div>
+                <div className="information_order">
+                  <div className="delivery_information_order">
+                    <p style={{ color: 'gray', marginTop: 10 }}>Інформація про замовлення</p>
+                    <p>{`${
+                      elem.user_data.delivery === 'ukrp'
+                        ? 'Укрпошта'
+                        : elem.user_data.delivery === 'novap'
+                        ? 'Нова пошта'
+                        : ''
+                    }`}</p>
+                    <i>
+                      {' '}
+                      {`${elem.user_data.cityDelivery}${
+                        elem.user_data.warehouse === 'Оберіть відділення'
+                          ? ''
+                          : ', ' + elem.user_data.warehouse
+                      }`}
+                    </i>
+                    <p>{elem.user_data.username + ' ' + elem.user_data.usersecondname}</p>
+                    <p>{elem.user_data.phone}</p>
+                    <p>{elem.user_data.email}</p>
+                    <p>{elem.user_data.city}</p>
+                  </div>
+                  <div className="products_information_order">
+                    <p style={{ color: 'gray', marginTop: 10 }}>Товари ZooVetAgro</p>
+                    {elem.user_order.map((item, index) => {
+                      return (
+                        <div className="prod_name_img_other" key={index}>
+                          <img src={item.img} alt="" style={{ width: 40, margin: 5 }} />
+                          <NavLink to={'/goods-solo?&id=' + item.id}>
+                            <p>{item.name}</p>
+                          </NavLink>
+                          <table className="order_table">
+                            <tbody>
+                              <tr>
+                                <th>Ціна</th>
+                                <th>Кількість</th>
+                                <th>Сума</th>
+                              </tr>
+                              <tr>
+                                <td>{item.price} грн.</td>
+                                <td>{item.quantity} шт.</td>
+                                <td>{item.price * item.quantity} шт.</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
             );
           })
         : ''}

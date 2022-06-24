@@ -270,6 +270,26 @@
   .modal_container {
     padding: 5px;
   }
+  .date_price_block {
+    font-size: 12px !important;
+  }
+  .order_table {
+    font-size: 12px;
+  }
+  .order_table td,
+  .order_table th {
+    padding: 5px;
+  }
+  .products_information_order p {
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+  }
+  .delivery_information_order i {
+    font-size: 12px !important;
+  }
+  .user_order {
+    padding: 10px;
+  }
 }
 
 @media (max-width: 540px) {
@@ -439,6 +459,15 @@
     padding: 8px;
   }
   .order-cart {
+    font-size: 10px;
+  }
+  .date_price_block {
+    font-size: 8px;
+  }
+  .order_table {
+    font-size: 8px;
+  }
+  .buttons-admin-order button {
     font-size: 10px;
   }
 }

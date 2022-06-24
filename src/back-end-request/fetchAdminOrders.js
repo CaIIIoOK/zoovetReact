@@ -14,16 +14,10 @@ const fetchAdminOrders = () => (dispatch) => {
 
 const fetchChangeAdminOrders = (data) => (dispatch) => {
   try {
-    const url = `/get-admin-orders`;
-    axios
-      .post(url, {
-        data,
-      })
-      .then(({ data }) => {
-        if (!data) {
-          console.log('error cange staus');
-        }
-      });
+    const url = `/change-admin-orders`;
+    axios.post(url, {
+      data,
+    });
   } catch (error) {
     console.log(error);
   }

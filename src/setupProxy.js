@@ -15,6 +15,7 @@ module.exports = function (app) {
       '/delete-review',
       '/new-product',
       '/change-category',
+      '/change-admin-orders',
     ],
     createProxyMiddleware(proxy),
   );

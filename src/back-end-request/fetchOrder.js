@@ -23,6 +23,13 @@ const fetchOrder = (data) => {
             },
           });
         }
+        if (response.data === 0) {
+          MySwal.fire({
+            title: 'Виникла помилка',
+            icon: 'error',
+            confirmButtonText: 'Ок',
+          });
+        }
       });
   } catch (error) {
     console.log(error);

@@ -7,6 +7,7 @@ const initialState = {
   phone: '',
   permission: '',
   orders: [],
+  totalPrice: [],
   passModalStatus: false,
 };
 
@@ -23,6 +24,13 @@ const userDataReduser = (state = initialState, action) => {
         login: action.login,
         phone: action.phone,
         orders: action.orders,
+        totalPrice: action.orders
+          .map((elem) => elem.user_order.map((item) => item.price * item.quantity))
+          .map((el) =>
+            el.reduce(function (sum, current) {
+              return sum + current;
+            }, 0),
+          ),
       };
     case 'SET_LOGIN':
       return {
