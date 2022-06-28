@@ -1,6 +1,8 @@
 const initialState = {
   orders: [],
   totalPrice: [],
+  printOrder: {},
+  printTotal: '',
 };
 
 const adminOrders = (state = initialState, action) => {
@@ -9,13 +11,15 @@ const adminOrders = (state = initialState, action) => {
       return {
         ...state,
         orders: action.orders,
-        totalPrice: action.orders
-          .map((elem) => elem.user_order.map((item) => item.price * item.quantity))
-          .map((el) =>
-            el.reduce(function (sum, current) {
-              return sum + current;
-            }, 0),
-          ),
+        totalPrice: action.orders.map((elem) =>
+          elem.user_order.reduce((sum, item) => item.price * item.quantity + sum, 0),
+        ),
+      };
+    case 'SET_PRINT_ORDER':
+      return {
+        ...state,
+        printOrder: action.printOrder,
+        printTotal: action.printTotal,
       };
 
     default:

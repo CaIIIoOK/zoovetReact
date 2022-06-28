@@ -3,4 +3,10 @@ const getAdminOrdersAction = (orders) => ({
   orders,
 });
 
-export default getAdminOrdersAction;
+const setOrderForPrint = (printOrder, printTotal) => ({
+  type: 'SET_PRINT_ORDER',
+  printOrder,
+  printTotal,
+});
+
+export { getAdminOrdersAction, setOrderForPrint };

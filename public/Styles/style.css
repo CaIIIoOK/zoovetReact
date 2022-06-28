@@ -33,6 +33,20 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+@media print {
+  .header {
+    visibility: hidden;
+  }
+  .footer {
+    display: none;
+  }
+  .print_button {
+    display: none;
+  }
+  @page {
+    margin: 5px;
+  }
+}
 /* ================ */
 
 .main {

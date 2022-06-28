@@ -4,6 +4,7 @@ import fetchCategory from '../back-end-request/fetchCategory';
 import fetchNewProduct from '../back-end-request/fetchNewProduct';
 
 const NewGoodsModal = (props) => {
+  console.log('asd');
   const dispatch = useDispatch();
   const newModalRef = React.useRef();
   const { categorysName } = useSelector(({ categorys }) => categorys);
@@ -50,7 +51,7 @@ const NewGoodsModal = (props) => {
       <div className="newGoodsModal">
         <i
           className="fas fa-times"
-          style={{ position: 'absolute', right: 10, top: 10 }}
+          style={{ position: 'absolute', right: 10, top: 10, cursor: 'pointer' }}
           onClick={closeModal}></i>
         <form ref={newModalRef} className="formNewGoods">
           <select defaultValue="" name="category">

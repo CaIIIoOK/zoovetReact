@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
 import { fetchAdminOrders, fetchChangeAdminOrders } from '../back-end-request/fetchAdminOrders';
 import NewGoodsModal from './NewGoodsModal';
+import { setOrderForPrint } from '../redux/actions/getAdminOrders';
 
 export default function AdminOrders() {
   const dispatch = useDispatch();
@@ -11,7 +12,7 @@ export default function AdminOrders() {
 
   React.useEffect(() => {
     dispatch(fetchAdminOrders());
-  }, [orders]);
+  }, []);
 
   const showOrderInformation = (e) => {
     e.target.offsetParent.nextElementSibling.style.display = 'flex';
@@ -31,6 +32,10 @@ export default function AdminOrders() {
       id,
     };
     dispatch(fetchChangeAdminOrders(data));
+    window.location.reload();
+  };
+  const showPrint = (elem, total) => {
+    dispatch(setOrderForPrint(elem, total));
   };
 
   return (
@@ -191,7 +196,7 @@ export default function AdminOrders() {
                                 <tr>
                                   <td>{item.price} грн.</td>
                                   <td>{item.quantity} шт.</td>
-                                  <td>{item.price * item.quantity} шт.</td>
+                                  <td>{item.price * item.quantity} грн.</td>
                                 </tr>
                               </tbody>
                             </table>
@@ -200,6 +205,11 @@ export default function AdminOrders() {
                       })}
                     </div>
                   </div>
+                  <Link to={'/print-version?&order-id=' + elem.id}>
+                    <button onClick={() => showPrint(elem, totalPrice[idnex])}>
+                      Версія для друку
+                    </button>
+                  </Link>
                 </div>
               );
             })

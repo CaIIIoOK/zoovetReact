@@ -144,15 +144,15 @@ function HeaderSearch() {
     if (searchRefVal.current.value.length >= 3) {
       dispatch(fetchSearch(searchRefVal.current.value));
       dispatch(setSearchVal(searchRefVal.current.value));
+      navigate('/search?&search-name=' + searchRefVal.current.value, { replace: true });
       searchRefVal.current.value = '';
-      navigate('/search', { replace: true });
     }
   };
 
   return (
     <div className="search">
       <form onSubmit={(e) => searchOnsubmit(e)}>
-        <input type="text" ref={searchRefVal} />
+        <input type="search" ref={searchRefVal} />
         <button type="submit" id="searchBtn">
           <i className="fas fa-search"></i>
         </button>

@@ -148,18 +148,25 @@
   color: black;
   border: 1px solid gray;
   border-radius: 5px;
-  padding: 5px;
+  padding: 10px;
   margin-bottom: 5px;
 }
 .admin_good input {
-  padding: 5px;
+  padding: 8px;
   border: 1px solid rgb(213, 58, 58);
   margin-right: 5px;
   border-radius: 5px;
+  margin-left: 5px;
+  text-align: center;
 }
+
 #nameAdminProd {
   width: 400px;
 }
 #priceAdminProd {
-  width: 100px;
+  width: 80px;
+}
+
+#idInput {
+  width: 50px;
 }

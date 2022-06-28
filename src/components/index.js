@@ -17,5 +17,6 @@ export { default as MyOffice } from '../components/MyOffice';
 export { default as Search } from '../components/Search';
 export { default as ArrowTop } from '../components/ArrowTop';
 export { default as SingleGoods } from '../components/SingleGoods';
-export { default as AdminChangeProdAll } from '../components/AdminChangeProdAll';
+export { default as AdminChangeCategory } from '../components/AdminChangeCategory';
 export { default as AdminGoods } from '../components/AdminGoods';
+export { default as PrintVersion } from '../components/PrintVersion';

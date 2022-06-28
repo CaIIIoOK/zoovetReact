@@ -8,7 +8,7 @@ import { NavLink } from 'react-router-dom';
 import { setCategoryId, setCurrentPage } from '../redux/actions/goods';
 import fetchUserData from '../back-end-request/fetchUserData';
 
-const AdminChangeProdAll = () => {
+const AdminChangeCategory = () => {
   const dispatch = useDispatch();
   const { categorysName } = useSelector(({ categorys }) => categorys);
   const [showCategoryInput, setShowCategoryInput] = React.useState(false);
@@ -79,4 +79,4 @@ const AdminChangeProdAll = () => {
   );
 };
 
-export default AdminChangeProdAll;
+export default AdminChangeCategory;

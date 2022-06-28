@@ -1,10 +1,18 @@
 import axios from 'axios';
-import getAdminOrdersAction from '../redux/actions/getAdminOrders';
+import { getAdminOrdersAction, setOrderForPrint } from '../redux/actions/getAdminOrders';
 axios.defaults.withCredentials = true;
 
-const fetchAdminOrders = () => (dispatch) => {
+const fetchAdminOrders = (id, total) => (dispatch) => {
   try {
-    axios.get(`/get-admin-orders`).then(({ data }) => {
+    let orderId = `&id=${id}`;
+    if (!id) {
+      orderId = '';
+    }
+    axios.get(`/get-admin-orders?${orderId}`).then(({ data }) => {
+      if (id) {
+        let total = data[0].user_order.reduce((sum, el) => el.price * el.quantity + sum, 0);
+        dispatch(setOrderForPrint(data[0], total));
+      }
       return dispatch(getAdminOrdersAction(data));
     });
   } catch (error) {

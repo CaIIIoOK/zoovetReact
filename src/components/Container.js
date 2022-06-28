@@ -17,8 +17,9 @@ import {
   Search,
   ArrowTop,
   SingleGoods,
-  AdminChangeProdAll,
+  AdminChangeCategory,
   AdminGoods,
+  PrintVersion,
 } from '../components';
 
 const Container = () => {
@@ -37,9 +38,10 @@ const Container = () => {
         <Route path="/conditions" element={<Conditions />} />
         <Route path="/user-login" element={<UserLogin />} />
         <Route exact path="/my-office" element={<MyOffice />} />
-        <Route exact path="/admin-change-prod-all" element={<AdminChangeProdAll />} />
+        <Route exact path="/admin-change-prod-all" element={<AdminChangeCategory />} />
         <Route exact path="/admin-goods" element={<AdminGoods />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/print-version" element={<PrintVersion />} />
         <Route path="*" element={<Error />} />
       </Routes>
       <ArrowTop />
