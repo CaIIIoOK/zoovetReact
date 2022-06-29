@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import fetchGoodsSoloItem from '../back-end-request/fetchGoodsSoloItem';
-import { actionAddToCart } from '../redux/actions/cart';
+import { actionAddToCart } from '../redux/actions/actionsCart';
 import { addToCartStatus } from '../redux/actions/goods';
 import DOMPurify from 'dompurify';
 import fetchChangeProdData from '../back-end-request/fetchChangeProdData';

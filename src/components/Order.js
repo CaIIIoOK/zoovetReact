@@ -1,7 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { actionMinusCart, actionPlusCart, actionToTrash, clearCart } from '../redux/actions/cart';
+import {
+  actionMinusCart,
+  actionPlusCart,
+  actionToTrash,
+  clearCart,
+} from '../redux/actions/actionsCart';
 import { deleteFromCartStatus } from '../redux/actions/goods';
 import { useForm } from 'react-hook-form';
 import fetchOrder from '../back-end-request/fetchOrder';

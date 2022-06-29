@@ -18,9 +18,20 @@ const actionToTrash = (id, isInCart) => ({
   id,
   isInCart,
 });
-
+const actionChangeQuantityByInput = (id, value) => ({
+  type: 'CHANGE_QUANTITY_INPUT',
+  id,
+  value,
+});
 const clearCart = () => ({
   type: 'CLEAR_CART',
 });
 
-export { actionAddToCart, actionMinusCart, actionPlusCart, actionToTrash, clearCart };
+export {
+  actionAddToCart,
+  actionMinusCart,
+  actionPlusCart,
+  actionToTrash,
+  actionChangeQuantityByInput,
+  clearCart,
+};

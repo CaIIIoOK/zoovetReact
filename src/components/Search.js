@@ -78,7 +78,7 @@ const Search = () => {
                         <input type="text" name="id" id="idInput" defaultValue={elem.id} readOnly />
                       </label>
                       <label htmlFor="availability">
-                        Id:
+                        Наявність:
                         <input
                           type="text"
                           name="availability"

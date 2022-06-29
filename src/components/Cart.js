@@ -1,7 +1,12 @@
 import React from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { useSelector, useDispatch } from 'react-redux';
-import { actionMinusCart, actionPlusCart, actionToTrash } from '../redux/actions/cart';
+import {
+  actionMinusCart,
+  actionPlusCart,
+  actionToTrash,
+  actionChangeQuantityByInput,
+} from '../redux/actions/actionsCart';
 import { cartClose } from '../redux/actions/cartStatus';
 import { deleteFromCartStatus } from '../redux/actions/goods';
 import { Link } from 'react-router-dom';
@@ -10,6 +15,7 @@ function Cart() {
   const cartRef = React.useRef();
   const shadowRef = React.useRef();
   const dispatch = useDispatch();
+  const [showError, setShowError] = React.useState(false);
   const { cartGoods, totalPrice } = useSelector(({ cartReduce }) => cartReduce);
   const { cartStatus } = useSelector(({ cartStatus }) => cartStatus);
 
@@ -19,17 +25,35 @@ function Cart() {
     document.querySelector('body').style.overflow = 'auto';
   }
 
-  function cartMinus(id) {
+  function cartMinus(e, id) {
     dispatch(actionMinusCart(id));
+    if (e.nextElementSibling.value <= 1) {
+      return;
+    }
+    e.nextElementSibling.value--;
   }
 
-  function cartPlus(id) {
+  function cartPlus(e, id) {
     dispatch(actionPlusCart(id));
+    e.previousElementSibling.value++;
   }
 
   function itemToTrash(id) {
     dispatch(actionToTrash(id));
     dispatch(deleteFromCartStatus(id));
+  }
+  function changeQuantity(e, id) {
+    if (e.target.value % 1 !== 0 || e.target.value === '0') {
+      setShowError(true);
+      return;
+    }
+    if (e.target.value !== '') {
+      dispatch(actionChangeQuantityByInput(id, e.target.value));
+      setShowError(false);
+    } else {
+      setShowError(true);
+      return;
+    }
   }
 
   return (
@@ -51,15 +75,31 @@ function Cart() {
                 <span>{item.name}</span>
                 <i className="fas fa-trash-alt trash" onClick={() => itemToTrash(item.id)}></i>
                 <hr />
-                <p>
+                <p style={{ position: 'relative' }}>
                   Кількість:{' '}
                   <button
                     className="far fa-minus-square cart-minus"
-                    onClick={() => cartMinus(item.id)}></button>
-                  {item.quantity}{' '}
+                    onClick={(e) => cartMinus(e.target, item.id)}></button>
+                  <input
+                    type="number"
+                    defaultValue={item.quantity}
+                    onInput={(e) => changeQuantity(e, item.id)}
+                  />
+                  {showError && (
+                    <span
+                      style={{
+                        color: 'red',
+                        fontSize: 12,
+                        position: 'absolute',
+                        right: -160,
+                        fontWeight: 100,
+                      }}>
+                      Вкажіть коректну кількість.
+                    </span>
+                  )}
                   <button
                     className="far fa-plus-square cart-plus"
-                    onClick={() => cartPlus(item.id)}></button>
+                    onClick={(e) => cartPlus(e.target, item.id)}></button>
                 </p>
                 <hr />
                 <p>Ціна шт. : {item.price} грн</p>

@@ -1,6 +1,6 @@
 const initialState = {
   cartGoods: [],
-  totalCount: 0,
+  totalCount: '',
   totalPrice: 0,
 };
 
@@ -66,6 +66,21 @@ const cartReduce = (state = initialState, action) => {
       return {
         ...state,
         cartGoods: newArray,
+        totalCount,
+        totalPrice,
+      };
+    }
+    case 'CHANGE_QUANTITY_INPUT': {
+      if (action.value < 1 || action.value === '') {
+        return;
+      }
+      const goods = findProdById(state.cartGoods, action.id);
+      goods.quantity = +action.value;
+      const totalCount = reduceCartTotal(state.cartGoods);
+      const totalPrice = reduceCartPrice(state.cartGoods);
+      return {
+        ...state,
+        cartGoods: state.cartGoods,
         totalCount,
         totalPrice,
       };

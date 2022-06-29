@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 import Pagination from './Pagination';
-import { actionAddToCart } from '../redux/actions/cart';
+import { actionAddToCart } from '../redux/actions/actionsCart';
 import { addToCartStatus } from '../redux/actions/goods';
 import LoadingGoods from './LoadingGoods';
 import { goodsDisplay } from '../redux/actions/goods';

@@ -164,7 +164,6 @@ function HeaderSearch() {
 function HeaderCart() {
   const dispatch = useDispatch();
   const totalCount = useSelector(({ cartReduce }) => cartReduce.totalCount);
-
   function toggleCartOpen() {
     dispatch(cartOpen(true));
     let scrollWidth = window.innerWidth - document.querySelector('body').offsetWidth;
@@ -179,7 +178,9 @@ function HeaderCart() {
           src="https://img.icons8.com/material-two-tone/48/000000/shopping-cart--v1.png"
           alt="cart"
         />
-        {totalCount === 0 ? null : <i className="cart-count">{totalCount}</i>}
+        {totalCount === 0 ? null : (
+          <i className="cart-count">{totalCount > 999 ? 999 : totalCount}</i>
+        )}
       </button>
     </div>
   );
