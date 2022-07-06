@@ -134,10 +134,7 @@
 .burger {
   display: none;
   color: black;
-  position: absolute;
-  bottom: 5px;
-  left: 50%;
-  font-size: 30px;
+  font-size: 35px;
   cursor: pointer;
 }
 
@@ -151,7 +148,7 @@
 }
 .burger-menu li {
   margin-bottom: 10px;
-  padding: 20px;
+  padding: 10px;
 }
 .burger-menu ul {
   height: 100vh;
@@ -163,4 +160,11 @@
 
 .burger-menu a:hover {
   color: rgb(59, 164, 255);
+}
+.for_adaprive {
+  display: none;
+}
+.burger_logo_prof_tel {
+  display: flex;
+  flex-direction: column;
 }

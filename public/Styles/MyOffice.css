@@ -137,7 +137,7 @@
 }
 
 .change-help-pass {
-  display: inline;
+  display: inline-block;
   background-color: #a0fafc;
   border-radius: 10px;
   padding: 2px;
@@ -161,8 +161,7 @@
 .change-help-text {
   position: absolute;
   visibility: hidden;
-  top: -5px;
-  right: -65px;
+  right: 40px;
 }
 
 .change-help-pass:hover .change-help-text {

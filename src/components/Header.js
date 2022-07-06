@@ -12,15 +12,22 @@ import { setCategoryId } from '../redux/actions/goods';
 
 function Header() {
   return (
-    <header className="header">
-      <HeaderLogo />
-      <HeaderTelephone />
-      <HeaderMenu />
-      <BurgerMenu />
-      <HeaderSearch />
-      <HeaderCart />
-      <HeaderProfile />
-    </header>
+    <>
+      <header className="header pc_head">
+        <HeaderLogo />
+        <HeaderTelephone />
+        <HeaderMenu />
+        <BurgerMenu />
+        <HeaderSearch />
+        <HeaderCart />
+        <HeaderProfile />
+      </header>
+      <header className="header for_adaprive">
+        <BurgerMenu />
+        <HeaderSearch />
+        <HeaderCart />
+      </header>
+    </>
   );
 }
 
@@ -98,15 +105,22 @@ function BurgerMenu() {
   };
   return (
     <>
-      {!showMenu && (
-        <nav className="burger" onClick={showBurgerNav}>
-          <i className="fas fa-bars"></i>
-        </nav>
-      )}
+      <nav className="burger" onClick={showBurgerNav}>
+        <i className="fas fa-bars"></i>
+      </nav>
       {showMenu && (
         <>
           <nav className="burger-menu">
             <ul>
+              <li>
+                <div className="burger_logo_prof_tel">
+                  <HeaderLogo />
+                  <div onClick={showBurgerNav}>
+                    <HeaderProfile />
+                  </div>
+                  <HeaderTelephone />
+                </div>
+              </li>
               <li>
                 <NavLink exact="true" to="/" className="nav-link" onClick={showBurgerNav}>
                   Головна

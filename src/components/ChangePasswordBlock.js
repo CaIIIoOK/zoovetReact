@@ -76,7 +76,6 @@ const ChangePasswordBlock = () => {
                   цифру.
                 </p>
               </div>
-              <hr />
               <input
                 type={showPass ? 'password' : 'text'}
                 name="newPass1"

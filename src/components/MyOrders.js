@@ -14,7 +14,7 @@ const MyOrders = () => {
     e.target.offsetParent.nextElementSibling.style.display = 'none';
     e.target.style.display = 'none';
     e.target.previousSibling.style.display = 'inline';
-    e.target.previousElementSibling.previousElementSibling.style.display = 'flex';
+    e.target.previousElementSibling.previousElementSibling.style.display = 'inline-block';
   };
   return (
     <div className="my-orders">
