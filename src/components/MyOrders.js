@@ -26,11 +26,11 @@ const MyOrders = () => {
                 <div className="number_date_total_img">
                   <div className="date_price_block">
                     <p style={{ color: 'gray' }}>
-                      № {elem.id} від {elem.date.slice(0, 10)}{' '}
+                      № {elem.id} від {elem.date.slice(0, 10) + ', ' + elem.date.slice(11, 19)}
                     </p>
                     <p>Загальна сума: {totalPrice[idnex]} грн.</p>
                   </div>
-                  <div style={{ position: 'absolute', right: 50 }}>
+                  <div className="img_block_orders">
                     {elem.user_order.map((item, index) => {
                       return (
                         <img

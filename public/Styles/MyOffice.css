@@ -137,11 +137,10 @@
 }
 
 .change-help-pass {
-  display: inline-block;
+  display: inline;
   background-color: #a0fafc;
   border-radius: 10px;
   padding: 2px;
-  margin-left: 5px;
   border: 1px solid rgb(159, 157, 157);
   font-size: 12px;
   font-weight: 700;
@@ -399,6 +398,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+}
+.tableContainer input {
+  width: 90%;
+  border: 1px solid black;
+  padding: 5px;
+  margin-top: 3px;
 }
 .print_order table {
   text-align: center;
@@ -422,4 +428,7 @@
   background-color: rgb(138, 252, 138);
   width: max-content;
   border-radius: 5px;
+}
+.img_block_orders {
+  width: 200px;
 }

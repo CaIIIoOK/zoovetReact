@@ -24,7 +24,7 @@ export default function AdminOrders() {
     e.target.offsetParent.nextElementSibling.style.display = 'none';
     e.target.style.display = 'none';
     e.target.previousSibling.style.display = 'inline';
-    e.target.previousElementSibling.previousElementSibling.style.display = 'flex';
+    e.target.previousElementSibling.previousElementSibling.style.display = 'inline-block';
   };
   const changeStatusDelivery = (e, id) => {
     let data = {
@@ -81,7 +81,7 @@ export default function AdminOrders() {
                   <div className="number_date_total_img">
                     <div className="date_price_block">
                       <div style={{ color: 'gray' }}>
-                        № {elem.id} від {elem.date.slice(0, 10)}{' '}
+                        № {elem.id} від {elem.date.slice(0, 10) + ', ' + elem.date.slice(11, 19)}
                         <div className="order_status">
                           <p>
                             {elem.status === 0
@@ -108,7 +108,7 @@ export default function AdminOrders() {
                       </div>
                       <p>Загальна сума: {totalPrice[idnex]} грн.</p>
                     </div>
-                    <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                    <div className="img_block_orders">
                       {elem.user_order.map((item, index) => {
                         return (
                           <img

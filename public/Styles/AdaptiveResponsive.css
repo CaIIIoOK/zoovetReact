@@ -3,7 +3,6 @@
     font-size: 12px;
     letter-spacing: 1.5px;
   }
-
   .telephone a p {
     font-size: 9px;
     letter-spacing: 1.5px;
@@ -24,7 +23,7 @@
   }
   .cart-count {
     font-size: 12px;
-    width: 15px;
+    width: 20px;
   }
   .header-button,
   p {
@@ -42,6 +41,16 @@
   }
   .price-name-price span {
     font-size: 8px;
+    margin-top: 5px;
+  }
+  .header-logo img {
+    height: 40px;
+  }
+  .header-logo p {
+    letter-spacing: 1px;
+  }
+  #sort-goods {
+    top: 105px;
   }
 }
 @media (max-width: 1080px) {
@@ -60,12 +69,7 @@
   }
   .main-page {
     width: 100%;
-  }
-  .header-logo img {
-    height: 40px;
-  }
-  .header-logo p {
-    letter-spacing: 1px;
+    min-height: calc(100vh - 200px);
   }
   .profile {
     right: 5px;
@@ -88,7 +92,7 @@
   }
   .products__item {
     width: 150px;
-    min-height: 300px;
+    min-height: 350px;
   }
   .products__item img {
     width: 130px;
@@ -156,7 +160,7 @@
   }
   .cart-count {
     font-size: 8px;
-    width: 12px;
+    width: 16px;
     padding: 2px;
     bottom: -5px;
     left: -5px;
@@ -290,6 +294,16 @@
   .user_order {
     padding: 10px;
   }
+  .burger-menu {
+    font-size: 15px;
+  }
+  .burger-menu {
+    font-size: 15px;
+  }
+  .cart-item input {
+    width: 25px;
+    font-size: 10px;
+  }
 }
 
 @media (max-width: 540px) {
@@ -324,9 +338,6 @@
   .telephone a {
     font-size: 6px;
     letter-spacing: 1px;
-  }
-  .burger-menu {
-    font-size: 10px;
   }
   .my-data {
     min-width: 300px;
@@ -384,16 +395,19 @@
     padding: 5px;
     margin: 5px 10px 2px 0px;
     width: 120px;
-    min-height: 250px;
+    min-height: 300px;
   }
   .products__item img {
     width: 100px;
-    max-height: 170px;
+    max-height: 160px;
   }
   .products__item p {
     font-size: 8px;
     letter-spacing: 1px;
     line-height: 10px;
+  }
+  .price-name-price {
+    bottom: 25px;
   }
   .btn-to-cart {
     letter-spacing: 1px;

@@ -7,6 +7,8 @@ import { setLoginForHead } from '../redux/actions/setUserDataAction';
 import fetchSearch from '../back-end-request/fetchSearch';
 import removeCookie from '../back-end-request/removeCookie';
 import { setSearchVal } from '../redux/actions/searchAction';
+import fetchGoods from '../back-end-request/fetchGoods';
+import { setCategoryId } from '../redux/actions/goods';
 
 function Header() {
   return (
@@ -50,6 +52,11 @@ function HeaderTelephone() {
 }
 
 function HeaderMenu() {
+  const dispatch = useDispatch();
+  const resetGoods = () => {
+    dispatch(setCategoryId(0));
+    dispatch(fetchGoods(1, 30, 0));
+  };
   return (
     <nav className="header-menu">
       <ul>
@@ -64,9 +71,9 @@ function HeaderMenu() {
           </NavLink>
         </li>
         <li>
-          <a href="/goods" className="nav-link">
+          <NavLink to="/goods" className="nav-link" onClick={() => resetGoods()}>
             Усі товари
-          </a>
+          </NavLink>
         </li>
         <li>
           <NavLink to="/delivery_info" className="nav-link">

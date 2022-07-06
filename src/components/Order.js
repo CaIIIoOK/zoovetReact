@@ -73,6 +73,7 @@ const Order = () => {
       return;
     }
     setValue('cityDelivery', '');
+    dispatch(setDeliveryWarehouse([]));
     warehouseRef.current.style.display = 'none';
     cityInformationRef.current.style.display = 'none';
     return (inputRef.current.style.display = 'inline-block');
@@ -243,9 +244,9 @@ const Order = () => {
             <option value="novap" id="novap">
               Доставка "Нова Пошта"
             </option>
-            {/* <option value="justin" id="justin">
+            <option value="justin" id="justin">
               Доставка "Justin"
-            </option> */}
+            </option>
             <option value="ukrp" id="ukrp">
               Доставка "Укрпочта"
             </option>
@@ -296,10 +297,21 @@ const Order = () => {
             <div ref={warehouseRef} id="warehouse">
               <select name="warehouse" {...register('warehouse')}>
                 <option hidden>Оберіть відділення</option>
-                {warehouse &&
+                {warehouse && city.length !== 0 ? (
                   warehouse.map((elem) => {
                     return <option key={elem.Ref}>{elem.Description}</option>;
-                  })}
+                  })
+                ) : cityJustin.length !== 0 ? (
+                  warehouse.map((elem) => {
+                    return (
+                      <option key={elem.fields.code}>
+                        {elem.fields.descr}, {elem.fields.address}
+                      </option>
+                    );
+                  })
+                ) : (
+                  <option>По даному запиту нічого не знайдено</option>
+                )}
               </select>
             </div>
           </div>

@@ -94,7 +94,9 @@ const PrintVersion = () => {
                 })}
               </tbody>
             </table>
+            <input type="text" placeholder="Примітки..." />
           </div>
+
           <p>Всього: {printTotal} грн.</p>
           <button className="print_button" onClick={() => window.print()}>
             Роздрукувати
