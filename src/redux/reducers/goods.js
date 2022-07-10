@@ -8,6 +8,7 @@ const initialState = {
   categoryId: 0,
   soloItemId: 0,
   isLoaded: false,
+  randomGoods: [],
 };
 
 function findProdById(arr, id) {
@@ -63,6 +64,12 @@ const getGoods = (state = initialState, action) => {
       return {
         ...state,
         reviews: action.review,
+      };
+    }
+    case 'SET_RANDOM_GOODS': {
+      return {
+        ...state,
+        randomGoods: action.randomGoods,
       };
     }
 

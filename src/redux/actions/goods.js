@@ -33,7 +33,10 @@ const setReviews = (review) => ({
   type: 'SET_REVIEWS',
   review,
 });
-
+const setRandomGoods = (randomGoods) => ({
+  type: 'SET_RANDOM_GOODS',
+  randomGoods,
+});
 export {
   goodsDisplay,
   setCurrentPage,
@@ -42,4 +45,5 @@ export {
   setCategoryId,
   setSoloItemData,
   setReviews,
+  setRandomGoods,
 };

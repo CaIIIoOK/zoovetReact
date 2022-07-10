@@ -1,6 +1,66 @@
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+import fetchRandomGoods from '../back-end-request/fetchRandomGoods';
+import AwesomeSlider from 'react-awesome-slider';
+import withAutoplay from 'react-awesome-slider/dist/autoplay';
+import 'react-awesome-slider/dist/styles.css';
+
 function Main() {
+  const dispatch = useDispatch();
+  const { randomGoods } = useSelector(({ getGoods }) => getGoods);
+  React.useEffect(() => {
+    dispatch(fetchRandomGoods());
+  }, []);
+  const AutoplaySlider = withAutoplay(AwesomeSlider);
+
+  const slider = (
+    <AutoplaySlider
+      play={true}
+      cancelOnInteraction={false} // should stop playing on user interaction
+      interval={6000}
+      media={[
+        {
+          source: './img/slider-categoryUkr.jpg',
+        },
+        {
+          source: './img/slider_1.jpg',
+        },
+        {
+          source: './img/slider_delivery.jpg',
+        },
+      ]}
+    />
+  );
   return (
     <div className="main-page">
+      <div className="wraper_for_slider">
+        <div className="slider">{slider}</div>
+      </div>
+      <div className="wraper_for_random_goods">
+        <h4>Товари які можуть вас зацікавити:</h4>
+        <div className="main_random_goods">
+          {randomGoods.length !== 0
+            ? randomGoods.map((item, index) => {
+                return (
+                  <div
+                    key={index}
+                    className={item.availability === 1 ? 'randomProd' : 'availability randomProd'}>
+                    <NavLink to={'/goods-solo?&id=' + item.id}>
+                      <img src={item.Img_prod} alt="Img_prod" />
+                      <div className="price-name-price random_name_price">
+                        <p>
+                          Ціна: <b>{item.Price_prod}</b> грн.
+                        </p>
+                        <p>{item.Name_prod_ua}</p>
+                      </div>
+                    </NavLink>
+                  </div>
+                );
+              })
+            : ''}
+        </div>
+      </div>
       <section className="main-page-text">
         <center>
           <h4> ШАНОВНІ КЛІЄНТИ ! УВАЖНО ЧИТАЙТЕ УМОВИ ОФОРМЛЕННЯ ТА ВІДПРАВЛЕННЯ ЗАМОВЛЕНЬ.</h4>

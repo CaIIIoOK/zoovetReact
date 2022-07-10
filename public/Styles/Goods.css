@@ -173,3 +173,69 @@
 #idInput {
   width: 50px;
 }
+.wraper_for_random_goods {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  padding: 5px;
+  align-items: center;
+  justify-content: center;
+}
+.wraper_for_slider {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  padding: 5px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.main_random_goods {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 5px;
+  margin-bottom: 5px;
+  overflow: auto;
+  width: 95%;
+}
+.randomProd p,
+.randomProd span {
+  font-size: 12px;
+  margin-top: 5px;
+}
+.random_name_price {
+  bottom: 10px;
+}
+.randomProd {
+  border: 1px solid rgb(134, 134, 134);
+  border-radius: 3px;
+  padding: 5px;
+  margin: 5px 10px 5px 0px;
+  width: 150px;
+  height: max-content;
+  min-height: 280px;
+  position: relative;
+  text-align: center;
+}
+.randomProd:hover {
+  transform: translateY(-5px);
+  border: 1px solid rgb(104, 248, 229);
+  transition: transform 0.5s;
+}
+
+.randomProd img {
+  margin-bottom: 5px;
+  width: 100px;
+  max-height: 130px;
+  border-radius: 3px;
+}
+.slider {
+  width: 70%;
+}
+.slider_body {
+  width: 200px;
+}
