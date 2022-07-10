@@ -234,8 +234,8 @@
   border-radius: 3px;
 }
 .slider {
-  width: 70%;
+  width: 700px;
 }
-.slider_body {
-  width: 200px;
+.slider img {
+  width: 700px;
 }

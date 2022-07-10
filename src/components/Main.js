@@ -2,9 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import fetchRandomGoods from '../back-end-request/fetchRandomGoods';
-import AwesomeSlider from 'react-awesome-slider';
-import withAutoplay from 'react-awesome-slider/dist/autoplay';
-import 'react-awesome-slider/dist/styles.css';
+import Slider from 'react-slick';
 
 function Main() {
   const dispatch = useDispatch();
@@ -12,30 +10,59 @@ function Main() {
   React.useEffect(() => {
     dispatch(fetchRandomGoods());
   }, []);
-  const AutoplaySlider = withAutoplay(AwesomeSlider);
+  function SampleNextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: 'block', background: 'grey', borderRadius: 50, paddingTop: 1 }}
+        onClick={onClick}
+      />
+    );
+  }
 
-  const slider = (
-    <AutoplaySlider
-      play={true}
-      cancelOnInteraction={false} // should stop playing on user interaction
-      interval={6000}
-      media={[
-        {
-          source: './img/slider-categoryUkr.jpg',
-        },
-        {
-          source: './img/slider_1.jpg',
-        },
-        {
-          source: './img/slider_delivery.jpg',
-        },
-      ]}
-    />
-  );
+  function SamplePrevArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: 'block', background: 'grey', borderRadius: 50, paddingTop: 1 }}
+        onClick={onClick}
+      />
+    );
+  }
+  const settings = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 6000,
+    pauseOnHover: true,
+    swipeToSlide: true,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+  };
   return (
     <div className="main-page">
       <div className="wraper_for_slider">
-        <div className="slider">{slider}</div>
+        <div className="slider">
+          <Slider {...settings}>
+            <div>
+              <img src="./img/slider_1.jpg" alt="" />
+            </div>
+            <div>
+              <NavLink to="/categorys">
+                <img src="./img/slider-categoryUkr.jpg" alt="" />
+              </NavLink>
+            </div>
+            <div>
+              <NavLink to="/delivery_info">
+                <img src="./img/slider_delivery.jpg" alt="" />
+              </NavLink>
+            </div>
+          </Slider>
+        </div>
       </div>
       <div className="wraper_for_random_goods">
         <h4>Товари які можуть вас зацікавити:</h4>
