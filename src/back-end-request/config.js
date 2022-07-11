@@ -1,5 +1,5 @@
 const config = {
-  URL: 'https://zoovetagro.org.ua',
+  URL: 'https://back.zoovetagro.org.ua',
   PORT: ':3001',
 };
 //'http://localhost:3001'

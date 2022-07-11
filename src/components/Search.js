@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import { useSearchParams } from 'react-router-dom';
+import { NavLink, useSearchParams } from 'react-router-dom';
 import fetchSearch from '../back-end-request/fetchSearch';
 import { setSearchVal } from '../redux/actions/searchAction';
 import fetchGoodsSoloItem from '../back-end-request/fetchGoodsSoloItem';
